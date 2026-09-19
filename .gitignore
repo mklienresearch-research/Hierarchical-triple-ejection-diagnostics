@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Editors / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Large simulation artifacts — publish separately with checksums
+*.npz
+*.npy
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.parquet
+
+# Kaggle/runtime outputs
+v2out/
+analysis/
+analysis_corrected*/
+audit_corrected*/
+*.partial.pkl
+*_part*.npz
+
+# Generated paper/figure products
+paper/build/
+figures/generated/
+
+# Secrets
+.env
+*.key
+kaggle.json

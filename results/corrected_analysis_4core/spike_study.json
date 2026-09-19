@@ -1,0 +1,26 @@
+{
+ "raw": {
+  "n_stable": 6494,
+  "n_ejected": 2470,
+  "stable_median": 6.317702293395996,
+  "ejected_median": 11.05989122390747,
+  "stable_p90": 12.815593719482422,
+  "overlap_frac": 0.16214967662457652
+ },
+ "median": {
+  "n_stable": 6494,
+  "n_ejected": 2470,
+  "stable_median": 2.5918301343917847,
+  "ejected_median": 3.12919282913208,
+  "stable_p90": 4.523866987228393,
+  "overlap_frac": 0.2976593778872806
+ },
+ "orbital": {
+  "n_stable": 6494,
+  "n_ejected": 2470,
+  "stable_median": 3.266533374786377,
+  "ejected_median": 3.9643802642822266,
+  "stable_p90": 4.885461997985839,
+  "overlap_frac": 0.2622420696027102
+ }
+}

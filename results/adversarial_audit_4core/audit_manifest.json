@@ -1,0 +1,15 @@
+{
+ "status": "complete",
+ "runtime_minutes": 17.31433633963267,
+ "files": [
+  "audit_summary.json",
+  "blocked_splits.json",
+  "feature_ablation_encounters.json",
+  "feature_ablation_triples.json",
+  "fixed_far_encounters.json",
+  "fixed_far_triples.json",
+  "negative_controls.json",
+  "single_feature_scan.json"
+ ],
+ "interpretation_rule": "Do not accept the paper-level model until shuffled-label, ablation, blocked-split, calibration, and fixed-FAR outputs have been reviewed."
+}

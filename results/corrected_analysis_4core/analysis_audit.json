@@ -1,0 +1,13 @@
+{
+ "leaked_feature_disabled": "n_frac",
+ "stored_feature_index": 73,
+ "value_used_in_all_models": 0.0,
+ "decision_oof_scope": "all valid in-play systems",
+ "triple_multiclass": [
+  "stable",
+  "outer-eject",
+  "inner-eject"
+ ],
+ "tte_target": "log10 remaining outer periods",
+ "cox_design": "landmark remaining-time; ejection-only event"
+}

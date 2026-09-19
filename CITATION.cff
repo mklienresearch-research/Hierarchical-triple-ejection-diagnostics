@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software or its data products, please cite the associated paper and software release."
+title: "Hierarchical Triple Ejection Diagnostics"
+type: software
+authors:
+  - family-names: "Klien"
+    given-names: "M."
+    email: "m.klienresearch@gmail.com"
+repository-code: "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics"
+version: "0.1.0-dev"
+date-released: "2026-09-19"

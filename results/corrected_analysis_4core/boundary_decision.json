@@ -1,0 +1,11 @@
+{
+ "n_warned": 35783,
+ "n_pos": 81113,
+ "warning_fraction": 0.441150000616424,
+ "n_positive_lead": 35783,
+ "positive_lead_fraction_of_warned": 1.0,
+ "median_lead": 5.406058311462402,
+ "p25": 2.054232954978943,
+ "p75": 12.709140300750732,
+ "median_positive_lead": 5.406058311462402
+}
