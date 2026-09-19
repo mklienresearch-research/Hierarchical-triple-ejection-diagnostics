@@ -79,4 +79,4 @@ print(record["status"], record["t_event"])
 
 ## License and citation
 
-License and author/citation metadata are intentionally pending confirmation from the repository owner.
+The software is released under the [MIT License](LICENSE). Citation metadata are provided in [`CITATION.cff`](CITATION.cff).

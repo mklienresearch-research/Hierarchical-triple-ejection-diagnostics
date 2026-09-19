@@ -11,5 +11,5 @@
 - [ ] Add publication figure and table generators.
 - [ ] Add manuscript source and bibliography.
 - [ ] Add public-data manifest and Zenodo DOI.
-- [ ] Confirm author metadata, repository URL, citation, and license.
+- [x] Confirm author metadata, repository URL, citation, and MIT license.
 - [ ] Configure CI and publish the GitHub remote.

@@ -9,3 +9,4 @@ authors:
 repository-code: "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics"
 version: "0.1.0-dev"
 date-released: "2026-09-19"
+license: MIT
