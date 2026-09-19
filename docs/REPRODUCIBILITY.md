@@ -13,11 +13,13 @@ The causal-invariance test extends a synthetic record with extreme post-horizon 
 
 Direct self-contained files are under `workflows/kaggle/`:
 
-- `CORRECTED_ANALYSIS_4CORE.py`: corrected standard-CPU analysis;
-- `CORRECTED_ANALYSIS_96.py`: corrected TPU-host analysis;
-- `AUDIT_ANALYSIS_4CORE.py`: adversarial negative controls and robustness tests;
+- `FINAL_ANALYSIS_4CORE.py`: final standard-CPU analysis with stored indices 72 and 73 disabled;
+- `FINAL_ANALYSIS_96.py`: final TPU-host analysis with the same safeguards;
+- `FINAL_AUDIT_4CORE.py`: final adversarial controls with both future-length columns disabled;
 - `DEEPTAIL_100K_3000_CORRECTED.py`: matched survival/censoring production run;
 - `combine_chunks.py`: chunk assembly.
+
+Earlier `CORRECTED_*` workflows are retained only for provenance. Final paper outputs must come from the `FINAL_*` workflows.
 
 The final paper-level analysis will supersede the current corrected scripts by additionally disabling stored `first_breach` index 72. The repository README and correction record track this explicitly.
 

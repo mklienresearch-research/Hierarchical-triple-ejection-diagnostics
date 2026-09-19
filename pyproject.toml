@@ -16,6 +16,7 @@ dependencies = [
   "xgboost>=2.0",
   "pandas>=2.0",
   "lifelines>=0.28",
+  "matplotlib>=3.7",
 ]
 
 [project.optional-dependencies]
