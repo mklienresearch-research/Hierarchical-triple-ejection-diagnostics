@@ -3,14 +3,14 @@
   "target_directory": "workflows/final",
   "note": "Hashes recorded by the analysis agent for final_run_scripts_handoff/*.py.txt (2026-09-27). Each script MUST hash-verify on receipt, be committed here as SOMENAME.py (drop the .txt), and be flipped to received. CI compiles every .py under workflows/ and tests/ skips nothing silently.",
   "scripts": [
-    {"name": "FINAL_ANALYSIS_ALL_4CORE.py", "sha256": "aed3c915e1b01a0339689faa189c00ddc0c6255b811ad067bde0666fd48f8fc9", "status": "pending"},
-    {"name": "FINAL_EXPANDED_AUDIT_4CORE.py", "sha256": "7b9b4e0ffeddffcd34ed1d95469fdd0160affcd415e2261678e0b1b4e61ba875", "status": "pending"},
-    {"name": "PROSPECTIVE_TAIL_SCORING_4CORE.py", "sha256": "1dae34f0ba73bbf0c7ddeb011cf9cbec28275d0db517000791ee5bdbaa12201f", "status": "pending"},
-    {"name": "TAIL_TOLERANCE_500_4CORE.py", "sha256": "dc262aacf498043fb0cc82fd15302dbd4855d867b6f2a923c1256f7bb6dd0c13", "status": "pending"},
-    {"name": "ATTRIBUTION_AND_GROWTH_POSTPROCESS_V2.py", "sha256": "43954c3131717052cf3a2253b47c44f70fa474f23b3015c311da36cf5bd7510a", "status": "pending"},
-    {"name": "ATTRIBUTION_PRECISION_ADDON.py", "sha256": "9794323e50e25cff18dd1df545b3ff6f86a44da28395c057e6d32d450f09da8e", "status": "pending"},
-    {"name": "PARTIAL_AUC_POSTPROCESS.py", "sha256": "b27c4ef2116d4734360dc29f513efd9bb2382aa274dae0cef1f90cb30bf04b75", "status": "pending"},
-    {"name": "LITERATURE_BASELINE_VYNATHEYA_4CORE.py", "sha256": "ec7b13ee6d1dc8fa1c828ab3bc20acc941b584cb055f2a64283793056e48f0d9", "status": "pending"},
-    {"name": "TRAINING_SIZE_LEARNING_CURVE_4CORE.py", "sha256": "35de5724b0fde07a5bfa4f84b7efde6267fac4493a36a8157cef96a9e9d08602", "status": "pending"}
+    {"name": "FINAL_ANALYSIS_ALL_4CORE.py", "sha256": "aed3c915e1b01a0339689faa189c00ddc0c6255b811ad067bde0666fd48f8fc9", "status": "received"},
+    {"name": "FINAL_EXPANDED_AUDIT_4CORE.py", "sha256": "7b9b4e0ffeddffcd34ed1d95469fdd0160affcd415e2261678e0b1b4e61ba875", "status": "received"},
+    {"name": "PROSPECTIVE_TAIL_SCORING_4CORE.py", "sha256": "1dae34f0ba73bbf0c7ddeb011cf9cbec28275d0db517000791ee5bdbaa12201f", "status": "received"},
+    {"name": "TAIL_TOLERANCE_500_4CORE.py", "sha256": "dc262aacf498043fb0cc82fd15302dbd4855d867b6f2a923c1256f7bb6dd0c13", "status": "received"},
+    {"name": "ATTRIBUTION_AND_GROWTH_POSTPROCESS_V2.py", "sha256": "43954c3131717052cf3a2253b47c44f70fa474f23b3015c311da36cf5bd7510a", "status": "received"},
+    {"name": "ATTRIBUTION_PRECISION_ADDON.py", "sha256": "9794323e50e25cff18dd1df545b3ff6f86a44da28395c057e6d32d450f09da8e", "status": "received"},
+    {"name": "PARTIAL_AUC_POSTPROCESS.py", "sha256": "b27c4ef2116d4734360dc29f513efd9bb2382aa274dae0cef1f90cb30bf04b75", "status": "received"},
+    {"name": "LITERATURE_BASELINE_VYNATHEYA_4CORE.py", "sha256": "ec7b13ee6d1dc8fa1c828ab3bc20acc941b584cb055f2a64283793056e48f0d9", "status": "received"},
+    {"name": "TRAINING_SIZE_LEARNING_CURVE_4CORE.py", "sha256": "35de5724b0fde07a5bfa4f84b7efde6267fac4493a36a8157cef96a9e9d08602", "status": "received"}
   ]
 }

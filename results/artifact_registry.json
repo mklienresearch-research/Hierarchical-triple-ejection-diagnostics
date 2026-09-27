@@ -62,24 +62,24 @@
       "subfolder": "analysis_final_4core",
       "files": [
         {"path": "analysis_audit.json", "bytes": 406, "sha256": "fb83d728ee17140733225bf11611d433616e640a767199e113ed5e45cc06dd34", "placement": "git", "repo_path": "results/final_analysis_4core/analysis_audit.json", "status": "committed"},
-        {"path": "boundary_causal.json", "bytes": 2189, "sha256": "f19251031b5cea7398de419dc26731a07b5e217abd1eb32c33faa9e012e2906d", "placement": "git", "repo_path": "results/final_analysis_4core/boundary_causal.json", "status": "pending-transfer"},
-        {"path": "boundary_decision.json", "bytes": 284, "sha256": "2d081d9a8c4e344317789a1377265696ffaab56b5cbea0a7a399ce545c8f879d", "placement": "git", "repo_path": "results/final_analysis_4core/boundary_decision.json", "status": "pending-transfer"},
-        {"path": "boundary_ood.json", "bytes": 269, "sha256": "7e22aed897bf6f6ba9034a2cb609b3b933a9ce4405fa9d557cf14d757fb2e90f", "placement": "git", "repo_path": "results/final_analysis_4core/boundary_ood.json", "status": "pending-transfer"},
-        {"path": "cox_hazards.json", "bytes": 1207, "sha256": "8b18fb7a02d6809c1f230941b306a9e01aa17b9c02c121c3b7a21e592a305281", "placement": "git", "repo_path": "results/final_analysis_4core/cox_hazards.json", "status": "pending-transfer"},
-        {"path": "enc_causal.json", "bytes": 4191, "sha256": "cf10147e57948710dc561c9cc6b9ab462d63da89060d1915062bd8f63ae85011", "placement": "git", "repo_path": "results/final_analysis_4core/enc_causal.json", "status": "pending-transfer"},
-        {"path": "enc_conditional.json", "bytes": 692, "sha256": "0cef8ac71eb397c76020b7a3a44be5cc2ba6935b6f37a7704ed6f4c6cc8ee558", "placement": "git", "repo_path": "results/final_analysis_4core/enc_conditional.json", "status": "pending-transfer"},
-        {"path": "enc_decision.json", "bytes": 302, "sha256": "b4a30995592653b3d2286e8e2562e2acec257e8493321ed293e7503f92e47474", "placement": "git", "repo_path": "results/final_analysis_4core/enc_decision.json", "status": "pending-transfer"},
-        {"path": "enc_multiclass.json", "bytes": 6970, "sha256": "fd4eee1279123902da0916a4ec5930fea57ddffec15464df62ad53e854ccf403", "placement": "git", "repo_path": "results/final_analysis_4core/enc_multiclass.json", "status": "pending-transfer"},
-        {"path": "enc_multiclass_conditional.json", "bytes": 676, "sha256": "3a2d581f77a35ef8303ea35e2d03649a5c2a474db18a3d4c23d3ad6167ff405f", "placement": "git", "repo_path": "results/final_analysis_4core/enc_multiclass_conditional.json", "status": "pending-transfer"},
-        {"path": "enc_multiclass_decision.json", "bytes": 372, "sha256": "17c934a650af8bf2f422fe3f01068ccf08b5e6126bdae22dc9369661a5729e75", "placement": "git", "repo_path": "results/final_analysis_4core/enc_multiclass_decision.json", "status": "pending-transfer"},
-        {"path": "ma01_benchmark.json", "bytes": 965, "sha256": "98f8af76561b0b3839ae5a145a391809ab4164fbcbe3f6bd274440439c678815", "placement": "git", "repo_path": "results/final_analysis_4core/ma01_benchmark.json", "status": "pending-transfer"},
-        {"path": "report.json", "bytes": 28165, "sha256": "0540790157509822a5ac8ead36ceeca6af0eaacd7d30bbea2e615f19c79a9991", "placement": "git", "repo_path": "results/final_analysis_4core/report.json", "status": "pending-transfer"},
-        {"path": "spike_study.json", "bytes": 624, "sha256": "62c174c5b0d3328fe60137ce6cc00680509af3edf47fcd9f0108d58ac6c09c7b", "placement": "git", "repo_path": "results/final_analysis_4core/spike_study.json", "status": "pending-transfer"},
-        {"path": "triples_causal.json", "bytes": 2212, "sha256": "93e4ea4baadbf45f56da7182b5212040b19c30f112225cbbdde44205be40d039", "placement": "git", "repo_path": "results/final_analysis_4core/triples_causal.json", "status": "pending-transfer"},
+        {"path": "boundary_causal.json", "bytes": 2189, "sha256": "f19251031b5cea7398de419dc26731a07b5e217abd1eb32c33faa9e012e2906d", "placement": "git", "repo_path": "results/final_analysis_4core/boundary_causal.json", "status": "committed"},
+        {"path": "boundary_decision.json", "bytes": 284, "sha256": "2d081d9a8c4e344317789a1377265696ffaab56b5cbea0a7a399ce545c8f879d", "placement": "git", "repo_path": "results/final_analysis_4core/boundary_decision.json", "status": "committed"},
+        {"path": "boundary_ood.json", "bytes": 269, "sha256": "7e22aed897bf6f6ba9034a2cb609b3b933a9ce4405fa9d557cf14d757fb2e90f", "placement": "git", "repo_path": "results/final_analysis_4core/boundary_ood.json", "status": "committed"},
+        {"path": "cox_hazards.json", "bytes": 1207, "sha256": "8b18fb7a02d6809c1f230941b306a9e01aa17b9c02c121c3b7a21e592a305281", "placement": "git", "repo_path": "results/final_analysis_4core/cox_hazards.json", "status": "committed"},
+        {"path": "enc_causal.json", "bytes": 4191, "sha256": "cf10147e57948710dc561c9cc6b9ab462d63da89060d1915062bd8f63ae85011", "placement": "git", "repo_path": "results/final_analysis_4core/enc_causal.json", "status": "committed"},
+        {"path": "enc_conditional.json", "bytes": 692, "sha256": "0cef8ac71eb397c76020b7a3a44be5cc2ba6935b6f37a7704ed6f4c6cc8ee558", "placement": "git", "repo_path": "results/final_analysis_4core/enc_conditional.json", "status": "committed"},
+        {"path": "enc_decision.json", "bytes": 302, "sha256": "b4a30995592653b3d2286e8e2562e2acec257e8493321ed293e7503f92e47474", "placement": "git", "repo_path": "results/final_analysis_4core/enc_decision.json", "status": "committed"},
+        {"path": "enc_multiclass.json", "bytes": 6970, "sha256": "fd4eee1279123902da0916a4ec5930fea57ddffec15464df62ad53e854ccf403", "placement": "git", "repo_path": "results/final_analysis_4core/enc_multiclass.json", "status": "committed"},
+        {"path": "enc_multiclass_conditional.json", "bytes": 676, "sha256": "3a2d581f77a35ef8303ea35e2d03649a5c2a474db18a3d4c23d3ad6167ff405f", "placement": "git", "repo_path": "results/final_analysis_4core/enc_multiclass_conditional.json", "status": "committed"},
+        {"path": "enc_multiclass_decision.json", "bytes": 372, "sha256": "17c934a650af8bf2f422fe3f01068ccf08b5e6126bdae22dc9369661a5729e75", "placement": "git", "repo_path": "results/final_analysis_4core/enc_multiclass_decision.json", "status": "committed"},
+        {"path": "ma01_benchmark.json", "bytes": 965, "sha256": "98f8af76561b0b3839ae5a145a391809ab4164fbcbe3f6bd274440439c678815", "placement": "git", "repo_path": "results/final_analysis_4core/ma01_benchmark.json", "status": "committed"},
+        {"path": "report.json", "bytes": 28165, "sha256": "0540790157509822a5ac8ead36ceeca6af0eaacd7d30bbea2e615f19c79a9991", "placement": "git", "repo_path": "results/final_analysis_4core/report.json", "status": "committed"},
+        {"path": "spike_study.json", "bytes": 624, "sha256": "62c174c5b0d3328fe60137ce6cc00680509af3edf47fcd9f0108d58ac6c09c7b", "placement": "git", "repo_path": "results/final_analysis_4core/spike_study.json", "status": "committed"},
+        {"path": "triples_causal.json", "bytes": 2212, "sha256": "93e4ea4baadbf45f56da7182b5212040b19c30f112225cbbdde44205be40d039", "placement": "git", "repo_path": "results/final_analysis_4core/triples_causal.json", "status": "committed"},
         {"path": "triples_decision.json", "bytes": 284, "sha256": "0fc7f94ca0a1bca9e2a321d049384eb143208f847e57566a6d7631a23463c81d", "placement": "git", "repo_path": "results/final_analysis_4core/triples_decision.json", "status": "committed"},
-        {"path": "triples_multiclass.json", "bytes": 3990, "sha256": "50425d6c5867e89dbd5b298d401db2e4b5c6a13687bbac023497ce514d29a56d", "placement": "git", "repo_path": "results/final_analysis_4core/triples_multiclass.json", "status": "pending-transfer"},
-        {"path": "triples_multiclass_decision.json", "bytes": 244, "sha256": "c523548fd7149c87ad2e3fe3e336903b77eba89f94b308bf01c39286ecb611e0", "placement": "git", "repo_path": "results/final_analysis_4core/triples_multiclass_decision.json", "status": "pending-transfer"},
-        {"path": "tte_regression.json", "bytes": 533, "sha256": "32c97f013ab135911d4e3509a7c6fe2c28dbbf7b208fbe38096ada6b059b132c", "placement": "git", "repo_path": "results/final_analysis_4core/tte_regression.json", "status": "pending-transfer"}
+        {"path": "triples_multiclass.json", "bytes": 3990, "sha256": "50425d6c5867e89dbd5b298d401db2e4b5c6a13687bbac023497ce514d29a56d", "placement": "git", "repo_path": "results/final_analysis_4core/triples_multiclass.json", "status": "committed"},
+        {"path": "triples_multiclass_decision.json", "bytes": 244, "sha256": "c523548fd7149c87ad2e3fe3e336903b77eba89f94b308bf01c39286ecb611e0", "placement": "git", "repo_path": "results/final_analysis_4core/triples_multiclass_decision.json", "status": "committed"},
+        {"path": "tte_regression.json", "bytes": 533, "sha256": "32c97f013ab135911d4e3509a7c6fe2c28dbbf7b208fbe38096ada6b059b132c", "placement": "git", "repo_path": "results/final_analysis_4core/tte_regression.json", "status": "committed"}
       ]
     },
     {
@@ -88,30 +88,30 @@
       "license": "owner standardizing to CC BY-SA 4.0; description to be added",
       "note": "SHA256SUMS.txt verified 23/23 against owner walk. NPZs are Zenodo-track, never git.",
       "files": [
-        {"path": "OUTPUT_MANIFEST.json", "bytes": 3263, "sha256": "cca6a5e071005f68e3a5c0a3ffad0feb8045a69969a327a2ebd8acdf4a6a8430", "placement": "git", "repo_path": "results/final_audit_expanded/OUTPUT_MANIFEST.json", "status": "pending-transfer"},
+        {"path": "OUTPUT_MANIFEST.json", "bytes": 3263, "sha256": "cca6a5e071005f68e3a5c0a3ffad0feb8045a69969a327a2ebd8acdf4a6a8430", "placement": "git", "repo_path": "results/final_audit_expanded/OUTPUT_MANIFEST.json", "status": "committed"},
         {"path": "SHA256SUMS.txt", "bytes": 2186, "sha256": "693757b840216d17826e2dd75fd1d4aec15f0e8efa4ab9e2446a286b958e7a4e", "placement": "git", "repo_path": "results/final_audit_expanded/SHA256SUMS.txt", "status": "committed"},
-        {"path": "audit_summary.json", "bytes": 969, "sha256": "d404ea752291f6a87082eafd4b959782fbef7f7b6a0a93a55997acd1b32b0f79", "placement": "git", "repo_path": "results/final_audit_expanded/audit_summary.json", "status": "pending-transfer"},
-        {"path": "boundary_landmark_fixed_cohort.json", "bytes": 7865, "sha256": "ace43ff21d81178edecbb3c5c8bc9efb634448f2a2aa8b6002b353ef92e6a4f6", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_landmark_fixed_cohort.json", "status": "pending-transfer"},
-        {"path": "boundary_ood_inplay_corrected.json", "bytes": 18307, "sha256": "0be9bec8bc3b14d0977a7510aa7987775abb6be8db10316b427b9a480a66a1cd", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_ood_inplay_corrected.json", "status": "pending-transfer"},
-        {"path": "boundary_parity.json", "bytes": 40726, "sha256": "035577f5ecc88b32280f6a98d4c67b3cfc381b4f09d31aaaa34c6bbe553ea7f9", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_parity.json", "status": "pending-transfer"},
-        {"path": "boundary_retention.json", "bytes": 1234, "sha256": "f9b2a8332b932db93e56500e2535a298be7a67b63aceec422b8acd2cc1ada103", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_retention.json", "status": "pending-transfer"},
+        {"path": "audit_summary.json", "bytes": 969, "sha256": "d404ea752291f6a87082eafd4b959782fbef7f7b6a0a93a55997acd1b32b0f79", "placement": "git", "repo_path": "results/final_audit_expanded/audit_summary.json", "status": "committed"},
+        {"path": "boundary_landmark_fixed_cohort.json", "bytes": 7865, "sha256": "ace43ff21d81178edecbb3c5c8bc9efb634448f2a2aa8b6002b353ef92e6a4f6", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_landmark_fixed_cohort.json", "status": "committed"},
+        {"path": "boundary_ood_inplay_corrected.json", "bytes": 18307, "sha256": "0be9bec8bc3b14d0977a7510aa7987775abb6be8db10316b427b9a480a66a1cd", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_ood_inplay_corrected.json", "status": "committed"},
+        {"path": "boundary_parity.json", "bytes": 40726, "sha256": "035577f5ecc88b32280f6a98d4c67b3cfc381b4f09d31aaaa34c6bbe553ea7f9", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_parity.json", "status": "committed"},
+        {"path": "boundary_retention.json", "bytes": 1234, "sha256": "f9b2a8332b932db93e56500e2535a298be7a67b63aceec422b8acd2cc1ada103", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_retention.json", "status": "committed"},
         {"path": "boundary_split_ids.npz", "bytes": 278207, "sha256": "e273d750522fdd318d9c0541c727136e1a45fb2d438224c3d906a8e8f9852301", "placement": "zenodo", "status": "recorded"},
-        {"path": "boundary_thresholds.json", "bytes": 19114, "sha256": "ef91aec430777b79d74e0a2d5172e9dd05b76227327986b7679903085c9ef29c", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_thresholds.json", "status": "pending-transfer"},
+        {"path": "boundary_thresholds.json", "bytes": 19114, "sha256": "ef91aec430777b79d74e0a2d5172e9dd05b76227327986b7679903085c9ef29c", "placement": "git", "repo_path": "results/final_audit_expanded/boundary_thresholds.json", "status": "committed"},
         {"path": "boundary_untouched_test_scores.npz", "bytes": 695949, "sha256": "3d2fefab7ae5f55579f990146be881abb1161a13180ea802ba733f0a2cab9850", "placement": "zenodo", "status": "recorded"},
-        {"path": "enc_conditional_inplay_corrected.json", "bytes": 19648, "sha256": "5ba34becb3df1623bb1b356a66f89d50f1911bcc03887431204dd9a0f752301a", "placement": "git", "repo_path": "results/final_audit_expanded/enc_conditional_inplay_corrected.json", "status": "pending-transfer"},
-        {"path": "enc_multiclass_conditional_inplay_corrected.json", "bytes": 15750, "sha256": "4f9b779d0be4e3bcd1959f30954ccbf7630d2cebeac09f30ee8254fa2045ac13", "placement": "git", "repo_path": "results/final_audit_expanded/enc_multiclass_conditional_inplay_corrected.json", "status": "pending-transfer"},
-        {"path": "encounters_landmark_fixed_cohort.json", "bytes": 16131, "sha256": "f588fccf228ef6bb74da7b5e5afc1b72e64b34d155c66ca647809e9e4b0b3cd0", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_landmark_fixed_cohort.json", "status": "pending-transfer"},
-        {"path": "encounters_parity.json", "bytes": 66137, "sha256": "a2a987aa31f8c7bd961e53f936d241e59d27300a0a91f3ce82ae6cbad1df17c7", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_parity.json", "status": "pending-transfer"},
-        {"path": "encounters_retention.json", "bytes": 2439, "sha256": "e08fc7bab23d060ae7cdb8d7ce123216411913a8f080ccaca0ee8cf0a5e26325", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_retention.json", "status": "pending-transfer"},
+        {"path": "enc_conditional_inplay_corrected.json", "bytes": 19648, "sha256": "5ba34becb3df1623bb1b356a66f89d50f1911bcc03887431204dd9a0f752301a", "placement": "git", "repo_path": "results/final_audit_expanded/enc_conditional_inplay_corrected.json", "status": "committed"},
+        {"path": "enc_multiclass_conditional_inplay_corrected.json", "bytes": 15750, "sha256": "4f9b779d0be4e3bcd1959f30954ccbf7630d2cebeac09f30ee8254fa2045ac13", "placement": "git", "repo_path": "results/final_audit_expanded/enc_multiclass_conditional_inplay_corrected.json", "status": "committed"},
+        {"path": "encounters_landmark_fixed_cohort.json", "bytes": 16131, "sha256": "f588fccf228ef6bb74da7b5e5afc1b72e64b34d155c66ca647809e9e4b0b3cd0", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_landmark_fixed_cohort.json", "status": "committed"},
+        {"path": "encounters_parity.json", "bytes": 66137, "sha256": "a2a987aa31f8c7bd961e53f936d241e59d27300a0a91f3ce82ae6cbad1df17c7", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_parity.json", "status": "committed"},
+        {"path": "encounters_retention.json", "bytes": 2439, "sha256": "e08fc7bab23d060ae7cdb8d7ce123216411913a8f080ccaca0ee8cf0a5e26325", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_retention.json", "status": "committed"},
         {"path": "encounters_split_ids.npz", "bytes": 3156511, "sha256": "6921d25724abbe302604f977ebad5a0aab5509be60b8a28d0a85edfc008d2642", "placement": "zenodo", "status": "recorded"},
-        {"path": "encounters_thresholds.json", "bytes": 32315, "sha256": "89234f2ff2178e3d62f288bcc8f320a7257708a0aae7ea7813f01c8eee4801d6", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_thresholds.json", "status": "pending-transfer"},
+        {"path": "encounters_thresholds.json", "bytes": 32315, "sha256": "89234f2ff2178e3d62f288bcc8f320a7257708a0aae7ea7813f01c8eee4801d6", "placement": "git", "repo_path": "results/final_audit_expanded/encounters_thresholds.json", "status": "committed"},
         {"path": "encounters_untouched_test_scores.npz", "bytes": 29375549, "sha256": "c3328aaf8e925af1072af24cf5fcdfaf0f138e494cd74171005c104b1ee7c2fd", "placement": "zenodo", "status": "recorded"},
-        {"path": "negative_controls_final.json", "bytes": 496, "sha256": "ba7043e1e318e45b0afcbb55fc25a3a9adc9cfc964a86d2a31d10286686b23fb", "placement": "git", "repo_path": "results/final_audit_expanded/negative_controls_final.json", "status": "pending-transfer"},
-        {"path": "triples_landmark_fixed_cohort.json", "bytes": 8039, "sha256": "de90c4d2e03686b306716cdf06e55d55203e9c695c4de95cd6d83ea0e4906fad", "placement": "git", "repo_path": "results/final_audit_expanded/triples_landmark_fixed_cohort.json", "status": "pending-transfer"},
-        {"path": "triples_parity.json", "bytes": 41005, "sha256": "2f126f5100f5495090a6fc45cc91f62f5fd0abf61f991e69ea65fe148b77b8a5", "placement": "git", "repo_path": "results/final_audit_expanded/triples_parity.json", "status": "pending-transfer"},
-        {"path": "triples_retention.json", "bytes": 1250, "sha256": "b4b5224eda316c8769d0a8de1b7cf2883975caf8162bbed7185a903d5e0e0bf9", "placement": "git", "repo_path": "results/final_audit_expanded/triples_retention.json", "status": "pending-transfer"},
+        {"path": "negative_controls_final.json", "bytes": 496, "sha256": "ba7043e1e318e45b0afcbb55fc25a3a9adc9cfc964a86d2a31d10286686b23fb", "placement": "git", "repo_path": "results/final_audit_expanded/negative_controls_final.json", "status": "committed"},
+        {"path": "triples_landmark_fixed_cohort.json", "bytes": 8039, "sha256": "de90c4d2e03686b306716cdf06e55d55203e9c695c4de95cd6d83ea0e4906fad", "placement": "git", "repo_path": "results/final_audit_expanded/triples_landmark_fixed_cohort.json", "status": "committed"},
+        {"path": "triples_parity.json", "bytes": 41005, "sha256": "2f126f5100f5495090a6fc45cc91f62f5fd0abf61f991e69ea65fe148b77b8a5", "placement": "git", "repo_path": "results/final_audit_expanded/triples_parity.json", "status": "committed"},
+        {"path": "triples_retention.json", "bytes": 1250, "sha256": "b4b5224eda316c8769d0a8de1b7cf2883975caf8162bbed7185a903d5e0e0bf9", "placement": "git", "repo_path": "results/final_audit_expanded/triples_retention.json", "status": "committed"},
         {"path": "triples_split_ids.npz", "bytes": 1514144, "sha256": "742e7b2ccd0dfefc6ca3b256ffe1aafa38c5910669426f881d7b803ad97113fb", "placement": "zenodo", "status": "recorded"},
-        {"path": "triples_thresholds.json", "bytes": 19321, "sha256": "d09d023f8094e63965cf58e8239bf678906051e009480761d1ebcf4ea8e6cfb8", "placement": "git", "repo_path": "results/final_audit_expanded/triples_thresholds.json", "status": "pending-transfer"},
+        {"path": "triples_thresholds.json", "bytes": 19321, "sha256": "d09d023f8094e63965cf58e8239bf678906051e009480761d1ebcf4ea8e6cfb8", "placement": "git", "repo_path": "results/final_audit_expanded/triples_thresholds.json", "status": "committed"},
         {"path": "triples_untouched_test_scores.npz", "bytes": 6068681, "sha256": "5dd741e5384a240404cb28f68790228dcaaa78393fab900509fb985fa1642d14", "placement": "zenodo", "status": "recorded"}
       ]
     },
@@ -138,8 +138,8 @@
       "license": "owner standardizing to CC BY-SA 4.0; description to be added",
       "note": "Six NPY arrays are the canonical public score representation (sizes decode exactly to n=12809 + 5 models + 5 fractions). Original NPZ container hash 3978f8aa7c44716c732d528b6d2e39ebf4c147909ff5cd21e0e2e58b4a96c488 is recorded for provenance; a reconstructed NPZ would carry a new hash.",
       "files": [
-        {"path": "OUTPUT_MANIFEST.json", "bytes": 346, "sha256": "b1b1443afdb6e9e2bf1e78ec5617f36a0568c8b62102023dc2474e196d13efc0", "placement": "git", "repo_path": "results/prospective/OUTPUT_MANIFEST.json", "status": "pending-transfer"},
-        {"path": "prospective_tail_scoring.json", "bytes": 7156, "sha256": "38deb3ae094a856980abd86786016a0954e099e15895c9333b29059d37f05ba8", "placement": "git", "repo_path": "results/prospective/prospective_tail_scoring.json", "status": "pending-transfer"},
+        {"path": "OUTPUT_MANIFEST.json", "bytes": 346, "sha256": "b1b1443afdb6e9e2bf1e78ec5617f36a0568c8b62102023dc2474e196d13efc0", "placement": "git", "repo_path": "results/prospective/OUTPUT_MANIFEST.json", "status": "committed"},
+        {"path": "prospective_tail_scoring.json", "bytes": 7156, "sha256": "38deb3ae094a856980abd86786016a0954e099e15895c9333b29059d37f05ba8", "placement": "git", "repo_path": "results/prospective/prospective_tail_scoring.json", "status": "committed"},
         {"path": "prospective_matched_scores/combined_scores.npy", "bytes": 512488, "sha256": "f5fefa13a292ff5b4af86174fc358648bff93e2c678f72deab75b14934a4f3df", "placement": "zenodo", "status": "recorded"},
         {"path": "prospective_matched_scores/event_time_outer.npy", "bytes": 102600, "sha256": "61d452c2a68ffb71ef3231936ab38003a2fefce12322159a9c3333e6aca5e78b", "placement": "zenodo", "status": "recorded"},
         {"path": "prospective_matched_scores/event_type.npy", "bytes": 614960, "sha256": "af8cb2aa10fd2e5a38a604a36acf31b4b3f2f90a6765d06da43cba88dad61fb9", "placement": "zenodo", "status": "recorded"},
@@ -154,9 +154,9 @@
       "license": "owner standardizing to CC BY-SA 4.0; description to be added",
       "note": "Slug contains a typo; owner is recreating it as tail-tolerance-validation. Hashes are unaffected by the move.",
       "files": [
-        {"path": "preselected_ids.txt", "bytes": 2948, "sha256": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986", "placement": "git", "repo_path": "results/tolerance/preselected_ids.txt", "status": "pending-transfer"},
+        {"path": "preselected_ids.txt", "bytes": 2948, "sha256": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986", "placement": "git", "repo_path": "results/tolerance/preselected_ids.txt", "status": "committed"},
         {"path": "tight_tail_500.npz", "bytes": 36219, "sha256": "4d26c6dd876dd7b9f6e5317b20305aa0ccea890f4c60a77e25184d60feb0bc0b", "placement": "zenodo", "status": "recorded"},
-        {"path": "tolerance_report.json", "bytes": 1931, "sha256": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434", "placement": "git", "repo_path": "results/tolerance/tolerance_report.json", "status": "pending-transfer"}
+        {"path": "tolerance_report.json", "bytes": 1931, "sha256": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434", "placement": "git", "repo_path": "results/tolerance/tolerance_report.json", "status": "committed"}
       ]
     },
     {
@@ -166,7 +166,7 @@
       "note": "OUTPUT_MANIFEST (1).json is a duplicate slated for deletion; canonical manifest name is OUTPUT_MANIFEST.json.",
       "files": [
         {"path": "OUTPUT_MANIFEST (1).json", "bytes": 189, "sha256": "c8bb41355bce009e7eab73bd87dbad20b9ecc1a78a163f36ddb19ca60b53728f", "placement": "record", "status": "superseded-duplicate"},
-        {"path": "training_size_curve.json", "bytes": 97452, "sha256": "a55ec950b5978ab1e6b45d9fd51c029b471e61c40184566eccd2910e97dd9126", "placement": "git", "repo_path": "results/training_curve/training_size_curve.json", "status": "pending-transfer"}
+        {"path": "training_size_curve.json", "bytes": 97452, "sha256": "a55ec950b5978ab1e6b45d9fd51c029b471e61c40184566eccd2910e97dd9126", "placement": "git", "repo_path": "results/training_curve/training_size_curve.json", "status": "committed"}
       ]
     },
     {
@@ -174,15 +174,15 @@
       "suite": "attribution growth (CANONICAL v2: fixed-landmark + changing-risk-set)",
       "license": "owner standardizing to CC BY-SA 4.0; description to be added",
       "files": [
-        {"path": "OUTPUT_MANIFEST.json", "bytes": 2151, "sha256": "2729e6f9b10bd912e74972b52566e8547f9c4913138e22933055c20bf12594de", "placement": "git", "repo_path": "results/attribution_v2/OUTPUT_MANIFEST.json", "status": "pending-transfer"},
-        {"path": "attribution_growth_summary.json", "bytes": 6428, "sha256": "cece639bec15ed9bffe2eb9df5fa0cf1758d2d020592b2db1b58d5323f8f22e5", "placement": "git", "repo_path": "results/attribution_v2/attribution_growth_summary.json", "status": "pending-transfer"},
+        {"path": "OUTPUT_MANIFEST.json", "bytes": 2151, "sha256": "2729e6f9b10bd912e74972b52566e8547f9c4913138e22933055c20bf12594de", "placement": "git", "repo_path": "results/attribution_v2/OUTPUT_MANIFEST.json", "status": "committed"},
+        {"path": "attribution_growth_summary.json", "bytes": 6428, "sha256": "cece639bec15ed9bffe2eb9df5fa0cf1758d2d020592b2db1b58d5323f8f22e5", "placement": "git", "repo_path": "results/attribution_v2/attribution_growth_summary.json", "status": "committed"},
         {"path": "boundary_changing_inplay_risk_set_joint_bootstrap.npz", "bytes": 66562, "sha256": "3ebc277ca417c5be70812c5f3a4220d526f9327249c7d42583c0b3b9bf77b87a", "placement": "zenodo", "status": "recorded"},
         {"path": "boundary_fixed_latest_landmark_cohort_joint_bootstrap.npz", "bytes": 67231, "sha256": "aa545e1292e0815926f53a12993c1299d798cda85724a8a032ae509ad29cd6a8", "placement": "zenodo", "status": "recorded"},
-        {"path": "boundary_joint_gain_growth.json", "bytes": 2597, "sha256": "bdc1a8c32d146d56c06eff67f830acedff5e6d46432ced0a44a8868074fc9006", "placement": "git", "repo_path": "results/attribution_v2/boundary_joint_gain_growth.json", "status": "pending-transfer"},
-        {"path": "prospective_model_attribution.json", "bytes": 15600, "sha256": "fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701", "placement": "git", "repo_path": "results/attribution_v2/prospective_model_attribution.json", "status": "pending-transfer"},
+        {"path": "boundary_joint_gain_growth.json", "bytes": 2597, "sha256": "bdc1a8c32d146d56c06eff67f830acedff5e6d46432ced0a44a8868074fc9006", "placement": "git", "repo_path": "results/attribution_v2/boundary_joint_gain_growth.json", "status": "committed"},
+        {"path": "prospective_model_attribution.json", "bytes": 15600, "sha256": "fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701", "placement": "git", "repo_path": "results/attribution_v2/prospective_model_attribution.json", "status": "committed"},
         {"path": "triples_changing_inplay_risk_set_joint_bootstrap.npz", "bytes": 13735, "sha256": "01b5bbd84d7de4aed03a3b37e7146294c50b9f9b4b8dd72d98cc38d5ad2c5472", "placement": "zenodo", "status": "recorded"},
         {"path": "triples_fixed_latest_landmark_cohort_joint_bootstrap.npz", "bytes": 64928, "sha256": "1898124ed1b14eeb49b4413bb81bcf36f5f9a62f6749e14300d47e8a3d2b29ee", "placement": "zenodo", "status": "recorded"},
-        {"path": "triples_joint_gain_growth.json", "bytes": 2584, "sha256": "cfac02cf13e1c21b3da7057db3ca42dc5799bdd2d1c13526ea8f7cc9937c1fbc", "placement": "git", "repo_path": "results/attribution_v2/triples_joint_gain_growth.json", "status": "pending-transfer"}
+        {"path": "triples_joint_gain_growth.json", "bytes": 2584, "sha256": "cfac02cf13e1c21b3da7057db3ca42dc5799bdd2d1c13526ea8f7cc9937c1fbc", "placement": "git", "repo_path": "results/attribution_v2/triples_joint_gain_growth.json", "status": "committed"}
       ]
     },
     {
@@ -208,7 +208,9 @@
     {"artifact": "literature_baseline_results.json", "suite": "section-12 Vynatheya baseline", "placement": "git", "status": "not-public", "sha256": null},
     {"artifact": "literature_baseline scores", "suite": "section-12 Vynatheya baseline", "placement": "zenodo", "status": "not-public", "sha256": null},
     {"artifact": "pinned public model files", "suite": "section-12 Vynatheya baseline", "placement": "zenodo", "status": "not-public", "sha256": null},
-    {"artifact": "literature_baseline manifest", "suite": "section-12 Vynatheya baseline", "placement": "git", "status": "not-public", "sha256": null}
+    {"artifact": "literature_baseline manifest", "suite": "section-12 Vynatheya baseline", "placement": "git", "status": "not-public", "sha256": null},
+    {"artifact": "attribution_precision manifest", "suite": "attribution precision addon", "placement": "git", "status": "not-public", "sha256": "d5dc30328f7a32ec9cca9d1c9e52caa6057fcad59c163e74d4a5c24471c78fc9"},
+    {"artifact": "attribution_precision_addon.json", "suite": "attribution precision addon", "placement": "git", "status": "not-public", "sha256": "3f98666e6f7b5747463198f4ee411022e71938f4fa12f5496acc0e2d1760fa53"}
   ],
   "zenodo_plan": {
     "timing": "Upon acceptance only. During review, staged files are available to editor/referees on request; the manuscript must not cite Kaggle datasets.",
