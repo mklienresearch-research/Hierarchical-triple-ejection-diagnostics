@@ -4,8 +4,9 @@
 # installed unpinned packages and the run logs did not capture versions
 # (see results/final_manifest.json -> runtime_environment). The pins below
 # define the reproducible release/CI environment from here on. Validated by
-# the pinned-env CI job on Python 3.11; the 3.10/3.11/3.12 matrix job uses
-# resolver-picked versions for broad-compatibility signal.
+# the pinned-env CI job on Python 3.12 (numpy 2.5.x requires >=3.12);
+# the 3.10/3.11/3.12 matrix job uses resolver-picked versions for
+# broad-compatibility signal.
 #
 # Note: the Vynatheya baseline pickles declare scikit-learn 1.2.2 and may emit
 # compatibility warnings under the pinned scikit-learn below.

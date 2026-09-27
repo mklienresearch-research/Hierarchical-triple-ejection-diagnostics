@@ -22,7 +22,7 @@ pytest
 ```
 
 The pins are the going-forward release environment (validated by the `pinned-env`
-CI job on Python 3.11). They are not a record of the Kaggle FINAL runtime, whose
+CI job on Python 3.12). They are not a record of the Kaggle FINAL runtime, whose
 package versions were unpinned and uncaptured — see
 `results/final_manifest.json`, `runtime_environment`. The Vynatheya baseline
 pickles declare scikit-learn 1.2.2 and may warn under the pinned version.
