@@ -1,0 +1,111 @@
+\documentclass{aa}
+
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\newcommand{\Tout}{T_{\rm out}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\begin{document}
+
+\title{Causal early-warning diagnostics for finite-time ejection in hierarchical triple systems}
+\subtitle{Physical-time horizons, binary--single outcomes, and censoring-aware validation}
+
+\author{M. Klien}
+\institute{Independent researcher}
+\date{Received ---; accepted ---}
+
+\abstract
+{Hierarchical triples exhibit chaotic evolution that complicates the prediction of disruption and escaper identity.}
+{We test whether initial conditions and causal dynamical summaries measured at fixed physical-time horizons can predict finite-time ejection without using post-horizon information. We also study flyby, exchange, and ionization in binary--single encounters.}
+{We integrate $5\times10^5$ hierarchical triples with REBOUND/IAS15 to $300\,\Tout$, evaluate a separate $10^5$-system near-boundary suite, and simulate $10^6$ binary--single encounters. Models are evaluated only on systems still in play at each horizon. Negative controls, feature-family ablations, blocked parameter-space splits, and fixed-false-alarm operating points are used to test robustness. A matched $10^5$-system deep tail to $3000\,\Tout$ quantifies right-censoring.}
+{\todo{Insert final leakage-safe headline numbers and deep-tail result.}}
+{Dynamical windows add increasing information beyond initial conditions at later horizons. Inner-member ejections are substantially easier to identify than outer-member ejections, while encounter ionization becomes distinguishable primarily near periastron. Stable labels must be interpreted as right-censored at the integration cutoff.}
+
+\keywords{methods: numerical -- celestial mechanics -- stars: kinematics and dynamics -- binaries: general -- methods: statistical}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+Hierarchical multiple systems can remain long lived or undergo exchanges, collisions, and ejections. Analytic stability criteria provide essential physical guidance but do not by themselves constitute calibrated finite-time event predictors across broad ensembles. \todo{Complete literature framing and distinguish stability criteria from causal early warning.}
+
+\section{Numerical experiments}
+\label{sec:simulations}
+\subsection{Hierarchical triples}
+We generate Jacobi initial conditions deterministically from the pair $(\mathtt{seed},\mathtt{system\_id})$ and integrate with IAS15 \citep{ReinLiu2012,ReinSpiegel2015}. The main ensemble contains $5\times10^5$ systems followed to $300\,\Tout$. Ejection requires positive Jacobi escape energy, outward radial motion, and separation beyond the initial outer apoapsis. Physical stellar collision radii are treated as a separate outcome.
+
+\subsection{Boundary suite}
+A separate $10^5$-system suite samples the neighbourhood of the Mardling--Aarseth stability boundary \citep{MardlingAarseth2001}. It is evaluated both in-stratum and as an out-of-distribution test.
+
+\subsection{Binary--single encounters}
+The encounter ensemble contains $10^6$ integrations with flyby, exchange, and ionization outcomes. Observation horizons are fractions of the approach timescale rather than fractions of the final recorded trajectory.
+
+\subsection{Matched deep tail and censoring}
+System IDs 0--99,999 are re-integrated to $3000\,\Tout$. This matched subset measures delayed ejection among systems unejected at $300\,\Tout$. Ejection and collision are treated as distinct events, while integration cutoffs produce right-censoring.
+
+\section{Causal diagnostics and validation}
+\label{sec:methods}
+\subsection{Physical-time windows}
+For triples, the observation horizon is $t_h=f\,t_{\max}$. A system is included at a horizon only if its event time exceeds $t_h$. Every feature is computed exclusively from samples satisfying $t\le t_h$.
+
+\subsection{Feature families}
+The feature vector contains hierarchy statistics and derivatives, pair-energy exchange, angular-momentum channels, torques, seam-tension summaries, signal-complexity measures, and closest-approach diagnostics. \todo{Add exact equations and a feature table.}
+
+\subsection{Leakage controls}
+Stored feature index 73, formerly the ratio of window length to final recorded length, is retired. The historical normalization of first hierarchy breach at index 72 is also disabled in final stored-array analyses; new extraction normalizes it by causal-window length. Future-extension invariance tests require post-horizon modifications to leave the causal vector unchanged.
+
+\subsection{Statistical protocol}
+We report ROC--AUC, PR--AUC, balanced accuracy, Matthews correlation, Brier score, and calibration error. Fixed false-alarm thresholds are selected on a calibration cohort and evaluated on an untouched test cohort. Label-shuffle controls and blocked initial-condition splits test leakage and extrapolation.
+
+\section{Results}
+\label{sec:results}
+\subsection{Finite-time ejection}
+\todo{Insert final index-72/73-neutralized curves and PR-based comparison.}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{../figures/generated/fig01_causal_auc.pdf}
+  \caption{Causal binary discrimination as a function of observation horizon. Draft figure; regenerate from final leakage-safe outputs.}
+  \label{fig:causal_auc}
+\end{figure}
+
+\subsection{Feature ablations and generalization}
+Label-shuffle controls return chance discrimination. \todo{Insert ablation and blocked-split table with uncertainty.}
+
+\subsection{Lead time at fixed false-alarm rate}
+\todo{Report per-horizon FAR separately from cumulative system-level false-alert probability.}
+
+\subsection{Escaper and encounter outcome classes}
+\todo{Report stable/outer-eject/inner-eject and flyby/exchange/ionization macro-F1 and class recall.}
+
+\subsection{Time remaining and hazards}
+\todo{Report remaining-time regression and landmark Cox model with effect sizes, not only p-values.}
+
+\subsection{Censoring and delayed ejection}
+\todo{Insert matched 300-to-3000 $\Tout$ survival and competing-risk results.}
+
+\section{Discussion}
+\label{sec:discussion}
+The broad IID ensemble contains many easily separable systems, so high global discrimination must not be interpreted as exact prediction of chaotic trajectories. The boundary suite, blocked splits, PR curves, and fixed-FAR results provide the more stringent tests. \todo{Discuss the weak outer-ejection warning rate and late identification of ionization.}
+
+\section{Conclusions}
+\label{sec:conclusions}
+\todo{Write concise conclusions after deep-tail and final leakage-safe rerun.}
+
+\begin{acknowledgements}
+\todo{Add computing and software acknowledgements.}
+\end{acknowledgements}
+
+\section*{Data availability}
+Small result products and analysis code are available in the project repository. Large simulation artifacts will be deposited in a versioned archival release with SHA-256 manifests. \todo{Add DOI.}
+
+\bibliographystyle{aa}
+\bibliography{references}
+
+\end{document}

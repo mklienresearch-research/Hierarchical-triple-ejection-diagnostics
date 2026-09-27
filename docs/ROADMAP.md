@@ -1,15 +1,17 @@
-# Repository roadmap
+# Repository roadmap (A1 release)
 
 - [x] Import corrected IAS15 triple and encounter simulation package.
 - [x] Import corrected analysis, audit, and deep-tail Kaggle workflows.
 - [x] Archive corrected JSON analysis and adversarial audit outputs.
 - [x] Add causal future-extension regression tests.
 - [x] Retire `n_frac` and correct `first_breach` normalization in source.
-- [ ] Regenerate final paper-level JSONs with stored feature indices 72 and 73 disabled (workflow ready).
-- [ ] Complete matched 100,000-system, 3000-outer-period deep tail.
-- [x] Add corrected survival/competing-risk analysis.
-- [x] Add initial publication figure generator.
-- [x] Add A&A manuscript skeleton and core bibliography.
-- [ ] Add public-data manifest and Zenodo DOI.
-- [x] Confirm author metadata, repository URL, citation, and MIT license.
-- [ ] Configure CI and publish the GitHub remote.
+- [x] Verify 12 Kaggle datasets (114 files hashed) and freeze cross-checks.
+- [x] Add interim final manifest, artifact registry, and script registry.
+- [x] Commit first hash-verified FINAL results (audit, decision, provenance).
+- [x] Replace A&A skeleton with anonymous AASTeX structure.
+- [x] Add machine-checked table/figure generators with fixture tests.
+- [x] Add pinned release environment and CI pinned-env job.
+- [ ] Receive + verify the nine FINAL scripts into `workflows/final/`.
+- [ ] Receive + verify remaining FINAL JSONs (§10/§12 included).
+- [ ] Cut the frozen tag / release candidate and record the commit hash.
+- [ ] Mint Zenodo DOI upon acceptance; update Data Availability and proofs.

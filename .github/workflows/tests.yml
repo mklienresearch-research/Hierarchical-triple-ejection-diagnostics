@@ -22,11 +22,26 @@ jobs:
           cache: pip
       - name: Install package and tests
         run: python -m pip install -e '.[dev]'
-      - name: Run causal and physics tests
+      - name: Run test suite (invariance, mask, schema, compilation, release)
         run: pytest
-      - name: Compile direct Kaggle workflows
+      - name: Compile all workflow and generator scripts
         run: |
-          python -m py_compile workflows/kaggle/FINAL_ANALYSIS_4CORE.py
-          python -m py_compile workflows/kaggle/FINAL_ANALYSIS_96.py
-          python -m py_compile workflows/kaggle/FINAL_AUDIT_4CORE.py
-          python -m py_compile workflows/kaggle/DEEPTAIL_100K_3000_CORRECTED.py
+          for f in workflows/kaggle/*.py workflows/final/*.py scripts/*.py; do
+            [ -e "$f" ] || continue
+            python -m py_compile "$f"
+          done
+
+  pinned-env:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install pinned release environment
+        run: |
+          python -m pip install -r requirements-release.txt
+          python -m pip install -e . --no-deps
+      - name: Run test suite under pins
+        run: pytest

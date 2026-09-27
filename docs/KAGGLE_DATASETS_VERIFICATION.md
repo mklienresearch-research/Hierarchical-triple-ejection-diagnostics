@@ -154,3 +154,29 @@ Per-folder contents (19 files each):
     `v2chunks/`+`mergedtriples/`; `merged_triples.npz` (1.82 GB) ≈ 1.9× parts sum — owner to confirm
     extra contents; §9 manifest `.npz` reference is stale (real artifact is the 6-file folder);
     §10 partial-AUC + §12 V22/V23 outputs missing everywhere (remaining 5 §16 hashes unmapped).
+
+## Addendum 2026-09-27 — analysis-agent resolutions (recorded, Kaggle fixes in progress)
+
+- **Merged-size question (B):** resolved. `merged_triples.npz` is uncompressed
+  `np.savez` (dominant array `feats` 500000x11x79 float32 = 1,738,000,000 bytes);
+  production chunks are compressed. The 116 MB series PKLs are separate
+  diagnostics, not contained in the merged NPZ. No unexplained bytes.
+- **Sklearn version (E1):** BLOCKED, honestly. FINAL runs installed unpinned
+  scikit-learn; the version is absent from run logs and must not be guessed.
+  Manifest wording: `runtime sklearn version not captured`. Vynatheya pickles
+  declare sklearn 1.2.2 (compat warnings under Kaggle runtime). Release env pins
+  going forward (`requirements-release.txt`).
+- **Δ103/Δ98 (E2):** resolved as cross-run transitions, not ledger discrepancies
+  (see `results/final_manifest.json` → `tail_ledger.delta_103_98`).
+- **Prospective NPZ (A8):** original container hash
+  `3978f8aa7c44716c732d528b6d2e39ebf4c147909ff5cd21e0e2e58b4a96c488`
+  recorded as provenance-only; the six public NPYs are canonical. A reconstructed
+  NPZ would carry a new hash and must never claim the old one.
+- **Nine script hashes (D):** recorded in `results/final_manifest.json` and
+  `workflows/final/SCRIPT_REGISTRY.json`; bytes pending receipt.
+- **§12 scope:** literature-baseline track = `LITERATURE_BASELINE_VYNATHEYA_4CORE.py`
+  + `literature_baseline_results.json` + scores + pinned public model files + manifest.
+- **Kaggle cleanup plan:** typo-slug recreation, dup deletions, CC BY-SA 4.0 +
+  data cards, v1 deprecation note, tail-layout alignment, v2chunks/mergedtriples
+  checksums (no NPZ byte changes), §10/§12 uploads. Owner track; registry notes
+  the target state per dataset.

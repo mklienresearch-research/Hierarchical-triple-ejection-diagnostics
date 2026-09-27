@@ -167,6 +167,30 @@ def full_trajectory_features(rec: dict, **kw) -> np.ndarray:
     return extract_window_features(rec, 1.0, **kw)
 
 
+# ------------------------------------------------- final train/serve mask
+# FINAL paper policy: stored feature indices 72 (first_breach under the old
+# full-record normalization) and 73 (n_frac, the future-length ratio) are
+# identically zero in every model input, at both training and serving time.
+# See results/final_analysis_4core/analysis_audit.json and
+# docs/LEAKAGE_CORRECTION.md. New extraction keeps slot 73 as a zero
+# placeholder and normalizes slot 72 by the causal window; this helper
+# enforces the same mask on any stored 79-column array.
+FINAL_DISABLED_INDICES: tuple[int, ...] = (72, 73)
+
+
+def apply_final_mask(x: np.ndarray) -> np.ndarray:
+    """Return a copy of `x` with the FINAL disabled slots zeroed.
+
+    Accepts a single ``(79,)`` vector or an ``(N, 79)`` batch. The input is
+    never mutated, and the operation is idempotent.
+    """
+    arr = np.array(x, dtype=float, copy=True)
+    if arr.shape[-1] <= max(FINAL_DISABLED_INDICES):
+        raise ValueError(f"feature axis too short for FINAL mask: shape {arr.shape}")
+    arr[..., list(FINAL_DISABLED_INDICES)] = 0.0
+    return arr
+
+
 FEATURE_NAMES = [
     "H_min", "H_max", "H_mean", "H_std", "H_med", "H_range", "H_final", "H_initial",
     "H_slope", "H_curv", "H_below_frac", "H_crossings",

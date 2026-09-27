@@ -1,0 +1,20 @@
+# Pinned going-forward environment for the A1 release candidate.
+#
+# These pins are NOT a record of the Kaggle FINAL runtime: the FINAL scripts
+# installed unpinned packages and the run logs did not capture versions
+# (see results/final_manifest.json -> runtime_environment). The pins below
+# define the reproducible release/CI environment from here on. Validated by
+# the pinned-env CI job on Python 3.11; the 3.10/3.11/3.12 matrix job uses
+# resolver-picked versions for broad-compatibility signal.
+#
+# Note: the Vynatheya baseline pickles declare scikit-learn 1.2.2 and may emit
+# compatibility warnings under the pinned scikit-learn below.
+numpy==2.5.3
+rebound==5.2.0
+scikit-learn==1.9.1
+xgboost==3.4.1
+pandas==3.0.6
+lifelines==0.30.3
+matplotlib==3.11.2
+pytest==9.1.1
+ruff==0.16.9

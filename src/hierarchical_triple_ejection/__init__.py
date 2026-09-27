@@ -4,7 +4,13 @@ Core = hierarchical triples (IAS15). Flagship application = binary-single encoun
 """
 from .core import TripleConfig, simulate_triple, triple_outcome_counts
 from .encounters import EncounterConfig, simulate_encounter, encounter_outcome_counts
-from .features import FEATURE_NAMES, extract_window_features, full_trajectory_features
+from .features import (
+    FEATURE_NAMES,
+    FINAL_DISABLED_INDICES,
+    apply_final_mask,
+    extract_window_features,
+    full_trajectory_features,
+)
 from .causal import run_causal_experiment
 
 __all__ = [
@@ -15,6 +21,8 @@ __all__ = [
     "simulate_encounter",
     "encounter_outcome_counts",
     "FEATURE_NAMES",
+    "FINAL_DISABLED_INDICES",
+    "apply_final_mask",
     "extract_window_features",
     "full_trajectory_features",
     "run_causal_experiment",

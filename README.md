@@ -1,56 +1,79 @@
-# Hierarchical Triple Ejection
+# Hierarchical Triple Ejection Diagnostics
 
-Causal, finite-time prediction of ejection in hierarchical triple systems and outcomes in binary-single encounters.
+Causal, finite-time forecasting of ejection in hierarchical triple systems and of outcomes in binary–single encounters — with calibrated warning lead times and censoring-aware validation.
 
-> **Repository status:** active research build. The simulation and audit pipelines are present; the manuscript, final survival analysis, figures, citation metadata, and license are still being assembled.
+> **Release status:** A1 release candidate (INTERIM). Hashes are frozen in
+> [`results/final_manifest.json`](results/final_manifest.json), but the nine
+> FINAL scripts and the §10/§12 products are not yet committed and **no tag has
+> been cut**. Do not cite a frozen commit until the manifest status reads FINAL
+> (see [`docs/FINAL_MANIFEST.md`](docs/FINAL_MANIFEST.md)).
 
 ## Scientific scope
 
-This project uses REBOUND/IAS15 integrations and physical-time observation windows to study:
+REBOUND/IAS15 integrations plus physical-time observation windows are used to study:
 
 - ejection by a finite integration cutoff in hierarchical triples;
 - inner-member versus outer-member ejection;
-- flyby, exchange, and ionization in binary-single encounters;
+- flyby, exchange, and ionization in binary–single encounters;
 - warning lead time at calibrated false-alarm rates;
 - time remaining to ejection;
 - right-censoring and delayed ejection in a matched deep-tail sample.
 
-The term **stable** means *not ejected by the stated integration cutoff*. It does not mean permanently stable.
+The term **stable** means *not ejected by the stated integration cutoff*. It does not mean permanently stable. High IID discrimination is not exact prediction of chaotic trajectories; the boundary suite, blocked splits, PR curves, and fixed-FAR tests are the stringent checks.
 
-## Current production samples
+## Production samples (final)
 
-| Suite | Size | Integration/evaluation |
+| Suite | Size | Integration / evaluation |
 |---|---:|---|
-| Main triples | 500,000 | up to 300 outer periods |
+| Main triples | 500,000 | to 300 outer periods, seed 42 |
 | Near-MA01 boundary triples | 100,000 | causal boundary-stratum evaluation |
-| Binary-single encounters | 1,000,000 | flyby/exchange/ionization |
-| Matched deep tail | 100,000 planned/running | up to 3000 outer periods |
+| Binary–single encounters | 1,000,000 | flyby / exchange / ionization |
+| Matched deep tail | 100,000 (2 × 50,000) | to 3000 outer periods, seed 42 |
 
-## Leakage correction and provenance
+Deep-tail ledger (verified): chunk 0 ejected 20,064 / chunk 1 ejected 20,015; merged ejected 40,079, stable 59,853, numerical-error 67, collision 1.
 
-The original stored 79-feature schema contained a future-length-dependent feature, `n_frac` (index 73). It was retired and forced to zero in corrected analyses. During repository assembly, `first_breach` (index 72) was also found to have used the full recorded length as its normalization denominator. The source now normalizes `first_breach` by the causal window length (`nmax`).
+## Leakage policy (FINAL)
 
-The existing adversarial audit includes a no-time-anchor ablation that excludes indices 72, 73, 74, and 76. Its performance is nearly unchanged, showing that the physical result is not driven by these anchors. Nevertheless, final paper-level outputs will be regenerated with both future-length-dependent stored columns 72 and 73 disabled.
+The historical 79-column stored schema contained two future-length-dependent columns: index 73 (`n_frac`) and index 72 (`first_breach` under full-record normalization). In every FINAL model input, **both are identically zero at training and serving time** (see `results/final_analysis_4core/analysis_audit.json`, the `apply_final_mask` helper, and `docs/LEAKAGE_CORRECTION.md`). New extraction keeps a zero placeholder at 73 and normalizes 72 by the causal window. Invariance tests require post-horizon modifications to leave feature vectors bit-identical.
 
-Do not use any earlier uncorrected outputs. Result directories in this repository are retained with explicit provenance and audit metadata.
+## Explicitly superseded (do not use for paper claims)
+
+- `results/corrected_analysis_4core/` — index 73 only; superseded by `results/final_analysis_4core/`.
+- `workflows/kaggle/CORRECTED_*` and earlier `FINAL_*` drafts — provenance only; paper outputs come from `workflows/final/` (frozen nine, receipt tracked in `SCRIPT_REGISTRY.json`).
+- Kaggle `attribution-growth` v1 — superseded by `attribution-growth-v2`.
+- `results/adversarial_audit_4core/` remains valid as the adversarial-controls record.
+
+## Review / release policy
+
+- During review the manuscript cites the frozen GitHub release only if compatible with ApJ dual-anonymous instructions; otherwise the commit/archive goes privately to editor/referees. The manuscript never cites Kaggle datasets.
+- Large NPZ/PKL products stay staged (available to editor/referees on request) and are deposited on Zenodo upon acceptance, verified against [`results/artifact_registry.json`](results/artifact_registry.json). See [`docs/ARTIFACT_REGISTRY.md`](docs/ARTIFACT_REGISTRY.md).
 
 ## Repository layout
 
 ```text
 src/hierarchical_triple_ejection/  simulation and causal-feature package
-workflows/kaggle/                  direct Kaggle production/analysis scripts
-results/corrected_analysis_4core/ corrected analysis outputs (provisional: see provenance)
-results/adversarial_audit_4core/  negative controls, ablations, blocked splits, fixed-FAR tests
-tests/                             causal invariance and physics tests
-docs/                              methods, data schema, and correction notes
-paper/                             manuscript source (to be added)
-figures/                           generated publication figures (to be added)
+workflows/final/                   frozen FINAL run scripts + SHA-256 registry
+workflows/kaggle/                  earlier direct-Kaggle scripts (provenance)
+results/final_analysis_4core/      FINAL analysis JSONs (hash-verified on arrival)
+results/final_audit_expanded/      expanded audit JSONs + checksums (NPZs excluded)
+results/provenance/                chunk metas, deep-tail manifest + checksums
+results/final_manifest.json        frozen hashes, ledger, unresolved fields
+results/artifact_registry.json     95-file artifact map + Zenodo plan
+scripts/make_release_tables.py     machine-checked LaTeX tables from results
+scripts/make_release_figures.py    machine-checked figures from results
+tests/                             invariance, mask, schema, compilation, release tests
+docs/                              methods, manifests, registries, verification log
+paper/                             anonymous AASTeX manuscript (structure; prose by manuscript agent)
 ```
 
 ## Installation
 
+Pinned release environment:
+
 ```bash
-python -m pip install -e .
+python -m pip install -r requirements-release.txt
+python -m pip install -e . --no-deps
+pytest
 ```
 
 Development installation:
@@ -60,23 +83,15 @@ python -m pip install -e '.[dev]'
 pytest
 ```
 
-## Minimal example
+## Reproduce tables and figures
 
-```python
-from hierarchical_triple_ejection import TripleConfig, simulate_triple
-
-cfg = TripleConfig(t_max_outer_periods=30, n_per_orbit=20, seed=42)
-record = simulate_triple(system_id=0, cfg=cfg)
-print(record["status"], record["t_event"])
+```bash
+python scripts/make_release_tables.py
+python scripts/make_release_figures.py
 ```
 
-## Reproducibility
-
-- System initial conditions are generated deterministically from `SeedSequence([seed, system_id])`.
-- Main production uses seed 42.
-- Large NPZ and PKL artifacts are not committed to Git. They should be archived through a versioned data release (for example Zenodo) with checksums.
-- Small JSON result products and SHA-256 manifests are committed.
+Outputs land in `paper/tables/` and `paper/figures/`. Inputs that have not arrived yet print `SKIP (input pending)` lines; see `results/*/PENDING.json` and [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
 
 ## License and citation
 
-The software is released under the [MIT License](LICENSE). Citation metadata are provided in [`CITATION.cff`](CITATION.cff).
+The software is released under the [MIT License](LICENSE). Citation metadata are provided in [`CITATION.cff`](CITATION.cff); the release DOI is minted on acceptance.
