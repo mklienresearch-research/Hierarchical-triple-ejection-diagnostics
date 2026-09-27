@@ -1,0 +1,39 @@
+{
+ "status": "complete",
+ "runtime_minutes": 34.47107104857763,
+ "disabled_indices": [
+  72,
+  73
+ ],
+ "bootstrap_replicates": 300,
+ "fars": [
+  0.001,
+  0.01,
+  0.05
+ ],
+ "split_seed": 26001,
+ "outputs": [
+  "boundary_landmark_fixed_cohort.json",
+  "boundary_ood_inplay_corrected.json",
+  "boundary_parity.json",
+  "boundary_retention.json",
+  "boundary_split_ids.npz",
+  "boundary_thresholds.json",
+  "boundary_untouched_test_scores.npz",
+  "enc_conditional_inplay_corrected.json",
+  "enc_multiclass_conditional_inplay_corrected.json",
+  "encounters_landmark_fixed_cohort.json",
+  "encounters_parity.json",
+  "encounters_retention.json",
+  "encounters_split_ids.npz",
+  "encounters_thresholds.json",
+  "encounters_untouched_test_scores.npz",
+  "negative_controls_final.json",
+  "triples_landmark_fixed_cohort.json",
+  "triples_parity.json",
+  "triples_retention.json",
+  "triples_split_ids.npz",
+  "triples_thresholds.json",
+  "triples_untouched_test_scores.npz"
+ ]
+}

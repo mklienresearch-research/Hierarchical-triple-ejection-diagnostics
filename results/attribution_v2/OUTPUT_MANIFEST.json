@@ -1,0 +1,59 @@
+{
+ "status": "complete",
+ "interpretation_branches": [
+  {
+   "outcome": "window-only transfers; IC-only does not",
+   "claim": "dynamical structure carries foresight beyond the training endpoint where initial conditions do not",
+   "not_claimed": null
+  },
+  {
+   "outcome": "both transfer, comparable; combined approximately either",
+   "claim": "far-future risk information is largely present at t=0; the dynamical increment is endpoint-specific",
+   "not_claimed": "dynamics see the far future"
+  },
+  {
+   "outcome": "combined clearly beats both singles",
+   "claim": "transfer needs joint state-and-dynamics information",
+   "not_claimed": "attribution to either family alone"
+  },
+  {
+   "outcome": "MA01 margin approximately equals or beats learned rows",
+   "claim": "contribution is calibrated alarm, lead distribution, and FAR discipline",
+   "not_claimed": "foresight advantage"
+  }
+ ],
+ "files": {
+  "attribution_growth_summary.json": {
+   "bytes": 6428,
+   "sha256": "cece639bec15ed9bffe2eb9df5fa0cf1758d2d020592b2db1b58d5323f8f22e5"
+  },
+  "boundary_fixed_latest_landmark_cohort_joint_bootstrap.npz": {
+   "bytes": 67231,
+   "sha256": "aa545e1292e0815926f53a12993c1299d798cda85724a8a032ae509ad29cd6a8"
+  },
+  "triples_fixed_latest_landmark_cohort_joint_bootstrap.npz": {
+   "bytes": 64928,
+   "sha256": "1898124ed1b14eeb49b4413bb81bcf36f5f9a62f6749e14300d47e8a3d2b29ee"
+  },
+  "prospective_model_attribution.json": {
+   "bytes": 15600,
+   "sha256": "fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701"
+  },
+  "triples_changing_inplay_risk_set_joint_bootstrap.npz": {
+   "bytes": 13735,
+   "sha256": "01b5bbd84d7de4aed03a3b37e7146294c50b9f9b4b8dd72d98cc38d5ad2c5472"
+  },
+  "triples_joint_gain_growth.json": {
+   "bytes": 2584,
+   "sha256": "cfac02cf13e1c21b3da7057db3ca42dc5799bdd2d1c13526ea8f7cc9937c1fbc"
+  },
+  "boundary_changing_inplay_risk_set_joint_bootstrap.npz": {
+   "bytes": 66562,
+   "sha256": "3ebc277ca417c5be70812c5f3a4220d526f9327249c7d42583c0b3b9bf77b87a"
+  },
+  "boundary_joint_gain_growth.json": {
+   "bytes": 2597,
+   "sha256": "bdc1a8c32d146d56c06eff67f830acedff5e6d46432ced0a44a8868074fc9006"
+  }
+ }
+}

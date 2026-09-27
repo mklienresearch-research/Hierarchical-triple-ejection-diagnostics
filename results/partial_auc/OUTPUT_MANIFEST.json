@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "files": {
+    "partial_auc_bootstrap.npz": {
+      "bytes": 154397,
+      "sha256": "962c5e67a7d18e0a3371021d7cf51885534232adf716b5c620dd0a13338e6579"
+    },
+    "partial_auc_results.json": {
+      "bytes": 17565,
+      "sha256": "1e8b7ed1e1b5a665c308f5e9132eccaaa08e7b9e5564d21f4c8c5fa184e60602"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "selection_seed": 20260922,
+  "n": 500,
+  "tight_epsilon": 1e-11,
+  "runtime_min": 143.1081738392512,
+  "tight_status_counts": {
+    "ejected": 193,
+    "stable": 307
+  },
+  "baseline_path": "/kaggle/input/datasets/klienm/posttail-survivalanalysis/deeptail_final/merged_tail.npz",
+  "outcome_agreement": 0.972,
+  "n_outcome_flips": 14,
+  "flip_fraction": 0.028,
+  "baseline_status_counts": {
+    "ejected": 199,
+    "numerical_error": 1,
+    "stable": 300
+  },
+  "n_both_ejected": 189,
+  "event_time_abs_difference_outer_median": 0.0018922447925433517,
+  "event_time_abs_difference_outer_p90": 108.6585922241211,
+  "flip_rows": [
+    {
+      "system_id": 3152,
+      "baseline": "stable",
+      "tight": "ejected"
+    },
+    {
+      "system_id": 6543,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 9710,
+      "baseline": "stable",
+      "tight": "ejected"
+    },
+    {
+      "system_id": 9971,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 20140,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 30687,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 41952,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 54027,
+      "baseline": "stable",
+      "tight": "ejected"
+    },
+    {
+      "system_id": 63615,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 64350,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 68463,
+      "baseline": "numerical_error",
+      "tight": "ejected"
+    },
+    {
+      "system_id": 79109,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 80485,
+      "baseline": "ejected",
+      "tight": "stable"
+    },
+    {
+      "system_id": 97538,
+      "baseline": "ejected",
+      "tight": "stable"
+    }
+  ]
+}
