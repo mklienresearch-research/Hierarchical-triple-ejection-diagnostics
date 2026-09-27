@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "files": {
+    "chunk_tail_0_of_2_meta.json": {
+      "bytes": 209,
+      "sha256": "7d224617635e9f07e2502de13afceaa7a2d8318a6f14a647e2e4657cd9cf1e0c"
+    },
+    "chunk_tail_1_of_2_meta.json": {
+      "bytes": 227,
+      "sha256": "69cea0d09ccf4ddbc562af012857d6968d4225292c3726cc69f0c00a099c1d7f"
+    },
+    "matched_tail_outcomes.csv": {
+      "bytes": 3779429,
+      "sha256": "019798567dd754d92343949dcc7412405aeecd5ac7f7ebe6f156e8d2562f23fc"
+    },
+    "merged_tail.npz": {
+      "bytes": 7205318,
+      "sha256": "ca8b6db2c1c98ce5a2bde1bf0143b8692e9868a83e589c934b9a79e3792cc490"
+    },
+    "survival.json": {
+      "bytes": 7830377,
+      "sha256": "05a54ee9257a013136266f9343bf0c9095c460cefcd6e1a263d68d815646f775"
+    },
+    "survival_curve.csv": {
+      "bytes": 2633172,
+      "sha256": "609808e1c11f417e6c623f441ec7681c14feadc08b1fe038cb5bcd58e4f2acdb"
+    }
+  },
+  "source": {
+    "chunk0": "/kaggle/input/datasets/klienm/3000t-out/v2out/chunk_tail_0_of_2.npz",
+    "chunk1": "/kaggle/input/datasets/klienm/3000t-outpart-2/chunk_tail_1_of_2.npz",
+    "main": "/kaggle/input/datasets/klienm/mergedtriples/merged_triples.npz",
+    "chunk0_sha256": "ece95247a8b3ab9c85428f78c13071b9b82f6ab5f0b2e9e0f07057ac74cd55e5",
+    "chunk1_sha256": "5029ad433ce368a0763d51322976106e89a76e67ea77b1f1b9ddfee446d7c4db",
+    "main_sha256": "187835e0b45964f8ef0c295952eb49569ce5a5f9c9ec779e490d35f7aa352687"
+  }
+}

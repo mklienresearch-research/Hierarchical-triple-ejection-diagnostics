@@ -1,0 +1,13 @@
+{
+ "task": "tail",
+ "chunk_id": 0,
+ "n_chunks": 2,
+ "seed": 42,
+ "n_systems": 50000,
+ "outcome_counts": {
+  "ejected": 20064,
+  "numerical_error": 31,
+  "stable": 29905
+ },
+ "runtime_min": 130.01335018873215
+}

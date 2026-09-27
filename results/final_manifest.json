@@ -1,0 +1,68 @@
+{
+  "manifest_version": "1.0.0-rc",
+  "project": "Hierarchical triple ejection diagnostics (A1 ApJ submission)",
+  "status": "INTERIM release candidate: hashes frozen below, but the nine FINAL scripts and the section-10/12 JSONs are not yet committed; no tag has been cut. Do not cite a frozen commit until status reads FINAL.",
+  "frozen_hashes": {
+    "final_scripts_sha256": {
+      "note": "Hashes recorded by the analysis agent for final_run_scripts_handoff/*.py.txt (2026-09-27). Status PENDING-RECEIPT; each script MUST verify against this hash when committed under workflows/final/.",
+      "FINAL_ANALYSIS_ALL_4CORE.py": "aed3c915e1b01a0339689faa189c00ddc0c6255b811ad067bde0666fd48f8fc9",
+      "FINAL_EXPANDED_AUDIT_4CORE.py": "7b9b4e0ffeddffcd34ed1d95469fdd0160affcd415e2261678e0b1b4e61ba875",
+      "PROSPECTIVE_TAIL_SCORING_4CORE.py": "1dae34f0ba73bbf0c7ddeb011cf9cbec28275d0db517000791ee5bdbaa12201f",
+      "TAIL_TOLERANCE_500_4CORE.py": "dc262aacf498043fb0cc82fd15302dbd4855d867b6f2a923c1256f7bb6dd0c13",
+      "ATTRIBUTION_AND_GROWTH_POSTPROCESS_V2.py": "43954c3131717052cf3a2253b47c44f70fa474f23b3015c311da36cf5bd7510a",
+      "ATTRIBUTION_PRECISION_ADDON.py": "9794323e50e25cff18dd1df545b3ff6f86a44da28395c057e6d32d450f09da8e",
+      "PARTIAL_AUC_POSTPROCESS.py": "b27c4ef2116d4734360dc29f513efd9bb2382aa274dae0cef1f90cb30bf04b75",
+      "LITERATURE_BASELINE_VYNATHEYA_4CORE.py": "ec7b13ee6d1dc8fa1c828ab3bc20acc941b584cb055f2a64283793056e48f0d9",
+      "TRAINING_SIZE_LEARNING_CURVE_4CORE.py": "35de5724b0fde07a5bfa4f84b7efde6267fac4493a36a8157cef96a9e9d08602"
+    },
+    "primary_data_sha256": {
+      "mergedtriples/merged_triples.npz": "187835e0b45964f8ef0c295952eb49569ce5a5f9c9ec779e490d35f7aa352687",
+      "3000t-out/v2out/chunk_tail_0_of_2.npz": "ece95247a8b3ab9c85428f78c13071b9b82f6ab5f0b2e9e0f07057ac74cd55e5",
+      "3000t-outpart-2/chunk_tail_1_of_2.npz": "5029ad433ce368a0763d51322976106e89a76e67ea77b1f1b9ddfee446d7c4db"
+    },
+    "committed_result_files_sha256": {
+      "results/final_analysis_4core/analysis_audit.json": "fb83d728ee17140733225bf11611d433616e640a767199e113ed5e45cc06dd34",
+      "results/final_analysis_4core/triples_decision.json": "0fc7f94ca0a1bca9e2a321d049384eb143208f847e57566a6d7631a23463c81d",
+      "results/final_audit_expanded/SHA256SUMS.txt": "693757b840216d17826e2dd75fd1d4aec15f0e8efa4ab9e2446a286b958e7a4e",
+      "results/provenance/chunk_tail_0_of_2_meta.json": "7d224617635e9f07e2502de13afceaa7a2d8318a6f14a647e2e4657cd9cf1e0c",
+      "results/provenance/chunk_tail_1_of_2_meta.json": "69cea0d09ccf4ddbc562af012857d6968d4225292c3726cc69f0c00a099c1d7f",
+      "results/provenance/deeptail_manifest.json": "7d21d311c0493fff577465c002c6b23dcbf5a63109d7cb63c3feb53e2529b1bf",
+      "results/provenance/deeptail_SHA256SUMS.txt": "b2abe6bd299798da6fe99436edb02ce291aa94fa87835d2c5d22b47bddb46558"
+    },
+    "verified_checksum_files": {
+      "final-audit-expanded/SHA256SUMS.txt": "23/23 entries match owner walk (2026-09-26)",
+      "deeptail_final/SHA256SUMS.txt": "6/6 entries match owner walk (2026-09-26)"
+    }
+  },
+  "tail_ledger": {
+    "chunk0": {"ejected": 20064, "stable": 29905, "numerical_error": 31, "collision": 0, "total": 50000, "seed": 42},
+    "chunk1": {"ejected": 20015, "stable": 29948, "numerical_error": 36, "collision": 1, "total": 50000, "seed": 42},
+    "merged": {"ejected": 40079, "stable": 59853, "numerical_error": 67, "collision": 1, "total": 100000},
+    "delta_103_98": "Cross-run transitions, NOT ledger discrepancies: 103 systems stable in the 300-period main run eject by 3000 in the independent 3000-period reintegration; 98 systems ejected by 300 in the main run eject only after 300 in the tail reintegration; full by-300 disagreement is 205 systems (101 + 104). Population incidence from tail labels and delayed fraction conditional on main-run stable membership are different estimands and must not be mixed."
+  },
+  "runtime_environment": {
+    "final_run_sklearn_version": "NOT CAPTURED. The FINAL scripts installed unpinned scikit-learn and the run logs do not record the version; it must not be guessed from a later environment. Record Kaggle image/run date where available.",
+    "vynatheya_pickles_sklearn": "1.2.2 declared by the pickle files; compatibility warnings were emitted under the Kaggle runtime.",
+    "release_environment": "requirements-release.txt pins the going-forward environment (validated by CI).",
+    "simulation_seed": 42
+  },
+  "canonical_form_notes": {
+    "prospective_scores": "Original manifest records NPZ container hash 3978f8aa7c44716c732d528b6d2e39ebf4c147909ff5cd21e0e2e58b4a96c488, but the public dataset holds six NPY arrays (Kaggle expansion) whose sizes decode exactly to the n=12809 cohort. The six arrays are the canonical public representation. A reconstructed NPZ will carry a NEW hash and must be noted as semantically equivalent, never as matching the old container hash.",
+    "merged_triples_size": "merged_triples.npz (1817502996 bytes) was written with uncompressed np.savez for read speed; dominant array feats is 500000x11x79 float32 = 1738000000 bytes. Production chunk NPZs are compressed (~481+482 MB). The 116 MB series PKLs are separate diagnostics, not contained in the merged NPZ."
+  },
+  "superseded_explicitly_excluded": [
+    "results/corrected_analysis_4core/* (index 73 only; superseded by results/final_analysis_4core/*)",
+    "Kaggle attribution-growth v1 (superseded by attribution-growth-v2)",
+    "Kaggle analysis/final_analysis_all_jsons/ (byte-identical duplicate; owner to delete)",
+    "Kaggle tail-tolernace slug (typo; being recreated as tail-tolerance-validation)",
+    "Kaggle trainingcurve OUTPUT_MANIFEST (1).json (duplicate; owner to delete)"
+  ],
+  "unresolved": [
+    "Nine FINAL scripts: hashes frozen above, bytes not yet received (workflows/final/SCRIPT_REGISTRY.json tracks receipt).",
+    "Section-10 partial-AUC artifacts (partial_auc_results.json, partial_auc_bootstrap.npz, manifest): not public anywhere; hashes unknown.",
+    "Section-12 literature-baseline artifacts (literature_baseline_results.json, scores, pinned model files, manifest): not public anywhere; hashes unknown.",
+    "Final-run scikit-learn version: not captured (see runtime_environment).",
+    "Zenodo DOI: minted only upon acceptance; large files remain staged until then.",
+    "Frozen tag/commit for manuscript citation: deferred until the above land."
+  ]
+}

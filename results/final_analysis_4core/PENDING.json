@@ -1,0 +1,25 @@
+{
+  "directory": "results/final_analysis_4core",
+  "note": "FINAL-era analysis outputs (stored indices 72+73 zeroed). analysis_audit.json and triples_decision.json are committed; the 17 files below are verified on Kaggle (hashes confirmed 2026-09-26) and await transfer into this directory. On arrival each file MUST hash-verify before commit, then be removed from this list and added to SHA256SUMS.txt.",
+  "source_dataset": "klienm/analysis",
+  "source_subfolder": "analysis_final_4core",
+  "pending": [
+    {"name": "boundary_causal.json", "sha256": "f19251031b5cea7398de419dc26731a07b5e217abd1eb32c33faa9e012e2906d", "bytes": 2189},
+    {"name": "boundary_decision.json", "sha256": "2d081d9a8c4e344317789a1377265696ffaab56b5cbea0a7a399ce545c8f879d", "bytes": 284},
+    {"name": "boundary_ood.json", "sha256": "7e22aed897bf6f6ba9034a2cb609b3b933a9ce4405fa9d557cf14d757fb2e90f", "bytes": 269},
+    {"name": "cox_hazards.json", "sha256": "8b18fb7a02d6809c1f230941b306a9e01aa17b9c02c121c3b7a21e592a305281", "bytes": 1207},
+    {"name": "enc_causal.json", "sha256": "cf10147e57948710dc561c9cc6b9ab462d63da89060d1915062bd8f63ae85011", "bytes": 4191},
+    {"name": "enc_conditional.json", "sha256": "0cef8ac71eb397c76020b7a3a44be5cc2ba6935b6f37a7704ed6f4c6cc8ee558", "bytes": 692},
+    {"name": "enc_decision.json", "sha256": "b4a30995592653b3d2286e8e2562e2acec257e8493321ed293e7503f92e47474", "bytes": 302},
+    {"name": "enc_multiclass.json", "sha256": "fd4eee1279123902da0916a4ec5930fea57ddffec15464df62ad53e854ccf403", "bytes": 6970},
+    {"name": "enc_multiclass_conditional.json", "sha256": "3a2d581f77a35ef8303ea35e2d03649a5c2a474db18a3d4c23d3ad6167ff405f", "bytes": 676},
+    {"name": "enc_multiclass_decision.json", "sha256": "17c934a650af8bf2f422fe3f01068ccf08b5e6126bdae22dc9369661a5729e75", "bytes": 372},
+    {"name": "ma01_benchmark.json", "sha256": "98f8af76561b0b3839ae5a145a391809ab4164fbcbe3f6bd274440439c678815", "bytes": 965},
+    {"name": "report.json", "sha256": "0540790157509822a5ac8ead36ceeca6af0eaacd7d30bbea2e615f19c79a9991", "bytes": 28165},
+    {"name": "spike_study.json", "sha256": "62c174c5b0d3328fe60137ce6cc00680509af3edf47fcd9f0108d58ac6c09c7b", "bytes": 624},
+    {"name": "triples_causal.json", "sha256": "93e4ea4baadbf45f56da7182b5212040b19c30f112225cbbdde44205be40d039", "bytes": 2212},
+    {"name": "triples_multiclass.json", "sha256": "50425d6c5867e89dbd5b298d401db2e4b5c6a13687bbac023497ce514d29a56d", "bytes": 3990},
+    {"name": "triples_multiclass_decision.json", "sha256": "c523548fd7149c87ad2e3fe3e336903b77eba89f94b308bf01c39286ecb611e0", "bytes": 244},
+    {"name": "tte_regression.json", "sha256": "32c97f013ab135911d4e3509a7c6fe2c28dbbf7b208fbe38096ada6b059b132c", "bytes": 533}
+  ]
+}
