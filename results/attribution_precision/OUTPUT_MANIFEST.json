@@ -1,0 +1,31 @@
+{
+ "status": "complete",
+ "interpretation_branches": [
+  {
+   "condition": "paired frozen-threshold combined-minus-IC delayed coverage interval excludes zero",
+   "claim": "at the observed frozen operating points, joint state-and-dynamics identifies additional delayed ejectors",
+   "not_claimed": "equal-FAR delayed-endpoint superiority unless false-alert counts are equal"
+  },
+  {
+   "condition": "paired frozen-threshold interval includes zero",
+   "claim": "no detectable delayed-coverage increment beyond IC at frozen thresholds",
+   "not_claimed": "marginal improvement"
+  },
+  {
+   "condition": "retrospective equal-control-budget combined-minus-IC interval excludes zero",
+   "claim": "the joint model changes the head-of-ranking composition at equal empirical control budget",
+   "not_claimed": "prospective calibration, because the budget cut is selected on delayed-endpoint controls"
+  },
+  {
+   "condition": "retrospective equal-budget interval includes zero",
+   "claim": "no detectable head-of-ranking increment beyond IC",
+   "not_claimed": "marginal improvement"
+  }
+ ],
+ "files": {
+  "attribution_precision_addon.json": {
+   "bytes": 7458,
+   "sha256": "3f98666e6f7b5747463198f4ee411022e71938f4fa12f5496acc0e2d1760fa53"
+  }
+ }
+}

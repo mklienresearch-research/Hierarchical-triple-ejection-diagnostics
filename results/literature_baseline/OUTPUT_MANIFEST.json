@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "files": {
+    "mlp_model_trip_v1.2.2.pkl": {
+      "bytes": 324423,
+      "sha256": "f8bc2f192813145f42683669adaef6448a287523875895343453055b3acf1436"
+    },
+    "mlp_model_trip_ghost_v1.2.2.pkl": {
+      "bytes": 201964,
+      "sha256": "a260845fc9c5b80ede3ab0028ac582bffa8450dad0c23f3ce78d73987932b866"
+    },
+    "literature_baseline_results.json": {
+      "bytes": 28063,
+      "sha256": "e46d8dbe83e3e953f9eeaf01b1b69ecbcd7865786d0c3a0ff8978cc22d79f649"
+    },
+    "literature_baseline_scores.npz": {
+      "bytes": 11938739,
+      "sha256": "4eefb6985ca6be11c1f182190d526805e503c7d1f568ebae524979def5df4dd1"
+    }
+  }
+}

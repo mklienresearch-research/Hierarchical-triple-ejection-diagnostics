@@ -1,0 +1,277 @@
+{
+ "protocol": {
+  "no_refit": true,
+  "frozen_rows_use_original_calibration_thresholds": true,
+  "equal_budget_rows_are_retrospective": true,
+  "horizon_notation": "t_observation = f * 300 T_out"
+ },
+ "interpretation_branches": [
+  {
+   "condition": "paired frozen-threshold combined-minus-IC delayed coverage interval excludes zero",
+   "claim": "at the observed frozen operating points, joint state-and-dynamics identifies additional delayed ejectors",
+   "not_claimed": "equal-FAR delayed-endpoint superiority unless false-alert counts are equal"
+  },
+  {
+   "condition": "paired frozen-threshold interval includes zero",
+   "claim": "no detectable delayed-coverage increment beyond IC at frozen thresholds",
+   "not_claimed": "marginal improvement"
+  },
+  {
+   "condition": "retrospective equal-control-budget combined-minus-IC interval excludes zero",
+   "claim": "the joint model changes the head-of-ranking composition at equal empirical control budget",
+   "not_claimed": "prospective calibration, because the budget cut is selected on delayed-endpoint controls"
+  },
+  {
+   "condition": "retrospective equal-budget interval includes zero",
+   "claim": "no detectable head-of-ranking increment beyond IC",
+   "not_claimed": "marginal improvement"
+  }
+ ],
+ "cohort": {
+  "n": 12809,
+  "n_delayed": 1011,
+  "n_controls": 11798
+ },
+ "paired_auc_differences": [
+  {
+   "f": 0.05000000074505806,
+   "t_observation_outer": 15.000000223517418,
+   "IC_minus_MA01": {
+    "point": 0.24919080214605263,
+    "lo": 0.23594201730301523,
+    "hi": 0.26102069525970373,
+    "n_boot": 500
+   },
+   "combined_minus_MA01": {
+    "point": 0.2504496474017459,
+    "lo": 0.2371788068679314,
+    "hi": 0.2623462916123055,
+    "n_boot": 500
+   }
+  },
+  {
+   "f": 0.15000000596046448,
+   "t_observation_outer": 45.00000178813934,
+   "IC_minus_MA01": {
+    "point": 0.24990158169913712,
+    "lo": 0.23801182739179622,
+    "hi": 0.26213960064305003,
+    "n_boot": 500
+   },
+   "combined_minus_MA01": {
+    "point": 0.25072046487559924,
+    "lo": 0.23877304044475545,
+    "hi": 0.2629413135447524,
+    "n_boot": 500
+   }
+  },
+  {
+   "f": 0.30000001192092896,
+   "t_observation_outer": 90.00000357627869,
+   "IC_minus_MA01": {
+    "point": 0.25011012388202153,
+    "lo": 0.23749358545324617,
+    "hi": 0.263296530116463,
+    "n_boot": 500
+   },
+   "combined_minus_MA01": {
+    "point": 0.2510183204939908,
+    "lo": 0.23853000054749868,
+    "hi": 0.2640947893093646,
+    "n_boot": 500
+   }
+  },
+  {
+   "f": 0.5,
+   "t_observation_outer": 150.0,
+   "IC_minus_MA01": {
+    "point": 0.25077301752255515,
+    "lo": 0.23942950523125459,
+    "hi": 0.2612200791221585,
+    "n_boot": 500
+   },
+   "combined_minus_MA01": {
+    "point": 0.250972275718345,
+    "lo": 0.23975145284441446,
+    "hi": 0.2614589852705489,
+    "n_boot": 500
+   }
+  },
+  {
+   "f": 0.75,
+   "t_observation_outer": 225.0,
+   "IC_minus_MA01": {
+    "point": 0.2506257394394647,
+    "lo": 0.2384829872026572,
+    "hi": 0.2642946740652678,
+    "n_boot": 500
+   },
+   "combined_minus_MA01": {
+    "point": 0.2495048757278806,
+    "lo": 0.23708365550602284,
+    "hi": 0.26350630841161016,
+    "n_boot": 500
+   }
+  }
+ ],
+ "frozen_threshold_paired_coverage": [
+  {
+   "target_original_far": 0.01,
+   "arms": {
+    "IC_only": {
+     "delayed_warned": 174,
+     "control_alerts": 5,
+     "coverage": 0.17210682492581603
+    },
+    "window": {
+     "delayed_warned": 279,
+     "control_alerts": 10,
+     "coverage": 0.27596439169139464
+    },
+    "combined": {
+     "delayed_warned": 251,
+     "control_alerts": 5,
+     "coverage": 0.24826904055390703
+    },
+    "MA01_margin": {
+     "delayed_warned": 31,
+     "control_alerts": 74,
+     "coverage": 0.03066271018793274
+    }
+   },
+   "combined_minus_IC_coverage": {
+    "point": 0.076162215628091,
+    "lo": 0.05440158259149355,
+    "hi": 0.09844213649851631,
+    "n_boot": 500
+   }
+  },
+  {
+   "target_original_far": 0.05,
+   "arms": {
+    "IC_only": {
+     "delayed_warned": 634,
+     "control_alerts": 110,
+     "coverage": 0.6271018793273986
+    },
+    "window": {
+     "delayed_warned": 772,
+     "control_alerts": 211,
+     "coverage": 0.7636003956478734
+    },
+    "combined": {
+     "delayed_warned": 737,
+     "control_alerts": 130,
+     "coverage": 0.7289812067260139
+    },
+    "MA01_margin": {
+     "delayed_warned": 123,
+     "control_alerts": 508,
+     "coverage": 0.12166172106824925
+    }
+   },
+   "combined_minus_IC_coverage": {
+    "point": 0.10187932739861527,
+    "lo": 0.07663204747774481,
+    "hi": 0.12759643916913943,
+    "n_boot": 500
+   }
+  }
+ ],
+ "retrospective_equal_control_budget": [
+  {
+   "budget_name": "matched_budget_from_original_far_0.01",
+   "source_original_far_block": 0.01,
+   "target_control_alert_count": 5,
+   "target_control_fraction": 0.0004238006441769792,
+   "arms": {
+    "IC_only": {
+     "threshold": 0.7317012548446655,
+     "control_alerts": 5,
+     "delayed_warned": 122,
+     "coverage": 0.12067260138476756,
+     "precision": 0.9606299212598425,
+     "median_lead": 439.16366554796696
+    },
+    "window": {
+     "threshold": 0.7243086099624634,
+     "control_alerts": 5,
+     "delayed_warned": 204,
+     "coverage": 0.20178041543026706,
+     "precision": 0.9760765550239234,
+     "median_lead": 462.5411824658513
+    },
+    "combined": {
+     "threshold": 0.6458666920661926,
+     "control_alerts": 5,
+     "delayed_warned": 233,
+     "coverage": 0.2304648862512364,
+     "precision": 0.9789915966386554,
+     "median_lead": 450.79281437397003
+    },
+    "MA01_margin": {
+     "threshold": -0.9738473892211914,
+     "control_alerts": 5,
+     "delayed_warned": 6,
+     "coverage": 0.005934718100890208,
+     "precision": 0.5454545454545454,
+     "median_lead": 706.1860044151545
+    }
+   },
+   "combined_minus_IC_coverage": {
+    "point": 0.10979228486646884,
+    "lo": 0.01079068384539149,
+    "hi": 0.19198605401393148,
+    "n_boot": 300
+   },
+   "warning": "threshold selected on delayed-endpoint controls; retrospective ranking diagnostic, not prospective operating point"
+  },
+  {
+   "budget_name": "matched_budget_from_original_far_0.05",
+   "source_original_far_block": 0.05,
+   "target_control_alert_count": 110,
+   "target_control_fraction": 0.009323614171893542,
+   "arms": {
+    "IC_only": {
+     "threshold": 0.18685178458690643,
+     "control_alerts": 110,
+     "delayed_warned": 590,
+     "coverage": 0.5835806132542037,
+     "precision": 0.8428571428571429,
+     "median_lead": 588.1778554394841
+    },
+    "window": {
+     "threshold": 0.2857746481895447,
+     "control_alerts": 110,
+     "delayed_warned": 597,
+     "coverage": 0.5905044510385756,
+     "precision": 0.8444130127298444,
+     "median_lead": 581.7997434288263
+    },
+    "combined": {
+     "threshold": 0.1525934487581253,
+     "control_alerts": 110,
+     "delayed_warned": 681,
+     "coverage": 0.6735905044510386,
+     "precision": 0.8609355246523388,
+     "median_lead": 590.8004758507013
+    },
+    "MA01_margin": {
+     "threshold": -1.1392741203308105,
+     "control_alerts": 110,
+     "delayed_warned": 43,
+     "coverage": 0.04253214638971316,
+     "precision": 0.28104575163398693,
+     "median_lead": 652.5562131553888
+    }
+   },
+   "combined_minus_IC_coverage": {
+    "point": 0.09000989119683489,
+    "lo": 0.04439907872696814,
+    "hi": 0.1177316204679713,
+    "n_boot": 300
+   },
+   "warning": "threshold selected on delayed-endpoint controls; retrospective ranking diagnostic, not prospective operating point"
+  }
+ ]
+}
