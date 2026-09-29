@@ -5,7 +5,16 @@
   "release": {
     "tag": "v1.0.0",
     "url": "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics/releases/tag/v1.0.0",
+    "repository": "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics",
     "note": "Cite the tag. No commit SHA is pinned inside this manifest by design: the manifest is frozen before the merge/tag exist, so a self-referential pin is impossible."
+  },
+  "release_policy": {
+    "source": "results/step1_provenance_addendum.json -> release_policy (mirrored verbatim; addendum pinned in frozen_hashes.committed_result_files_sha256)",
+    "code_and_derived_results": "Public at a frozen GitHub tag before submission.",
+    "large_simulation_and_score_artifacts_during_review": "Separately staged for editor/referee access.",
+    "large_zenodo_archive": "Deposited upon acceptance under the author's frozen policy.",
+    "kaggle": "Compute/staging only; not cited.",
+    "note": "This is not a Zenodo-first policy. The final pre-submission citation identifier is the frozen public GitHub release/tag unless the author changes policy."
   },
   "frozen_hashes": {
     "final_scripts_sha256": {
@@ -139,6 +148,32 @@
     "prospective_scores": "Original manifest records NPZ container hash 3978f8aa7c44716c732d528b6d2e39ebf4c147909ff5cd21e0e2e58b4a96c488, but the public dataset holds six NPY arrays (Kaggle expansion) whose sizes decode exactly to the n=12809 cohort. The six arrays are the canonical public representation. A reconstructed NPZ will carry a NEW hash and must be noted as semantically equivalent, never as matching the old container hash.",
     "merged_triples_size": "merged_triples.npz (1817502996 bytes) was written with uncompressed np.savez for read speed; dominant array feats is 500000x11x79 float32 = 1738000000 bytes. Production chunk NPZs are compressed (~481+482 MB). The 116 MB series PKLs are separate diagnostics, not contained in the merged NPZ."
   },
+  "tight_tail_500_disposition": {
+    "source": "results/tolerance/tolerance_raw_artifact_disposition.json (mirrored verbatim; disposition pinned in frozen_hashes.committed_result_files_sha256)",
+    "expected_filename": "tight_tail_500.npz",
+    "recorded_sha256": "4d26c6dd876dd7b9f6e5317b20305aa0ccea890f4c60a77e25184d60feb0bc0b",
+    "availability": "UNAVAILABLE_FOR_RELEASE",
+    "statement": "The raw tight-tolerance NPZ is not available in the release checkout or local workspace. The recorded hash is retained for provenance but does not establish present access.",
+    "citable_derived_artifacts": {
+      "preselected_ids": {
+        "path": "results/tolerance/preselected_ids.txt",
+        "sha256": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986"
+      },
+      "tolerance_report": {
+        "path": "results/tolerance/tolerance_report.json",
+        "sha256": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434"
+      }
+    },
+    "citation_rule": "Only the pinned derived tolerance report and preselected-ID list are citable from this release. The manuscript and release metadata must state that the raw tight-tolerance NPZ is unavailable.",
+    "future_archive_rule": "If the exact raw NPZ is later recovered, it may be added only after byte-level verification against the recorded SHA-256 and a versioned release/archive update; it must not be silently substituted."
+  },
+  "partial_auc_claim_boundary": {
+    "source": "results/step1_provenance_addendum.json -> partial_auc_pins.claim_boundary (mirrored verbatim; addendum pinned in frozen_hashes.committed_result_files_sha256)",
+    "boundary": "Diagnostic only; no learned-family superiority detected at FPR <= 0.1%.",
+    "script_sha256_path": "frozen_hashes.final_scripts_sha256[\"PARTIAL_AUC_POSTPROCESS.py\"]",
+    "result_sha256_path": "frozen_hashes.committed_result_files_sha256[\"results/partial_auc/partial_auc_results.json\"]",
+    "output_manifest_sha256_path": "frozen_hashes.committed_result_files_sha256[\"results/partial_auc/OUTPUT_MANIFEST.json\"]"
+  },
   "superseded_explicitly_excluded": [
     "results/corrected_analysis_4core/* (index 73 only; superseded by results/final_analysis_4core/*)",
     "Kaggle attribution-growth v1 (superseded by attribution-growth-v2)",
@@ -167,7 +202,8 @@
   "resolved_2026_09_29": [
     "A1 closeout controls installed and hash-verified: controls/A1_RESEARCH_DEFINITION_FREEZE_V3.md, docs/RESULTS_MANIFEST_FINAL.md (Final numeric ledger), results/step1_provenance_addendum.json, results/tolerance/tolerance_raw_artifact_disposition.json + results/tolerance/SHA256SUMS.txt.",
     "final_manifest.json regenerated as manifest_version 1.0.0 FINAL (not an RC rename): release tag v1.0.0 + release URL recorded; no self-referential commit-SHA pin.",
-    "Results ledger finalized at sha256 54440fee...: exactly five lines differ from the draft (title, status, section-12 sklearn scoping, section-16 heading + provenance).",
-    "CITATION.cff 1.0.0; release docs updated; pytest + compileall + per-directory checksum verification green."
+    "Results ledger finalized at sha256 54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686: exactly five lines differ from the draft (title, status, section-12 sklearn scoping, section-16 heading + provenance).",
+    "CITATION.cff 1.0.0; release docs updated; pytest + compileall + per-directory checksum verification green.",
+    "A1 13-point checklist verified 2026-09-29: all rows PASS against this manifest plus the pinned addendum/disposition (release identity/policy, tight-NPZ disposition, and partial-AUC claim boundary recorded verbatim from frozen control files; no scientific values changed)."
   ]
 }
