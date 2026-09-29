@@ -1,0 +1,37 @@
+{
+  "schema": "a1-delayed-tolerance-join-summary-1.0",
+  "status": "FROZEN_DERIVED_SUMMARY_FROM_EXISTING_CLOSED_JOIN",
+  "scientific_change": false,
+  "cohort": {
+    "definition": "Preselected tolerance IDs labelled valid unejected at 300 T_out in the primary production run",
+    "n": 330
+  },
+  "production_tolerance": {
+    "n_delayed_ejection_300_to_3000": 29,
+    "fraction": 0.08787878787878788
+  },
+  "tight_tolerance": {
+    "ias15_epsilon": 1e-11,
+    "n_delayed_ejection_300_to_3000": 19,
+    "fraction": 0.05757575757575758
+  },
+  "paired_label_changes": {
+    "n_changed": 18,
+    "fraction": 0.05454545454545454,
+    "production_delayed_to_tight_not_delayed": 14,
+    "production_not_delayed_to_tight_delayed": 4,
+    "net_fraction_difference_tight_minus_production": -0.030303030303030304,
+    "exact_p_approx": 0.031
+  },
+  "source_records": [
+    {
+      "path": "docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md",
+      "sha256": "5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6"
+    },
+    {
+      "path": "docs/RESULTS_MANIFEST_FINAL.md",
+      "sha256": "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686"
+    }
+  ],
+  "raw_artifact_status": "The raw tight_tail_500.npz remains unavailable and was not reconstructed. This file materializes only the already-closed delayed-join counts from the hash-pinned framework record and numerical ledger."
+}

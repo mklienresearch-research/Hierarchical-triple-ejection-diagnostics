@@ -34,7 +34,13 @@ Each committed result directory carries `SHA256SUMS.txt`:
 ```bash
 cd results/final_analysis_4core && sha256sum -c SHA256SUMS.txt
 cd ../provenance && sha256sum -c SHA256SUMS.txt
+cd ../tolerance && sha256sum -c SHA256SUMS.txt   # 4 entries as of v1.0.1
 ```
+
+The v1.0.1 tolerance records are pinned in `results/final_manifest.json` under
+`frozen_hashes.committed_result_files_sha256`, and every panel/table source in
+`paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json` is re-hashed against the
+tree by `tests/test_v1_0_1_patch_consistency.py`.
 
 Registry truth is enforced by tests:
 
@@ -52,6 +58,13 @@ python scripts/make_release_figures.py
 Tables go to `paper/tables/`, figures to `paper/figures/`. Missing inputs print
 `SKIP (input pending)` and exit 0. The legacy `scripts/make_figures.py` targets
 the superseded corrected-analysis layout; do not use it for the A1 paper.
+
+The main-text displays themselves come from `scripts/production/`. Those generators
+read the release paths recorded per panel/table in
+`paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json`; where the author's staging
+layout differs (`results/final_expanded_audit_json/`, `results/attribution_growth_v2/`,
+`results/tolerance_validation/`, …), the alias map lives under `display_provenance` in
+`results/final_manifest.json`, and they write to `paper_draft/{figures,figure_data,table_data}`.
 
 ## Kaggle production scripts
 

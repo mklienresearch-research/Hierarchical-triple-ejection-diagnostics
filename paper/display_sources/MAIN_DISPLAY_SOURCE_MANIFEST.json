@@ -1,0 +1,204 @@
+{
+  "schema": "a1-main-display-source-manifest-1.0",
+  "release": "v1.0.0",
+  "statement": "Displays were regenerated directly from the tagged release artifacts listed per panel/table. The PDF is not the source bundle.",
+  "panel_and_table_sources": {
+    "fig01_a_b": [
+      {
+        "release_path": "results/final_audit_expanded/triples_parity.json",
+        "local_path": "results/final_expanded_audit_json/triples_parity.json",
+        "sha256": "2f126f5100f5495090a6fc45cc91f62f5fd0abf61f991e69ea65fe148b77b8a5"
+      }
+    ],
+    "fig01_c": [
+      {
+        "release_path": "results/attribution_v2/triples_joint_gain_growth.json",
+        "local_path": "results/attribution_growth_v2/triples_joint_gain_growth.json",
+        "sha256": "cfac02cf13e1c21b3da7057db3ca42dc5799bdd2d1c13526ea8f7cc9937c1fbc"
+      }
+    ],
+    "fig02": [
+      {
+        "release_path": "results/final_audit_expanded/triples_parity.json",
+        "local_path": "results/final_expanded_audit_json/triples_parity.json",
+        "sha256": "2f126f5100f5495090a6fc45cc91f62f5fd0abf61f991e69ea65fe148b77b8a5"
+      },
+      {
+        "release_path": "results/final_audit_expanded/triples_thresholds.json",
+        "local_path": "results/final_expanded_audit_json/triples_thresholds.json",
+        "sha256": "d09d023f8094e63965cf58e8239bf678906051e009480761d1ebcf4ea8e6cfb8"
+      }
+    ],
+    "fig03_a_boundary": [
+      {
+        "release_path": "results/final_audit_expanded/boundary_parity.json",
+        "local_path": "results/final_expanded_audit_json/boundary_parity.json",
+        "sha256": "035577f5ecc88b32280f6a98d4c67b3cfc381b4f09d31aaaa34c6bbe553ea7f9"
+      },
+      {
+        "release_path": "results/final_audit_expanded/boundary_thresholds.json",
+        "local_path": "results/final_expanded_audit_json/boundary_thresholds.json",
+        "sha256": "ef91aec430777b79d74e0a2d5172e9dd05b76227327986b7679903085c9ef29c"
+      },
+      {
+        "release_path": "results/final_audit_expanded/boundary_ood_inplay_corrected.json",
+        "local_path": "results/final_expanded_audit_json/boundary_ood_inplay_corrected.json",
+        "sha256": "0be9bec8bc3b14d0977a7510aa7987775abb6be8db10316b427b9a480a66a1cd"
+      }
+    ],
+    "fig03_b_tail": [
+      {
+        "release_path": "docs/RESULTS_MANIFEST_FINAL.md",
+        "local_path": "docs/RESULTS_MANIFEST_FINAL.md",
+        "sha256": "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686"
+      },
+      {
+        "release_path": "results/step1_provenance_addendum.json",
+        "local_path": "results/step1_provenance_addendum.json",
+        "sha256": "3a11572ac21eb7e80ff4b78cbc760a60a78da016699e98eb2436690f967bc778"
+      }
+    ],
+    "fig03_c_tolerance": [
+      {
+        "release_path": "results/tolerance/tolerance_report.json",
+        "local_path": "results/tolerance_validation/tolerance_report.json",
+        "sha256": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434"
+      },
+      {
+        "release_path": "results/tolerance/preselected_ids.txt",
+        "local_path": "results/tolerance_validation/preselected_ids.txt",
+        "sha256": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986"
+      },
+      {
+        "release_path": "results/tolerance/delayed_tolerance_join_summary.json",
+        "local_path": "results/tolerance_validation/delayed_tolerance_join_summary.json",
+        "sha256": "40c51ba011edb1ec3c6d8d0012b4de5649817af7bdb7a4199676a90b8dd21d22"
+      }
+    ],
+    "fig03_d_delayed": [
+      {
+        "release_path": "results/prospective/prospective_tail_scoring.json",
+        "local_path": "results/prospective_tail_scoring/prospective_tail_scoring.json",
+        "sha256": "38deb3ae094a856980abd86786016a0954e099e15895c9333b29059d37f05ba8"
+      },
+      {
+        "release_path": "results/attribution_precision/attribution_precision_addon.json",
+        "local_path": "results/attribution_precision_addon/attribution_precision_addon.json",
+        "sha256": "3f98666e6f7b5747463198f4ee411022e71938f4fa12f5496acc0e2d1760fa53"
+      }
+    ],
+    "table1": [
+      {
+        "release_path": "results/literature_baseline/literature_baseline_results.json",
+        "local_path": "results/literature_baseline/literature_baseline_results.json",
+        "sha256": "e46d8dbe83e3e953f9eeaf01b1b69ecbcd7865786d0c3a0ff8978cc22d79f649"
+      },
+      {
+        "release_path": "results/final_audit_expanded/triples_parity.json",
+        "local_path": "results/final_expanded_audit_json/triples_parity.json",
+        "sha256": "2f126f5100f5495090a6fc45cc91f62f5fd0abf61f991e69ea65fe148b77b8a5"
+      }
+    ],
+    "table2": [
+      {
+        "release_path": "results/final_audit_expanded/triples_parity.json",
+        "local_path": "results/final_expanded_audit_json/triples_parity.json",
+        "sha256": "2f126f5100f5495090a6fc45cc91f62f5fd0abf61f991e69ea65fe148b77b8a5"
+      },
+      {
+        "release_path": "results/final_audit_expanded/triples_thresholds.json",
+        "local_path": "results/final_expanded_audit_json/triples_thresholds.json",
+        "sha256": "d09d023f8094e63965cf58e8239bf678906051e009480761d1ebcf4ea8e6cfb8"
+      },
+      {
+        "release_path": "results/final_audit_expanded/boundary_parity.json",
+        "local_path": "results/final_expanded_audit_json/boundary_parity.json",
+        "sha256": "035577f5ecc88b32280f6a98d4c67b3cfc381b4f09d31aaaa34c6bbe553ea7f9"
+      },
+      {
+        "release_path": "results/prospective/prospective_tail_scoring.json",
+        "local_path": "results/prospective_tail_scoring/prospective_tail_scoring.json",
+        "sha256": "38deb3ae094a856980abd86786016a0954e099e15895c9333b29059d37f05ba8"
+      },
+      {
+        "release_path": "results/attribution_precision/attribution_precision_addon.json",
+        "local_path": "results/attribution_precision_addon/attribution_precision_addon.json",
+        "sha256": "3f98666e6f7b5747463198f4ee411022e71938f4fa12f5496acc0e2d1760fa53"
+      },
+      {
+        "release_path": "results/tolerance/tolerance_report.json",
+        "local_path": "results/tolerance_validation/tolerance_report.json",
+        "sha256": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434"
+      },
+      {
+        "release_path": "results/tolerance/preselected_ids.txt",
+        "local_path": "results/tolerance_validation/preselected_ids.txt",
+        "sha256": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986"
+      },
+      {
+        "release_path": "results/tolerance/delayed_tolerance_join_summary.json",
+        "local_path": "results/tolerance_validation/delayed_tolerance_join_summary.json",
+        "sha256": "40c51ba011edb1ec3c6d8d0012b4de5649817af7bdb7a4199676a90b8dd21d22"
+      }
+    ]
+  },
+  "generated_display_bundle": {
+    "paper_draft/figures/fig01_primary_ranking.pdf": {
+      "bytes": 25878,
+      "sha256": "7b0d32fdcb8c0cdc687b063593ab71a08f4d229bcb2f2d16cdfb09c070dfac20"
+    },
+    "paper_draft/figures/fig02_target_far_operation.pdf": {
+      "bytes": 23926,
+      "sha256": "be17dc3f0c2dad4e7379f6851ee639eac046c224a00609da708d7759d2aaa733"
+    },
+    "paper_draft/figures/fig03_robustness_endpoints.pdf": {
+      "bytes": 29057,
+      "sha256": "ee27e3184ec8b4fdd38604b3624877381d03e3a47bf28eb5ab8b7e6b552c8b4c"
+    },
+    "paper_draft/figure_data/fig01_primary_ranking.json": {
+      "bytes": 4028,
+      "sha256": "e55eeb5dd73d7a5ad5a14089b6e849f8ec3d70238e2291a4c3107a5e08d7d1ff"
+    },
+    "paper_draft/figure_data/fig02_target_far_operation.json": {
+      "bytes": 930,
+      "sha256": "3c2f506963e995d50c84d55954ea1cb45316c14d98b1e7b416ae26fc94bae20e"
+    },
+    "paper_draft/figure_data/fig03_robustness_endpoints.json": {
+      "bytes": 2734,
+      "sha256": "43a527648a53a804648f03948856e2da53589d762d5e247e82960128111a1bc5"
+    },
+    "paper_draft/table_data/table1_baselines.csv": {
+      "bytes": 930,
+      "sha256": "ff62721670ad17815f7739276275a2157fcb3b92d87d3271e46a0b3f0f80a86d"
+    },
+    "paper_draft/table_data/table2_tolerance.csv": {
+      "bytes": 281,
+      "sha256": "3517328c24fe77caf3332bc44fe9dd8a296fdae0d2c8f3430662d38ce417ea3b"
+    },
+    "paper_draft/table_data/table2_warning_operation.csv": {
+      "bytes": 1170,
+      "sha256": "4e06c208f540cff2b183a262538d1a61c56a2f5740dc110ddc977aa1a64ee0c7"
+    },
+    "scripts/production/make_a1_main_results_figures.py": {
+      "bytes": 10777,
+      "sha256": "e5a55e7a7c82e5813750d0241685c70e580ca1861f2d6a0baaf6f50958011f8a"
+    },
+    "scripts/production/make_a1_main_table_data.py": {
+      "bytes": 5387,
+      "sha256": "1df4725c9e9afffd30cbdafdf4046b4b4e103caf8e06373d6c8a672f51612909"
+    },
+    "results/tolerance_validation/delayed_tolerance_join_summary.json": {
+      "bytes": 1416,
+      "sha256": "40c51ba011edb1ec3c6d8d0012b4de5649817af7bdb7a4199676a90b8dd21d22"
+    },
+    "results/tolerance_validation/tolerance_raw_artifact_disposition.json": {
+      "bytes": 1743,
+      "sha256": "a5c373605f349b9406a8536b4a310c3fd7d34b902bd89d48a1f6666942d96c6f"
+    },
+    "results/tolerance_validation/SHA256SUMS.txt": {
+      "bytes": 382,
+      "sha256": "7d5a420587e294b2b87b9885158de48cd665666a11a78c07b5ebb2990dcc8e23"
+    }
+  },
+  "release_candidate_note": "The delayed-tolerance summary and revised disposition require a patch release before these rows are citable from the public tag."
+}

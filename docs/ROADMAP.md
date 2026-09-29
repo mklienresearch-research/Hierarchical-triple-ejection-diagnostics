@@ -14,5 +14,8 @@
 - [x] Receive + verify the nine FINAL scripts into `workflows/final/`.
 - [x] Receive + verify remaining FINAL JSONs (§10/§12 included).
 - [x] Install A1 closeout controls + finalize manifest (`1.0.0`) and citation metadata.
-- [ ] Cut release tag `v1.0.0` + publish GitHub release (cite the tag; no commit SHA pinned in-manifest).
+- [x] Cut release tag `v1.0.0` + publish GitHub release (cite the tag; no commit SHA pinned in-manifest).
+- [x] Install the v1.0.1 tolerance-provenance patch (delayed-join summary, revised disposition/checksums, display generators + source manifest) and regenerate `final_manifest.json` for `v1.0.1`.
+- [ ] Author approval, then cut annotated tag `v1.0.1` + publish the patch release.
+- [ ] Supply `docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md` (recorded hash only; not in the release tree) if the matched-join record should ship.
 - [ ] Mint Zenodo DOI upon acceptance; update Data Availability and proofs.
