@@ -1,0 +1,28 @@
+% Section: Numerical experiments (manuscript agent owns prose).
+\subsection{Hierarchical triples}
+We generate Jacobi initial conditions deterministically from the pair
+$(\mathtt{seed},\mathtt{system\_id})$ with $\mathtt{seed}=42$ and integrate with
+IAS15 \citep{ReinLiu2012,ReinSpiegel2015}. The main ensemble contains
+$5\times10^5$ systems followed to $300\,\Tout$. Ejection requires positive
+Jacobi escape energy, outward radial motion, and separation beyond the initial
+outer apoapsis. Physical stellar collision radii are treated as a separate
+outcome. Systems not ejected by the cutoff are labelled stable, i.e.\
+right-censored, not perpetually stable.
+
+\subsection{Boundary suite}
+A separate $10^5$-system suite samples the neighbourhood of the
+Mardling--Aarseth stability boundary \citep{MardlingAarseth2001}. It is
+evaluated both in-stratum and as an out-of-distribution test.
+
+\subsection{Binary--single encounters}
+The encounter ensemble contains $10^6$ integrations with flyby, exchange, and
+ionization outcomes. Observation horizons are fractions of the approach
+timescale rather than fractions of the final recorded trajectory.
+
+\subsection{Matched deep tail and censoring}
+System IDs 0--99,999 are re-integrated to $3000\,\Tout$ in two 50,000-system
+chunks (Table~\ref{tab:tail_ledger}, Figure~\ref{fig:tail_ledger}). This matched
+subset measures delayed ejection among systems unejected at $300\,\Tout$.
+Ejection and collision are treated as distinct events, while integration
+cutoffs produce right-censoring. \todo{Insert matched 300-to-3000 $\Tout$
+survival and competing-risk results.}

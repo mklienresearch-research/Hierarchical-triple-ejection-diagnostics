@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "files": {
+    "prospective_tail_scoring.json": {
+      "bytes": 7156,
+      "sha256": "38deb3ae094a856980abd86786016a0954e099e15895c9333b29059d37f05ba8"
+    },
+    "prospective_matched_scores.npz": {
+      "bytes": 330926,
+      "sha256": "3978f8aa7c44716c732d528b6d2e39ebf4c147909ff5cd21e0e2e58b4a96c488"
+    }
+  }
+}

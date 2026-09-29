@@ -1,0 +1,14 @@
+{
+  "directory": "results/final_audit_expanded",
+  "note": "All 18 small JSONs received, hash-verified, and committed (2026-09-27); pending_git empty. SHA256SUMS.txt pins all 23 checksummed files. NPZ score/split products NEVER enter git; they stay on the Zenodo track with filename/size/hash recorded here and in results/artifact_registry.json.",
+  "source_dataset": "klienm/final-audit-expanded",
+  "pending_git": [],
+  "zenodo_track_record_only": [
+    {"name": "boundary_split_ids.npz", "sha256": "e273d750522fdd318d9c0541c727136e1a45fb2d438224c3d906a8e8f9852301", "bytes": 278207},
+    {"name": "boundary_untouched_test_scores.npz", "sha256": "3d2fefab7ae5f55579f990146be881abb1161a13180ea802ba733f0a2cab9850", "bytes": 695949},
+    {"name": "encounters_split_ids.npz", "sha256": "6921d25724abbe302604f977ebad5a0aab5509be60b8a28d0a85edfc008d2642", "bytes": 3156511},
+    {"name": "encounters_untouched_test_scores.npz", "sha256": "c3328aaf8e925af1072af24cf5fcdfaf0f138e494cd74171005c104b1ee7c2fd", "bytes": 29375549},
+    {"name": "triples_split_ids.npz", "sha256": "742e7b2ccd0dfefc6ca3b256ffe1aafa38c5910669426f881d7b803ad97113fb", "bytes": 1514144},
+    {"name": "triples_untouched_test_scores.npz", "sha256": "5dd741e5384a240404cb28f68790228dcaaa78393fab900509fb985fa1642d14", "bytes": 6068681}
+  ]
+}

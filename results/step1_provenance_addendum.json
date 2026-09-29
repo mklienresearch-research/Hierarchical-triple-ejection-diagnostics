@@ -1,0 +1,125 @@
+{
+  "schema": "a1-step1-provenance-addendum-1.0",
+  "status": "RELEASE_CANDIDATE_REPRESENTATION_ONLY",
+  "scientific_change": false,
+  "created_utc_date": "2026-09-28",
+  "authority": {
+    "release_candidate_commit": "f35a90e",
+    "final_tag": null,
+    "final_citation_identifier": null,
+    "finalization_rule": "GitHub agent must commit this addendum, regenerate results/final_manifest.json to pin it, merge the approved release branch, and cut the final tag before Step 1 can close."
+  },
+  "tail_partition": {
+    "conditioning_cohort": "65,001 systems labelled stable/censored at 300 T_out in the main production run",
+    "categories": {
+      "tail_rerun_ejected_by_300": 103,
+      "tail_rerun_ejected_after_300_by_3000": 4992,
+      "tail_rerun_collision_after_300_by_3000": 1,
+      "tail_rerun_numerical_error_after_300": 53,
+      "tail_rerun_stable_censored_at_3000": 59852
+    },
+    "sum": 65001,
+    "interpretation": "The 103 systems are cross-run by-300 disagreements, not delayed ejections and not an unallocated residual. The delayed-ejection numerator conditional on main-run stable-at-300 membership is 4,992.",
+    "cross_run_by_300_disagreement": {
+      "total": 205,
+      "main_ejected_not_tail_ejected_by_300": 101,
+      "main_non_ejected_tail_ejected_by_300": 104,
+      "main_ejected_not_tail_ejected_by_300_partition": {
+        "tail_ejected_after_300": 98,
+        "tail_numerical_error": 2,
+        "tail_stable_censored": 1
+      },
+      "main_non_ejected_tail_ejected_by_300_partition": {
+        "main_stable": 103,
+        "main_numerical_error": 1
+      }
+    }
+  },
+  "changing_risk_set_gain": {
+    "estimand": "combined-minus-IC AUC gain across changing in-play risk sets",
+    "point_gains": [0.0005444587658918199, 0.0021065832957125608, 0.00465711259091639, 0.008013064110311219, 0.012365438261640493],
+    "slope_per_unit_f": 0.016922619162444908,
+    "slope_95": [0.014677915529109652, 0.019146152184825186],
+    "nondecreasing": "300/300 bootstrap sequences",
+    "source_path_release": "results/attribution_v2/triples_joint_gain_growth.json",
+    "source_path_local": "results/attribution_growth_v2/triples_joint_gain_growth.json",
+    "source_sha256": "cfac02cf13e1c21b3da7057db3ca42dc5799bdd2d1c13526ea8f7cc9937c1fbc",
+    "script_sha256": "43954c3131717052cf3a2253b47c44f70fa474f23b3015c311da36cf5bd7510a"
+  },
+  "fixed_cohort_gain": {
+    "estimand": "combined-minus-IC AUC gain in the constant f=0.75 landmark cohort",
+    "n": 66091,
+    "slope_per_unit_f": 0.016566844611057722,
+    "slope_95": [0.014276002617060714, 0.01888992912108712],
+    "nondecreasing_fraction": 0.9906666666666667,
+    "nondecreasing_fraction_mc_se": 0.0024827702568196133,
+    "source_path_release": "results/attribution_v2/triples_joint_gain_growth.json",
+    "source_sha256": "cfac02cf13e1c21b3da7057db3ca42dc5799bdd2d1c13526ea8f7cc9937c1fbc"
+  },
+  "warning_contract": {
+    "endpoint": "ejection by 300 T_out",
+    "observation_fractions": [0.05, 0.15, 0.30, 0.50, 0.75],
+    "observation_times_T_out": [15, 45, 90, 150, 225],
+    "risk_set_rule": "event time strictly greater than observation horizon",
+    "event_denominator": "eligible ejections in the named in-play cohort",
+    "control_reporting": "per-horizon achieved FAR plus cumulative system-level control-alert count/fraction",
+    "threshold_selection": "For each information arm and horizon, use that arm's own calibration-split negatives to select the prespecified target-FAR cut; apply the frozen cut to test/OOF scoring without test-set recalibration.",
+    "split_seed": 26001,
+    "main_calibration_n": 99985,
+    "threshold_source_path_release": "results/final_audit_expanded/triples_thresholds.json",
+    "threshold_source_path_local": "results/final_expanded_audit_json/triples_thresholds.json",
+    "threshold_source_sha256": "d09d023f8094e63965cf58e8239bf678906051e009480761d1ebcf4ea8e6cfb8",
+    "threshold_output_manifest_sha256": "cca6a5e071005f68e3a5c0a3ffad0feb8045a69969a327a2ebd8acdf4a6a8430"
+  },
+  "delayed_warning_contract": {
+    "endpoint": "ejection during 300--3000 T_out conditional on the untouched matched cohort labelled stable at 300",
+    "n": 12809,
+    "n_delayed": 1011,
+    "n_controls": 11798,
+    "observation_clock": "f * 300 T_out, not a fraction of 3000",
+    "model_and_threshold_status": "original 300-T_out models and thresholds transferred without refit or recalibration",
+    "equal_budget_status": "retrospective ranking diagnostic, not prospective operation",
+    "source_path_release": "results/prospective/prospective_tail_scoring.json",
+    "source_path_local": "results/prospective_tail_scoring/prospective_tail_scoring.json",
+    "source_sha256": "38deb3ae094a856980abd86786016a0954e099e15895c9333b29059d37f05ba8"
+  },
+  "f075_reconciliation": {
+    "changing_risk_set_point_gain": 0.012365438261640493,
+    "expanded_audit_gain_interval": [0.010733865886125588, 0.013931805803821851],
+    "rule": "The point estimate and upper confidence bound are distinct fields and must never be reported as competing point estimates."
+  },
+  "partial_auc_pins": {
+    "script_path": "workflows/final/PARTIAL_AUC_POSTPROCESS.py",
+    "script_sha256": "b27c4ef2116d4734360dc29f513efd9bb2382aa274dae0cef1f90cb30bf04b75",
+    "result_path": "results/partial_auc/partial_auc_results.json",
+    "result_sha256": "1e8b7ed1e1b5a665c308f5e9132eccaaa08e7b9e5564d21f4c8c5fa184e60602",
+    "output_manifest_path": "results/partial_auc/OUTPUT_MANIFEST.json",
+    "output_manifest_sha256": "33558a01987aa30c6b6f3b23421451851e9300a420b974021c508a0b83976dc8",
+    "claim_boundary": "Diagnostic only; no learned-family superiority detected at FPR <= 0.1%."
+  },
+  "tolerance_pins": {
+    "preselected_ids_sha256": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986",
+    "tight_npz_sha256": "4d26c6dd876dd7b9f6e5317b20305aa0ccea890f4c60a77e25184d60feb0bc0b",
+    "report_sha256": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434",
+    "local_availability": {
+      "preselected_ids": true,
+      "tight_npz": false,
+      "report": true
+    },
+    "closure_requirement": "The final release checkout or accepted archive must expose the tight NPZ, or the manuscript must limit tolerance citation to the pinned derived report while explicitly stating raw-artifact access status."
+  },
+  "release_policy": {
+    "code_and_derived_results": "Public at a frozen GitHub tag before submission.",
+    "large_simulation_and_score_artifacts_during_review": "Separately staged for editor/referee access.",
+    "large_zenodo_archive": "Deposited upon acceptance under the author's frozen policy.",
+    "kaggle": "Compute/staging only; not cited.",
+    "note": "This is not a Zenodo-first policy. The final pre-submission citation identifier is the frozen public GitHub release/tag unless the author changes policy."
+  },
+  "remaining_release_actions": [
+    "Commit this addendum and pin its full SHA-256 in results/final_manifest.json.",
+    "Expose or explicitly disposition the tight-tolerance NPZ.",
+    "Merge the approved release branch and cut the final public tag.",
+    "Record the final tag/commit citation identifier in the manifest and manuscript.",
+    "Re-run the Step-1 gate against the final tagged checkout."
+  ]
+}

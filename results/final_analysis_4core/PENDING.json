@@ -1,0 +1,7 @@
+{
+  "directory": "results/final_analysis_4core",
+  "note": "FINAL-era analysis outputs (stored indices 72+73 zeroed). All 19 files received, hash-verified, and committed (2026-09-27); pending list empty. Per-file hashes pinned in SHA256SUMS.txt.",
+  "source_dataset": "klienm/analysis",
+  "source_subfolder": "analysis_final_4core",
+  "pending": []
+}

@@ -35,6 +35,22 @@ audit_corrected*/
 paper/build/
 figures/generated/
 
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.fls
+*.fdb_latexmk
+
+# Test/coverage artifacts
+.coverage
+htmlcov/
+coverage.xml
+
 # Secrets
 .env
 *.key

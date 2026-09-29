@@ -1,0 +1,52 @@
+[
+ {
+  "f": 0.05000000074505806,
+  "n_valid": 99973,
+  "n_in_play": 58319,
+  "retained_fraction": 0.5833475038260331,
+  "n_future_positive": 39459,
+  "future_prevalence": 0.6766062518218763,
+  "n_positive_excluded": 41654,
+  "n_negative_excluded": 0
+ },
+ {
+  "f": 0.15000000596046448,
+  "n_valid": 99973,
+  "n_in_play": 34336,
+  "retained_fraction": 0.3434527322377042,
+  "n_future_positive": 15476,
+  "future_prevalence": 0.4507222739981361,
+  "n_positive_excluded": 65637,
+  "n_negative_excluded": 0
+ },
+ {
+  "f": 0.30000001192092896,
+  "n_valid": 99973,
+  "n_in_play": 25974,
+  "retained_fraction": 0.25981014874015984,
+  "n_future_positive": 7114,
+  "future_prevalence": 0.27388927388927387,
+  "n_positive_excluded": 73999,
+  "n_negative_excluded": 0
+ },
+ {
+  "f": 0.5,
+  "n_valid": 99973,
+  "n_in_play": 22272,
+  "retained_fraction": 0.22278015064067297,
+  "n_future_positive": 3412,
+  "future_prevalence": 0.15319683908045978,
+  "n_positive_excluded": 77701,
+  "n_negative_excluded": 0
+ },
+ {
+  "f": 0.75,
+  "n_valid": 99973,
+  "n_in_play": 20065,
+  "retained_fraction": 0.20070419013133545,
+  "n_future_positive": 1205,
+  "future_prevalence": 0.06005482182905557,
+  "n_positive_excluded": 79908,
+  "n_negative_excluded": 0
+ }
+]

@@ -1,0 +1,27 @@
+% Section: Causal diagnostics and validation (manuscript agent owns prose).
+\subsection{Physical-time windows}
+For triples, the observation horizon is $t_h=f\,t_{\max}$. A system is included
+at a horizon only if its event time exceeds $t_h$. Every feature is computed
+exclusively from samples satisfying $t\le t_h$.
+
+\subsection{Feature families}
+The feature vector contains hierarchy statistics and derivatives, pair-energy
+exchange, angular-momentum channels, torques, seam-tension summaries,
+signal-complexity measures, and closest-approach diagnostics.
+\todo{Add exact equations and a feature table.}
+
+\subsection{Leakage controls}
+The stored 79-column schema historically contained two future-length-dependent
+columns: index 73 (window length over final recorded length) and index 72
+(first hierarchy breach normalized by the full record). Both are identically
+zero in every FINAL model input at training and serving time. Repository
+invariance tests require that modifying or extending samples strictly after the
+observation horizon leaves the causal vector bit-identical.
+
+\subsection{Statistical protocol}
+We report ROC--AUC, PR--AUC, balanced accuracy, Matthews correlation, Brier
+score, and calibration error. Fixed false-alarm thresholds are selected on a
+calibration cohort and evaluated on an untouched test cohort; per-horizon FAR
+is reported separately from cumulative system-level false-alert probability.
+Label-shuffle controls, blocked initial-condition splits, and no-refit
+prospective scoring on the matched tail test leakage and extrapolation.
