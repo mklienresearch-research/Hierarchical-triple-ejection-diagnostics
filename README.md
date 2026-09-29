@@ -2,10 +2,10 @@
 
 Causal, finite-time forecasting of ejection in hierarchical triple systems and of outcomes in binary–single encounters — with calibrated warning lead times and censoring-aware validation.
 
-> **Release status:** A1 release candidate (INTERIM). Hashes are frozen in
-> [`results/final_manifest.json`](results/final_manifest.json), but the nine
-> FINAL scripts and the §10/§12 products are not yet committed and **no tag has
-> been cut**. Do not cite a frozen commit until the manifest status reads FINAL
+> **Release status:** A1 release FINAL. Hashes are frozen in
+> [`results/final_manifest.json`](results/final_manifest.json) (`manifest_version`
+> `1.0.0`, release tag `v1.0.0`); the nine FINAL scripts, all 73 result/checksum
+> files, and the A1 control documents are committed and hash-verified
 > (see [`docs/FINAL_MANIFEST.md`](docs/FINAL_MANIFEST.md)).
 
 ## Scientific scope

@@ -1,7 +1,12 @@
 {
-  "manifest_version": "1.0.0-rc.2",
+  "manifest_version": "1.0.0",
   "project": "Hierarchical triple ejection diagnostics (A1 ApJ submission)",
-  "status": "Release candidate 2026-09-27: all nine FINAL scripts and all 70 result/checksum files committed and hash-verified; registries consistent; CI green. PR #1 still draft; no tag cut -- do not cite a frozen commit/tag until status reads FINAL.",
+  "status": "FINAL 2026-09-29: A1 release v1.0.0. All nine FINAL scripts, all 73 result/checksum files, and the A1 control documents (research-definition freeze V3, Final numeric ledger, step-1 provenance addendum, tolerance disposition) committed and hash-verified; registries consistent; CI green. Release tag v1.0.0 -- cite the tag (release.url); no commit SHA is pinned in this manifest by design.",
+  "release": {
+    "tag": "v1.0.0",
+    "url": "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics/releases/tag/v1.0.0",
+    "note": "Cite the tag. No commit SHA is pinned inside this manifest by design: the manifest is frozen before the merge/tag exist, so a self-referential pin is impossible."
+  },
   "frozen_hashes": {
     "final_scripts_sha256": {
       "note": "Hashes recorded by the analysis agent for final_run_scripts_handoff/*.py.txt (2026-09-27). All nine received, hash-verified, and committed under workflows/final/ on 2026-09-27 (SCRIPT_REGISTRY.json: 9/9 received); every .py under workflows/ is compilation-checked by CI.",
@@ -87,10 +92,17 @@
       "results/provenance/chunk_tail_0_of_2_meta.json": "7d224617635e9f07e2502de13afceaa7a2d8318a6f14a647e2e4657cd9cf1e0c",
       "results/provenance/chunk_tail_1_of_2_meta.json": "69cea0d09ccf4ddbc562af012857d6968d4225292c3726cc69f0c00a099c1d7f",
       "results/provenance/deeptail_SHA256SUMS.txt": "b2abe6bd299798da6fe99436edb02ce291aa94fa87835d2c5d22b47bddb46558",
+      "results/step1_provenance_addendum.json": "3a11572ac21eb7e80ff4b78cbc760a60a78da016699e98eb2436690f967bc778",
       "results/provenance/deeptail_manifest.json": "7d21d311c0493fff577465c002c6b23dcbf5a63109d7cb63c3feb53e2529b1bf",
       "results/tolerance/preselected_ids.txt": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986",
       "results/tolerance/tolerance_report.json": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434",
+      "results/tolerance/tolerance_raw_artifact_disposition.json": "63a44d1ca7be3eef870b7dc225a406e5e9ca93c106d8b4ef736c4ac48bbcfa39",
+      "results/tolerance/SHA256SUMS.txt": "53115635870bb4fd7827c861ac9daa15d055332361230d6623971489fbf28fa4",
       "results/training_curve/training_size_curve.json": "a55ec950b5978ab1e6b45d9fd51c029b471e61c40184566eccd2910e97dd9126"
+    },
+    "control_documents_sha256": {
+      "controls/A1_RESEARCH_DEFINITION_FREEZE_V3.md": "0d5ab404a33c8f7ba8185bb3e77be059eaf4864e2a3a7cbeb534e722989453a6",
+      "docs/RESULTS_MANIFEST_FINAL.md": "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686"
     },
     "pins_below_registry_coverage": {
       "results/adversarial_audit_4core/SHA256SUMS.txt": "Per-directory SHA256SUMS.txt self-consistent (committed d1a2e59); not covered by artifact_registry.json.",
@@ -98,12 +110,16 @@
       "results/final_analysis_4core/SHA256SUMS.txt": "Agent-generated 2026-09-27 from receipt-verified bytes; all 19 lines cross-checked against artifact_registry.json committed entries.",
       "results/literature_baseline/OUTPUT_MANIFEST.json": "Receipt-verified 2026-09-27 against user-supplied ground-truth sha256+bytes; no registry record yet (see artifact_registry.json not_yet_public).",
       "results/partial_auc/OUTPUT_MANIFEST.json": "Receipt-verified 2026-09-27 against user-supplied ground-truth sha256+bytes; no registry record yet (see artifact_registry.json not_yet_public).",
-      "results/provenance/SHA256SUMS.txt": "Committed in 602afa4; all 4 lines match pinned hashes."
+      "results/provenance/SHA256SUMS.txt": "Committed in 602afa4; all 4 lines match pinned hashes.",
+      "results/step1_provenance_addendum.json": "A1 closeout file (2026-09-29); pinned here, not covered by artifact_registry.json.",
+      "results/tolerance/tolerance_raw_artifact_disposition.json": "A1 closeout file (2026-09-29); pinned here, not covered by artifact_registry.json.",
+      "results/tolerance/SHA256SUMS.txt": "Per-directory SHA256SUMS.txt self-consistent (A1 closeout 2026-09-29); not covered by artifact_registry.json."
     },
     "verified_checksum_files": {
       "final-audit-expanded/SHA256SUMS.txt": "23/23 entries match owner walk (2026-09-26)",
       "deeptail_final/SHA256SUMS.txt": "6/6 entries match owner walk (2026-09-26)",
-      "final_analysis_4core/SHA256SUMS.txt": "19/19 entries generated 2026-09-27 from receipt-verified bytes and cross-checked against artifact_registry.json committed entries"
+      "final_analysis_4core/SHA256SUMS.txt": "19/19 entries generated 2026-09-27 from receipt-verified bytes and cross-checked against artifact_registry.json committed entries",
+      "tolerance/SHA256SUMS.txt": "3/3 entries match committed bytes (2026-09-29)"
     }
   },
   "tail_ledger": {
@@ -128,7 +144,8 @@
     "Kaggle attribution-growth v1 (superseded by attribution-growth-v2)",
     "Kaggle analysis/final_analysis_all_jsons/ (byte-identical duplicate; owner to delete)",
     "Kaggle tail-tolernace slug (typo; being recreated as tail-tolerance-validation)",
-    "Kaggle trainingcurve OUTPUT_MANIFEST (1).json (duplicate; owner to delete)"
+    "Kaggle trainingcurve OUTPUT_MANIFEST (1).json (duplicate; owner to delete)",
+    "docs/RESULTS_MANIFEST_FINAL_DRAFT.md (superseded by docs/RESULTS_MANIFEST_FINAL.md; exactly five lines differ)"
   ],
   "committed_but_non_authoritative": {
     "results/final_analysis_4core/boundary_ood.json": "SUPERSEDED by results/final_audit_expanded/boundary_ood_inplay_corrected.json (corrected in-play audit); retained for provenance only, excluded from paper claims.",
@@ -139,13 +156,18 @@
   "unresolved": [
     "Final-run scikit-learn version (earlier FINAL runs): permanently NOT CAPTURED (see runtime_environment); must never be backfilled from later environments.",
     "Section-10/12 + attribution-precision artifacts: committed receipt-verified but not yet public on Kaggle (artifact_registry.json not_yet_public).",
-    "Zenodo DOI: minted only upon acceptance; large files remain staged until then.",
-    "Frozen tag/commit for manuscript citation: PR #1 still draft; no merge or tag until review sign-off."
+    "Zenodo DOI: minted only upon acceptance; large files remain staged until then."
   ],
   "resolved_2026_09_27": [
     "Nine Final scripts received, hash-verified, committed under workflows/final/ (SCRIPT_REGISTRY.json 9/9 received).",
     "All 19 final_analysis_4core + 19 final_audit_expanded files committed and pinned (registries consistent).",
     "Batch-4 attribution_v2/prospective/training-curve/tolerance + release docs committed and pinned.",
     "Section-10 partial-AUC, section-12 literature-baseline, and attribution-precision JSONs committed receipt-verified against user ground-truth hashes."
+  ],
+  "resolved_2026_09_29": [
+    "A1 closeout controls installed and hash-verified: controls/A1_RESEARCH_DEFINITION_FREEZE_V3.md, docs/RESULTS_MANIFEST_FINAL.md (Final numeric ledger), results/step1_provenance_addendum.json, results/tolerance/tolerance_raw_artifact_disposition.json + results/tolerance/SHA256SUMS.txt.",
+    "final_manifest.json regenerated as manifest_version 1.0.0 FINAL (not an RC rename): release tag v1.0.0 + release URL recorded; no self-referential commit-SHA pin.",
+    "Results ledger finalized at sha256 54440fee...: exactly five lines differ from the draft (title, status, section-12 sklearn scoping, section-16 heading + provenance).",
+    "CITATION.cff 1.0.0; release docs updated; pytest + compileall + per-directory checksum verification green."
   ]
 }

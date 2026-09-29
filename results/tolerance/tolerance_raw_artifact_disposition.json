@@ -1,0 +1,23 @@
+{
+  "schema": "a1-tolerance-raw-artifact-disposition-1.0",
+  "date": "2026-09-28",
+  "raw_artifact": {
+    "expected_filename": "tight_tail_500.npz",
+    "recorded_sha256": "4d26c6dd876dd7b9f6e5317b20305aa0ccea890f4c60a77e25184d60feb0bc0b",
+    "availability": "UNAVAILABLE_FOR_RELEASE",
+    "statement": "The raw tight-tolerance NPZ is not available in the release checkout or local workspace. The recorded hash is retained for provenance but does not establish present access."
+  },
+  "citable_derived_artifacts": {
+    "preselected_ids": {
+      "path": "results/tolerance/preselected_ids.txt",
+      "sha256": "b3d1e29b1b538a6521816552b559e353f62c30a818e5fbe7a3d867e0fb5e5986"
+    },
+    "tolerance_report": {
+      "path": "results/tolerance/tolerance_report.json",
+      "sha256": "e7e570c04bae947a86a12be4af6598c7a131fc5f444c04e850364cc450fb2434"
+    }
+  },
+  "citation_rule": "Only the pinned derived tolerance report and preselected-ID list are citable from this release. The manuscript and release metadata must state that the raw tight-tolerance NPZ is unavailable.",
+  "claim_boundary": "Tolerance findings are a numerical-sensitivity analysis based on the pinned derived report. The release does not claim that the raw NPZ is publicly archived or independently downloadable.",
+  "future_archive_rule": "If the exact raw NPZ is later recovered, it may be added only after byte-level verification against the recorded SHA-256 and a versioned release/archive update; it must not be silently substituted."
+}

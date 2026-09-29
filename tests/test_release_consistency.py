@@ -79,3 +79,54 @@ def test_no_large_binary_artifacts_in_tree():
         if p.is_file() and p.suffix.lower() in BINARY_SUFFIXES and ".git/" not in str(p)
     ]
     assert offenders == [], offenders
+
+
+FINAL_CONTROL_SHA256 = {
+    "results/step1_provenance_addendum.json":
+        "3a11572ac21eb7e80ff4b78cbc760a60a78da016699e98eb2436690f967bc778",
+    "controls/A1_RESEARCH_DEFINITION_FREEZE_V3.md":
+        "0d5ab404a33c8f7ba8185bb3e77be059eaf4864e2a3a7cbeb534e722989453a6",
+    "results/tolerance/tolerance_raw_artifact_disposition.json":
+        "63a44d1ca7be3eef870b7dc225a406e5e9ca93c106d8b4ef736c4ac48bbcfa39",
+    "results/tolerance/SHA256SUMS.txt":
+        "53115635870bb4fd7827c861ac9daa15d055332361230d6623971489fbf28fa4",
+    "docs/RESULTS_MANIFEST_FINAL.md":
+        "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686",
+}
+
+
+def test_final_control_documents_match_pinned_hashes():
+    for rel, expected in FINAL_CONTROL_SHA256.items():
+        target = ROOT / rel
+        assert target.is_file(), rel
+        assert sha256_of(target) == expected, rel
+
+
+def test_final_manifest_is_final_and_self_consistent():
+    manifest = load(ROOT / "results" / "final_manifest.json")
+    assert manifest["manifest_version"] == "1.0.0"
+    assert "FINAL" in manifest["status"]
+    release = manifest["release"]
+    assert release["tag"] == "v1.0.0"
+    assert release["url"].endswith("/releases/tag/v1.0.0")
+    assert not [k for k in release if "commit" in k.lower()], "no commit pin by design"
+    frozen = manifest["frozen_hashes"]
+    committed = frozen["committed_result_files_sha256"]
+    assert len(committed) == 73
+    for rel, expected in committed.items():
+        target = ROOT / rel
+        assert target.is_file(), rel
+        assert sha256_of(target) == expected, rel
+    controls = frozen["control_documents_sha256"]
+    assert len(controls) == 2
+    for rel, expected in controls.items():
+        target = ROOT / rel
+        assert target.is_file(), rel
+        assert sha256_of(target) == expected, rel
+    registry = {e["name"]: e["sha256"]
+                for e in load(ROOT / "workflows" / "final" / "SCRIPT_REGISTRY.json")["scripts"]}
+    for name, expected in frozen["final_scripts_sha256"].items():
+        if name == "note":
+            continue
+        assert registry[name] == expected, name
+    assert 'version: "1.0.0"' in (ROOT / "CITATION.cff").read_text()

@@ -5,18 +5,20 @@ Full artifact inventory: [`results/artifact_registry.json`](../results/artifact_
 and [`docs/ARTIFACT_REGISTRY.md`](ARTIFACT_REGISTRY.md).
 Dataset verification evidence: [`docs/KAGGLE_DATASETS_VERIFICATION.md`](KAGGLE_DATASETS_VERIFICATION.md).
 
-## Status: INTERIM release candidate
+## Status: FINAL (A1 release v1.0.0)
 
-Hashes below are frozen, but the release is **not** citable yet:
-
-- the nine FINAL scripts are hash-recorded but their bytes are not yet committed
+- the nine FINAL scripts are received, hash-verified, and committed
   (see [`workflows/final/SCRIPT_REGISTRY.json`](../workflows/final/SCRIPT_REGISTRY.json));
-- the §10 partial-AUC and §12 literature-baseline artifacts are not public anywhere;
-- no tag has been cut.
+- the §10 partial-AUC, §12 literature-baseline, and attribution-precision artifacts
+  are committed receipt-verified;
+- the A1 closeout control documents (freeze V3, Final ledger, provenance addendum,
+  tolerance disposition) are committed and hash-verified;
+- release tag `v1.0.0` is cut on merge of PR #1.
 
-Do not cite a frozen commit in the manuscript until this status reads FINAL.
+Cite the release tag (`results/final_manifest.json` → `release.url`); no commit SHA
+is pinned in-manifest by design.
 
-## Frozen script hashes (pending receipt)
+## Frozen script hashes (received and hash-verified)
 
 | Script | SHA-256 |
 |---|---|
@@ -30,8 +32,8 @@ Do not cite a frozen commit in the manuscript until this status reads FINAL.
 | `LITERATURE_BASELINE_VYNATHEYA_4CORE.py` | `ec7b13ee…0d9` |
 | `TRAINING_SIZE_LEARNING_CURVE_4CORE.py` | `35de5724…8602` |
 
-Full hashes live in `results/final_manifest.json`. Each script MUST verify on receipt
-before it is committed under `workflows/final/`.
+Full hashes live in `results/final_manifest.json`. Each script was verified on receipt
+before commit under `workflows/final/`.
 
 ## Frozen data hashes
 
@@ -60,6 +62,8 @@ The Δ103/Δ98 values are cross-run transitions, not ledger discrepancies
 - The Vynatheya pickles declare scikit-learn 1.2.2 (compatibility warnings observed
   under the Kaggle runtime).
 - Simulation seed is 42 throughout.
+- The separately rerun literature baseline used scikit-learn 1.6.1; that version
+  applies ONLY to that workflow and is never imputed to the earlier FINAL runs.
 
 ## Canonical-form rulings
 
@@ -67,6 +71,16 @@ The Δ103/Δ98 values are cross-run transitions, not ledger discrepancies
   container hash `3978f8aa…` is provenance-only; a reconstructed NPZ gets a new hash.
 - `merged_triples.npz` is uncompressed `np.savez` (≈1.82 GB); production chunks are
   compressed (≈481+482 MB). No unexplained bytes.
+
+## Release control documents (A1 closeout)
+
+- `controls/A1_RESEARCH_DEFINITION_FREEZE_V3.md` — `0d5ab404…`
+- `docs/RESULTS_MANIFEST_FINAL.md` — `54440fee…` (Final numeric ledger; supersedes the draft)
+- `results/step1_provenance_addendum.json` — `3a11572a…`
+- `results/tolerance/tolerance_raw_artifact_disposition.json` — `63a44d1c…`
+- `results/tolerance/SHA256SUMS.txt` — `53115635…`
+
+Full hashes live in `results/final_manifest.json`.
 
 ## Explicitly excluded from paper claims
 
