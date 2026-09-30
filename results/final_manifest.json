@@ -139,11 +139,15 @@
     "manuscript_display_sha256": {
       "scripts/production/make_a1_main_results_figures.py": "e5a55e7a7c82e5813750d0241685c70e580ca1861f2d6a0baaf6f50958011f8a",
       "scripts/production/make_a1_main_table_data.py": "1df4725c9e9afffd30cbdafdf4046b4b4e103caf8e06373d6c8a672f51612909",
-      "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json": "e224c6c1d14d330ff4aa2370a69c6c23572b5ba98fde122f161fc654e127b191",
-      "paper/drafts/main.tex": "c4be2de4edf61eaa2ff1e079f133d09cb5fce0126b0e5781615626d8987fa5a4"
+      "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json": "09d8ffdf578011fd7db9228400215dc78bee0272341e4346f4837ba68daa1370",
+      "paper/drafts/main.tex": "fdcbfdb3a8e64dc4097b3b1b8ea5a2cc35b5c271f214436cb8eaf8d1894eb063"
     },
     "patch_control_documents_sha256": {
-      "docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md": "aa1bcbd401580e76edfea7cdb6e6c64efb0a65636ef843d55c61c08d8da2e0bb"
+      "docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md": "aa1bcbd401580e76edfea7cdb6e6c64efb0a65636ef843d55c61c08d8da2e0bb",
+      "docs/A1_V1.0.1_PRETAG_AMENDMENT.md": "27f2d9e5460befb2ea7177dfad633fb585b287e2aa72da10bcbd034ef1242416"
+    },
+    "provenance_documents_sha256": {
+      "docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md": "5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6"
     },
     "pins_below_registry_coverage": {
       "results/adversarial_audit_4core/SHA256SUMS.txt": "Per-directory SHA256SUMS.txt self-consistent (committed d1a2e59); not covered by artifact_registry.json.",
@@ -160,7 +164,9 @@
       "scripts/production/make_a1_main_table_data.py": "A1 v1.0.1 display generator; hash-verified against the author package on receipt; not covered by artifact_registry.json (simulation/result artifacts only).",
       "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json": "A1 v1.0.1 display provenance record; every release_path it cites is verified against this tree; not covered by artifact_registry.json.",
       "paper/drafts/main.tex": "A1 v1.0.1 author manuscript draft installed verbatim for display provenance; NOT the submission manuscript (paper/main.tex stays anonymous under CI). Not covered by artifact_registry.json.",
-      "docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md": "A1 v1.0.1 patch control document from the author package; hash-verified on receipt; not covered by artifact_registry.json."
+      "docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md": "A1 v1.0.1 patch control document from the author package; hash-verified on receipt; not covered by artifact_registry.json.",
+      "docs/A1_V1.0.1_PRETAG_AMENDMENT.md": "A1 v1.0.1 pre-tag amendment control document from the author package (2026-09-29); hash-verified on receipt; not covered by artifact_registry.json.",
+      "docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md": "Matched-tolerance framework join record; installed in the pre-tag amendment at the author's preferred canonical path and pinned by the delayed-join summary's declared source hash; not covered by artifact_registry.json."
     },
     "verified_checksum_files": {
       "final-audit-expanded/SHA256SUMS.txt": "23/23 entries match owner walk (2026-09-26)",
@@ -201,7 +207,7 @@
       "results/attribution_precision_addon/": "results/attribution_precision/"
     },
     "generator_inputs_not_in_display_manifest": "None. The gap recorded at b2610fa is closed by the pre-tag amendment: the display manifest now lists the canonical Table 2 input results/attribution_v2/prospective_model_attribution.json (sha256 fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701, already a v1.0.0 pin), whose author-staging alias is results/attribution_growth_v2/prospective_model_attribution.json. Every input read by either generator now resolves through the frozen display manifest as well as through staging_alias_map.",
-    "display_manifest_revision": "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json was byte-frozen at the author-package hash 143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e on receipt (b2610fa). The pre-tag amendment inserts exactly one Table 2 source entry, so the release pin is now e224c6c1d14d330ff4aa2370a69c6c23572b5ba98fde122f161fc654e127b191. Only the panel_and_table_sources.table2 array changed: reversing the insertion reproduces the author-package bytes exactly (asserted byte-level by tests/test_v1_0_1_patch_consistency.py). No displayed value, sha256, or path of any pre-existing entry was altered."
+    "display_manifest_revision": "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json was byte-frozen at the author-package hash 143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e on receipt (b2610fa). The first pre-tag pass inserted the Table 2 attribution_v2 entry mid-array (e224c6c1d14d330ff4aa2370a69c6c23572b5ba98fde122f161fc654e127b191, commit 2917992). The author then supplied their own amended copy at 09d8ffdf578011fd7db9228400215dc78bee0272341e4346f4837ba68daa1370 (A1_V1.0.1_PRETAG_AMENDMENT.md, 2026-09-29), which appends that entry last and rewords release_candidate_note; those amended bytes are the release pin and supersede the intermediate. Reversing the author\u2019s two edits reproduces the received bytes exactly (asserted byte-level by tests/test_v1_0_1_patch_consistency.py), so no displayed value, sha256, or path of any pre-existing entry moved and unique release sources remain 15."
   },
   "tight_tail_500_disposition": {
     "source": "results/tolerance/tolerance_raw_artifact_disposition.json (mirrored verbatim; v1.0.1 revision pinned in frozen_hashes.committed_result_files_sha256)",
@@ -241,7 +247,7 @@
       {"path": "docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md", "sha256": "5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6"},
       {"path": "docs/RESULTS_MANIFEST_FINAL.md", "sha256": "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686"}
     ],
-    "source_record_availability": "docs/RESULTS_MANIFEST_FINAL.md is present in this tree and matches its recorded SHA-256. docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md is NOT present in this tree: its recorded SHA-256 is retained for provenance only and does not establish present access, under the same convention as the raw tight-tolerance NPZ. The summary materializes already-closed counts; nothing is recomputed here.",
+    "source_record_availability": "Both source records are now present in this tree with matching recorded SHA-256. docs/RESULTS_MANIFEST_FINAL.md resolves directly (54440fee...). The matched-tolerance framework record resolves by hash: the summary cites its authoring handoff path docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md, and the identical bytes (5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6) are installed at the canonical repository path docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md per docs/A1_V1.0.1_PRETAG_AMENDMENT.md. The summary itself was NOT rewritten: its bytes stay frozen at 40c51ba0... because the author's byte-exact display manifest pins that hash, so rewriting the cited path would have cascaded through frozen artifacts for no provenance gain. The path mapping is recorded here and asserted by tests; the file is pinned in frozen_hashes.provenance_documents_sha256. The summary materializes already-closed counts; nothing is recomputed here.",
     "raw_artifact_status": "The raw tight_tail_500.npz remains unavailable and was not reconstructed.",
     "display_use": "Consumed by scripts/production/make_a1_main_results_figures.py (Figure 3c) and scripts/production/make_a1_main_table_data.py (Table 2 tolerance rows); no 29/19/18 value is hard-coded in either generator."
   },
@@ -290,5 +296,12 @@
     "Display generators and display source manifest installed at scripts/production/ and paper/display_sources/; all 14 unique release_path sources verify against this tree.",
     "Display generators verified to load the delayed-join summary with no hard-coded 29/19/18; v1.0.1 patch consistency tests added to the release suite.",
     "v1.0.0 scientific pins compared key-by-key against tag v1.0.0 and unchanged; no raw NPZ added or reconstructed; tag v1.0.0 not amended."
+  ],
+  "resolved_2026_09_29_v1_0_1_pretag_amendment": [
+    "Author pre-tag amendment package received and all four files hash-verified byte-for-byte before install: docs/A1_V1.0.1_PRETAG_AMENDMENT.md 27f2d9e5..., docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md 5e48fa50..., paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json 09d8ffdf..., paper/drafts/main.tex fdcbfdb3....",
+    "The matched-tolerance framework record is installed and pinned, closing the 'recorded hash but absent' gap: its bytes match the delayed-join summary's declared source hash 5e48fa50... exactly.",
+    "The Table 2 display-input map is complete: results/attribution_v2/prospective_model_attribution.json (fed578d6...) is listed in the display manifest and every input read by either generator now resolves through it.",
+    "The working manuscript stays unpromoted at paper/drafts/main.tex; paper/main.tex is byte-identical to tag v1.0.0 and remains the anonymous submission skeleton.",
+    "No scientific or displayed value changed; the v1.0.0 scientific-view digest is unchanged and the raw tight NPZ remains absent."
   ]
 }

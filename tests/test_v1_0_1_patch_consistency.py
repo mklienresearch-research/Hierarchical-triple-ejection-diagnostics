@@ -56,29 +56,94 @@ PACKAGE_FILES = {
         "e5a55e7a7c82e5813750d0241685c70e580ca1861f2d6a0baaf6f50958011f8a",
     "scripts/production/make_a1_main_table_data.py":
         "1df4725c9e9afffd30cbdafdf4046b4b4e103caf8e06373d6c8a672f51612909",
+}
+
+# Two original package files were superseded by the author's pre-tag amendment
+# (2026-09-29). The amended bytes are what the release pins; these original bytes
+# stay recorded as the reversal target the amendment guards are checked against.
+RECEIVED_SUPERSEDED_FILES = {
+    "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json":
+        "143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e",
     "paper/drafts/main.tex":
         "c4be2de4edf61eaa2ff1e079f133d09cb5fce0126b0e5781615626d8987fa5a4",
 }
 
-# The display manifest arrived byte-frozen at this hash and is the one package file the
-# pre-tag amendment edits: it gains a single Table 2 source entry, nothing else.
+# Author pre-tag amendment package (2026-09-29): installs the matched-tolerance
+# framework record and replaces those two files. Every hash is the delivered one.
+AMENDMENT_FILES = {
+    "docs/A1_V1.0.1_PRETAG_AMENDMENT.md":
+        "27f2d9e5460befb2ea7177dfad633fb585b287e2aa72da10bcbd034ef1242416",
+    "docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md":
+        "5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6",
+    "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json":
+        "09d8ffdf578011fd7db9228400215dc78bee0272341e4346f4837ba68daa1370",
+    "paper/drafts/main.tex":
+        "fdcbfdb3a8e64dc4097b3b1b8ea5a2cc35b5c271f214436cb8eaf8d1894eb063",
+}
+
+# The matched-tolerance framework record: the delayed-join summary cites the
+# framework agent's handoff path, while the identical bytes are installed, per the
+# author's amendment, at the canonical docs/provenance/ path.
+FRAMEWORK_RECORD = "docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md"
+FRAMEWORK_CITED_HANDOFF_PATH = (
+    "docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md")
+FRAMEWORK_SHA256 = (
+    "5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6")
+
+# paper/main.tex must be untouched by the whole patch chain: its content must hash
+# to the git blob it has at tag v1.0.0 (computed in-tree; CI needs no tags).
+SUBMISSION_MANUSCRIPT = "paper/main.tex"
+SUBMISSION_MANUSCRIPT_BLOB_V1_0_0 = "c168c9f36fb5b1ceb396d10bf72afbb39cc6fa55"
+
+# The display manifest was delivered twice: byte-frozen on receipt (b2610fa, below)
+# and re-supplied amended by the author, whose bytes are the release pin.
 DISPLAY_MANIFEST = "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json"
 DISPLAY_MANIFEST_RECEIVED_SHA256 = \
-    "143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e"
+    RECEIVED_SUPERSEDED_FILES[DISPLAY_MANIFEST]
 DISPLAY_MANIFEST_AMENDED_SHA256 = \
-    "e224c6c1d14d330ff4aa2370a69c6c23572b5ba98fde122f161fc654e127b191"
+    AMENDMENT_FILES[DISPLAY_MANIFEST]
+MANUSCRIPT_DRAFT = "paper/drafts/main.tex"
+MANUSCRIPT_RECEIVED_SHA256 = RECEIVED_SUPERSEDED_FILES[MANUSCRIPT_DRAFT]
+MANUSCRIPT_AMENDED_SHA256 = AMENDMENT_FILES[MANUSCRIPT_DRAFT]
 
-# The exact text block the amendment inserts; removing it must reproduce the
-# author-package bytes bit for bit.
-TABLE2_ADDED_ENTRY = (
+# The amendment's two edits to the display manifest, and their exact reversal.
+# Reverse edit 1: append the Table 2 entry last instead of inserting it mid-array.
+TABLE2_AMENDED_TAIL = (
+    '      },\n'
     '      {\n'
     '        "release_path": "results/attribution_v2/prospective_model_attribution.json",\n'
     '        "local_path": "results/attribution_growth_v2/prospective_model_attribution.json",\n'
     '        "sha256": "fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701"\n'
-    '      },\n'
+    '      }\n'
 )
+TABLE2_RECEIVED_TAIL = '      }\n'
+# Reverse edit 2: reword the release-candidate note.
+NOTE_AMENDED = (
+    '"release_candidate_note": "The delayed-tolerance summary, revised disposition, and '
+    'complete display-input map require the v1.0.1 provenance patch before these rows '
+    'are citable from the public tag."')
+NOTE_RECEIVED = (
+    '"release_candidate_note": "The delayed-tolerance summary and revised disposition '
+    'require a patch release before these rows are citable from the public tag."')
+
 TABLE2_CANONICAL_INPUT = "results/attribution_v2/prospective_model_attribution.json"
 TABLE2_STAGING_ALIAS = "results/attribution_growth_v2/prospective_model_attribution.json"
+TABLE2_CANONICAL_SHA256 = \
+    "fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701"
+
+# The amendment's single edit to the working manuscript: it names the canonical
+# Table 2 attribution input in the delayed-warning provenance note. Built without a
+# literal backslash so the LaTeX path macro survives any quoting context.
+BS = chr(92)
+_PATH = lambda ref: f"{BS}path{{{ref}}}"  # noqa: E731
+DRAFT_TAIL_SCORING = "results/prospective/prospective_tail_scoring.json"
+DRAFT_PRECISION = "results/attribution_precision/attribution_precision_addon.json"
+DRAFT_SENTENCE_RECEIVED = (
+    f"delayed-warning sources are {_PATH(DRAFT_TAIL_SCORING)} and "
+    f"{_PATH(DRAFT_PRECISION)}.")
+DRAFT_SENTENCE_AMENDED = (
+    f"delayed-warning sources are {_PATH(DRAFT_TAIL_SCORING)}, "
+    f"{_PATH(DRAFT_PRECISION)}, and {_PATH(TABLE2_CANONICAL_INPUT)}.")
 
 BINARY_SUFFIXES = {".npz", ".npy", ".pkl", ".pickle", ".h5", ".hdf5", ".parquet"}
 RAW_NPZ_NAME = "tight_tail_500.npz"
@@ -236,16 +301,20 @@ def test_summary_source_records_and_no_silent_skip():
     assert ledger in records
     assert sha256_of(ROOT / ledger) == records[ledger]
     assert records[ledger] == "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686"
-    # The matched-join framework record is cited with a recorded hash but is NOT in
-    # this tree; that gap is stated, never skipped silently.
-    framework = "docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md"
-    assert framework in records
-    assert records[framework] == \
-        "5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6"
-    assert not (ROOT / framework).exists(), "framework record arrived: pin it, do not skip it"
+    # The matched-join framework record was supplied by the author's pre-tag
+    # amendment and is installed: the summary's declared source hash resolves to the
+    # installed bytes. The gap is closed, not skipped.
+    assert FRAMEWORK_CITED_HANDOFF_PATH in records
+    declared = records[FRAMEWORK_CITED_HANDOFF_PATH]
+    assert declared == FRAMEWORK_SHA256
+    installed = ROOT / FRAMEWORK_RECORD
+    assert installed.is_file(), FRAMEWORK_RECORD
+    assert sha256_of(installed) == declared, "installed framework record != declared hash"
     block = manifest()["delayed_tolerance_join_summary"]
-    assert framework in block["source_record_availability"]
-    assert "NOT present in this tree" in block["source_record_availability"]
+    avail = block["source_record_availability"]
+    assert FRAMEWORK_CITED_HANDOFF_PATH in avail and FRAMEWORK_RECORD in avail
+    assert "NOT present in this tree" not in avail
+    assert FRAMEWORK_SHA256 in avail
 
 
 def test_manifest_mirrors_summary_values():
@@ -312,6 +381,15 @@ def test_tolerance_sha256sums_verifies_and_lists_the_four_records():
         "tolerance/SHA256SUMS.txt"].startswith("4/4 entries match committed bytes")
 
 
+def test_raw_tight_npz_remains_absent():
+    """Author request 5: the raw tight-tolerance NPZ stays out of the release."""
+    found = [str(q.relative_to(ROOT)) for q in ROOT.rglob(RAW_NPZ_NAME)]
+    assert not found, f"raw NPZ present: {found}"
+    disposition = manifest()["tight_tail_500_disposition"]
+    assert "UNAVAILABLE_FOR_RELEASE" in json.dumps(disposition)
+    assert "tight_tail_500.npz" in json.dumps(disposition)
+
+
 def test_no_raw_npz_present_or_reconstructed():
     """The raw tight-tolerance NPZ must not appear anywhere, under any name."""
     assert not list(ROOT.rglob(RAW_NPZ_NAME)), "raw NPZ present; patch must not add it"
@@ -332,13 +410,23 @@ def test_package_files_match_release_manifest_pins():
         m["frozen_hashes"]["committed_result_files_sha256"],
         m["frozen_hashes"]["manuscript_display_sha256"],
         m["frozen_hashes"]["patch_control_documents_sha256"],
+        m["frozen_hashes"]["provenance_documents_sha256"],
     ]
     for rel, want in PACKAGE_FILES.items():
         assert sha256_of(ROOT / rel) == want, rel
         assert any(pins.get(rel) == want for pins in pin_sets), f"{rel} not pinned in manifest"
-    # the one amended package file is pinned at its post-amendment hash
-    assert sha256_of(ROOT / DISPLAY_MANIFEST) == DISPLAY_MANIFEST_AMENDED_SHA256
+    # the amended files are pinned at their delivered hashes: display manifest and
+    # manuscript draft under manuscript_display_sha256, control/provenance docs under
+    # patch_control_documents_sha256 / provenance_documents_sha256
+    for rel, want in AMENDMENT_FILES.items():
+        assert sha256_of(ROOT / rel) == want, rel
+        assert any(pins.get(rel) == want for pins in pin_sets), f"{rel} not pinned"
     assert pin_sets[1][DISPLAY_MANIFEST] == DISPLAY_MANIFEST_AMENDED_SHA256
+    assert pin_sets[1][MANUSCRIPT_DRAFT] == MANUSCRIPT_AMENDED_SHA256
+    assert pin_sets[2]["docs/A1_V1.0.1_PRETAG_AMENDMENT.md"] == \
+        AMENDMENT_FILES["docs/A1_V1.0.1_PRETAG_AMENDMENT.md"]
+    assert manifest()["frozen_hashes"]["provenance_documents_sha256"][FRAMEWORK_RECORD] \
+        == FRAMEWORK_SHA256
     assert set(manifest()["frozen_hashes"]["manuscript_display_sha256"]) == {
         "scripts/production/make_a1_main_results_figures.py",
         "scripts/production/make_a1_main_table_data.py",
@@ -442,7 +530,13 @@ def test_manuscript_draft_is_not_the_submission_manuscript():
     """The identifying author draft must never become the anonymous submission file."""
     draft = ROOT / "paper" / "drafts" / "main.tex"
     assert draft.is_file()
-    assert sha256_of(draft) == PACKAGE_FILES["paper/drafts/main.tex"]
+    assert sha256_of(draft) == MANUSCRIPT_AMENDED_SHA256
+    # the amendment only names the canonical Table 2 input in the provenance note
+    amended_text = draft.read_text()
+    assert amended_text.count(DRAFT_SENTENCE_AMENDED) == 1
+    reversed_bytes = amended_text.replace(
+        DRAFT_SENTENCE_AMENDED, DRAFT_SENTENCE_RECEIVED, 1).encode()
+    assert hashlib.sha256(reversed_bytes).hexdigest() == MANUSCRIPT_RECEIVED_SHA256
     assert "mklienresearch-research" in draft.read_text()
     submission = (ROOT / "paper" / "main.tex").read_text()
     assert "mklienresearch" not in submission.lower()
@@ -498,14 +592,84 @@ def test_display_provenance_notes_match_reality():
         assert pins[release_path] == sha, f"{release_path} pin disagrees with display manifest"
 
 
+def test_framework_record_is_installed_at_recorded_hash():
+    """Author request 1: the delayed-join summary's declared source hash resolves."""
+    summary_records = {r["path"]: r["sha256"]
+                       for r in summary()["source_records"]}
+    assert summary_records[FRAMEWORK_CITED_HANDOFF_PATH] == FRAMEWORK_SHA256
+    installed = ROOT / FRAMEWORK_RECORD
+    assert installed.is_file(), f"{FRAMEWORK_RECORD} not installed"
+    assert sha256_of(installed) == FRAMEWORK_SHA256
+    pins = manifest()["frozen_hashes"]["provenance_documents_sha256"]
+    assert pins[FRAMEWORK_RECORD] == FRAMEWORK_SHA256
+    # ... and the file is real provenance, not a stub: it carries the join counts
+    # the summary already reported, unchanged.
+    body = installed.read_text()
+    counts = manifest()["delayed_tolerance_join_summary"]
+    for token in ("330", "19", "18"):
+        assert token in body, token
+    assert counts["cohort"]["n"] == 330
+    assert counts["production_delayed_300_to_3000"] == 29
+    assert counts["tight_delayed_300_to_3000"] == 19
+
+
+def test_every_generator_input_appears_in_display_source_manifest():
+    """Author request 2: both generators' inputs are all named in the source map."""
+    dm = display_manifest()
+    listed = {e["local_path"] for sources in dm["panel_and_table_sources"].values()
+              for e in sources}
+    aliases = manifest()["display_provenance"]["staging_alias_map"]
+    generators = [
+        ROOT / "scripts" / "production" / "make_a1_main_results_figures.py",
+        ROOT / "scripts" / "production" / "make_a1_main_table_data.py",
+    ]
+    parsed_any = False
+    for path in generators:
+        inputs = _generator_inputs(path)
+        assert inputs, f"no inputs parsed from {path.name}"
+        for directory, name in inputs:
+            parsed_any = True
+            rel = f"results/{directory}/{name}"
+            assert rel in listed, f"{rel} opened by {path.name} but not in source map"
+    assert parsed_any
+
+
+def test_prospective_attribution_pin_matches_canonical_result_file():
+    """Author request 3: the prospective-attribution pin is the canonical file."""
+    entry = [e for e in display_manifest()["panel_and_table_sources"]["table2"]
+             if e["release_path"] == TABLE2_CANONICAL_INPUT]
+    assert len(entry) == 1
+    entry = entry[0]
+    assert entry["sha256"] == TABLE2_CANONICAL_SHA256
+    assert sha256_of(ROOT / TABLE2_CANONICAL_INPUT) == TABLE2_CANONICAL_SHA256
+    pins = manifest()["frozen_hashes"]["committed_result_files_sha256"]
+    assert pins[TABLE2_CANONICAL_INPUT] == TABLE2_CANONICAL_SHA256
+    assert pins[TABLE2_CANONICAL_INPUT] == entry["sha256"]
+
+
+def test_submission_manuscript_is_untouched_by_the_patch():
+    """paper/main.tex must still be the v1.0.0 anonymous submission skeleton."""
+    data = (ROOT / SUBMISSION_MANUSCRIPT).read_bytes()
+    blob = hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
+    assert blob == SUBMISSION_MANUSCRIPT_BLOB_V1_0_0, (
+        "paper/main.tex changed: the draft must not be promoted in this patch")
+    text = data.decode()
+    assert "mklienresearch" not in text.lower()
+    assert "Anonymous" in text
+
+
 def test_display_manifest_amendment_is_purely_additive():
-    """Adding the Table 2 entry must be the only change to the delivered bytes."""
+    """The author's two edits are the only change to the delivered display bytes."""
     path = ROOT / DISPLAY_MANIFEST
     amended = path.read_text()
-    assert amended.count(TABLE2_ADDED_ENTRY) == 1
-    reversed_bytes = amended.replace(TABLE2_ADDED_ENTRY, "", 1).encode()
-    assert hashlib.sha256(reversed_bytes).hexdigest() == DISPLAY_MANIFEST_RECEIVED_SHA256
     assert sha256_of(path) == DISPLAY_MANIFEST_AMENDED_SHA256
+    assert amended.count(TABLE2_AMENDED_TAIL) == 1
+    assert amended.count(NOTE_AMENDED) == 1
+    reversed_bytes = (amended
+                      .replace(TABLE2_AMENDED_TAIL, TABLE2_RECEIVED_TAIL, 1)
+                      .replace(NOTE_AMENDED, NOTE_RECEIVED, 1)
+                      .encode())
+    assert hashlib.sha256(reversed_bytes).hexdigest() == DISPLAY_MANIFEST_RECEIVED_SHA256
     rev = manifest()["display_provenance"]["display_manifest_revision"]
     assert DISPLAY_MANIFEST_RECEIVED_SHA256 in rev
     assert DISPLAY_MANIFEST_AMENDED_SHA256 in rev
