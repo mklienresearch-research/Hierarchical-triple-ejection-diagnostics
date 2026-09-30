@@ -5,7 +5,7 @@ Full artifact inventory: [`results/artifact_registry.json`](../results/artifact_
 and [`docs/ARTIFACT_REGISTRY.md`](ARTIFACT_REGISTRY.md).
 Dataset verification evidence: [`docs/KAGGLE_DATASETS_VERIFICATION.md`](KAGGLE_DATASETS_VERIFICATION.md).
 
-## Status: FINAL (A1 release v1.0.0)
+## Status: FINAL (A1 release v1.0.1, tolerance-provenance patch of v1.0.0)
 
 - the nine FINAL scripts are received, hash-verified, and committed
   (see [`workflows/final/SCRIPT_REGISTRY.json`](../workflows/final/SCRIPT_REGISTRY.json));
@@ -13,7 +13,12 @@ Dataset verification evidence: [`docs/KAGGLE_DATASETS_VERIFICATION.md`](KAGGLE_D
   are committed receipt-verified;
 - the A1 closeout control documents (freeze V3, Final ledger, provenance addendum,
   tolerance disposition) are committed and hash-verified;
-- release tag `v1.0.0` is cut on merge of PR #1.
+- release tag `v1.0.0` is cut on merge of PR #1;
+- `v1.0.1` adds the hash-pinned delayed-tolerance join summary, revises the tolerance
+  disposition + checksums, and pins the display generators. **No scientific value
+  changed:** `tests/test_v1_0_1_patch_consistency.py` re-derives a digest over the
+  frozen v1.0.0 scientific view and requires it to be unchanged, and the raw
+  `tight_tail_500.npz` remains unavailable.
 
 Cite the release tag (`results/final_manifest.json` → `release.url`); no commit SHA
 is pinned in-manifest by design.
@@ -77,8 +82,16 @@ The Δ103/Δ98 values are cross-run transitions, not ledger discrepancies
 - `controls/A1_RESEARCH_DEFINITION_FREEZE_V3.md` — `0d5ab404…`
 - `docs/RESULTS_MANIFEST_FINAL.md` — `54440fee…` (Final numeric ledger; supersedes the draft)
 - `results/step1_provenance_addendum.json` — `3a11572a…`
-- `results/tolerance/tolerance_raw_artifact_disposition.json` — `63a44d1c…`
-- `results/tolerance/SHA256SUMS.txt` — `53115635…`
+- `results/tolerance/tolerance_raw_artifact_disposition.json` — `a5c37360…` (v1.0.1 revision)
+- `results/tolerance/delayed_tolerance_join_summary.json` — `40c51ba0…` (v1.0.1 addition)
+- `results/tolerance/SHA256SUMS.txt` — `7d5a4205…` (v1.0.1 revision)
+- `scripts/production/make_a1_main_results_figures.py` — `e5a55e7a…`
+- `scripts/production/make_a1_main_table_data.py` — `1df4725c…`
+- `paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json` — `143fd26d…`
+- `paper/drafts/main.tex` — `c4be2de4…` (author draft; not the submission manuscript)
+
+The v1.0.0 bytes of the two revised tolerance records remain retrievable from
+tag `v1.0.0`; they were revised in place rather than duplicated.
 
 Full hashes live in `results/final_manifest.json`.
 

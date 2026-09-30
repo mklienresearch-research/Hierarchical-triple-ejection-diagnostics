@@ -1,0 +1,343 @@
+% A1 ApJ manuscript skeleton
+% Governing controls:
+%   ../A1_APJ_VENUE_BLUEPRINT_V3.md
+%   ../controls/APJ_GENRE_BLUEPRINT_AND_HOUSE_STYLE_V3_1.md
+% Result-number gate: CLOSED by framework audit against public tag v1.0.0. Insert values only from the tagged final manifest and pinned artifacts.
+% Class/version gate: confirm the submission-system AASTeX version before manuscript freeze.
+
+\documentclass[linenumbers,twocolumn]{aastex702}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\newcommand{\Tout}{T_{\mathrm{out}}}
+\newcommand{\resultplaceholder}[1]{\textbf{[RESULT PLACEHOLDER: #1]}}
+\newcommand{\releaseplaceholder}[1]{\textbf{[RELEASE PLACEHOLDER: #1]}}
+
+% Temporary only. Freeze after the first complete Abstract and Introduction.
+\shorttitle{Prospective Early Warning of Triple Ejection}
+\shortauthors{\resultplaceholder{author short form}}
+
+\begin{document}
+
+% Temporary title; not yet frozen.
+\title{Prospective Early Warning of Finite-Time Ejection in Hierarchical Triple Systems}
+
+% The author controls all author metadata and submission-anonymity choices.
+\author{\resultplaceholder{author name}}
+\affiliation{\resultplaceholder{author affiliation}}
+\email{\resultplaceholder{corresponding-author email}}
+
+\begin{abstract}
+% Write last; shorter than 250 words; one paragraph; no citations.
+% Function 1: finite-time astrophysical problem and endpoint dependence.
+% Function 2: narrow unresolved IC-versus-pre-horizon-history question.
+% Function 3: prospective in-play design, simulation scale, and information sets.
+% Function 4: one primary paired result after Step-1 closure.
+% Function 5: one fixed-FAR operating result and named baseline context.
+% Function 6: endpoint/numerical limitation and restrained implication.
+\resultplaceholder{abstract written after Results and Discussion are frozen}
+\end{abstract}
+
+% Replace with UAT concepts selected during submission preparation.
+\keywords{celestial mechanics --- methods: numerical --- methods: statistical --- stars: multiple}
+
+\section{Introduction}\label{sec:introduction}
+
+A hierarchical triple can preserve its hierarchical configuration for many outer orbits and still undergo a later exchange, collision, or ejection. The relevant prediction is therefore tied to an endpoint: whether a member escapes before a specified time, given what has been observed so far. This finite-time question matters whenever direct integration is used to decide which systems remain dynamically active, which require continued computation, and which can be screened rapidly from their initial configuration.
+
+Several notions of ``stability'' coexist in the triple-system literature. An analytic hierarchy criterion, boundedness to a numerical cutoff, and sensitivity to nearby initial conditions describe different properties \citep{MardlingAarseth2001,Hayashi2022,Hayashi2023}. When used here as shorthand for no event by the cutoff, ``stable'' means survival to that cutoff and hence right-censoring; it does not mean permanent stability. This distinction is important because chaotic timing can change an individual finite-endpoint label even when population-level incidence is comparatively stable.
+
+Initial-condition criteria provide immediate and inexpensive screens. We use the Mardling--Aarseth hierarchy criterion \citep[MA01;][]{MardlingAarseth2001} as the conventional analytic reference. More recent algebraic and machine-learning models rank stability from quantities available at $t=0$ \citep{Tory2022,Vynatheya2022,Vynatheya2023}, while early orbital time series have also been used for discrimination \citep{LalandeTrani2022}. These approaches are complementary rather than interchangeable: they differ in endpoint, label, integrator, input information, training population, and the amount of evolution that must be computed before a score is available.
+
+We ask a narrower prospective question. Among triples still in play at a fixed physical observation time, does the realized pre-horizon trajectory improve the ranking of ejection by a finite endpoint beyond an in-domain model using initial conditions alone? We compare initial-condition-only, trajectory-history-only, and combined information with one model family and one split design. ``Pre-horizon'' describes temporal availability---no feature uses samples after the observation time. It does not denote an intervention and does not establish that changing a feature would change the outcome.
+
+The primary estimand is the paired combined-minus-initial-condition difference in ROC area under the curve (AUC) across prespecified horizons for ejection by $300\,\Tout$. A constant-membership cohort surviving to a common landmark separates temporal variation in this gain from changing risk-set composition. As an operational companion, we measure event coverage, precision, lead, and false-alarm rate (FAR), defined as the fraction of eligible controls alerted, using thresholds derived only from calibration controls. We then compare against public static baselines, test a near-MA01 population, and examine endpoint and numerical sensitivity with an independently integrated matched tail. The main claim is limited to prospective finite-time ranking and target-FAR warning in the simulated population. A1 makes no inference for individual observed systems and does not establish intervention-level causation, exact trajectory prediction, permanent stability, or a universal ejection law. Escaper identity, time-to-ejection and hazard models, binary--single encounters, detailed ablations, partial-AUC rows, and learning curves remain supplementary.
+
+\section{Methods}\label{sec:methods}
+
+\subsection{Triple populations and initial conditions}\label{sec:populations}
+
+The primary ensemble contains $500{,}000$ Newtonian three-body systems integrated to $300\,\Tout$, where $\Tout$ is the initial outer orbital period. We draw initial conditions in Jacobi coordinates with deterministic NumPy streams initialized exactly as \texttt{np.random.SeedSequence([42, int(system\_id)])}; the seed and integer system ID are two entropy words, not a positional seed plus an implicit spawn key. Each ID can therefore be regenerated independently. The three masses are sampled uniformly from $0.5$--$2\,M_\odot$. The inner and outer semimajor axes are sampled uniformly from $0.8$--$1.2$ au and $3$--$12$ au, respectively; $e_{\rm in}$ is uniform on $[0,0.4]$, $e_{\rm out}$ on $[0,0.7]$, and the mutual inclination on $[0^\circ,60^\circ]$. Arguments of periapsis, mean anomalies, and the outer longitude of ascending node are uniform on $[0,2\pi)$. The inner orbit defines the reference plane.
+
+A separate $100{,}000$-system stress population is sampled near the implemented MA01 boundary and integrated to $100\,\Tout$. It inherits the primary population's mass, $a_{\rm in}$, $e_{\rm in}$, inclination, phase, and orientation distributions. Its initial draw uses the same \texttt{[42, system\_id]} entropy words; a second deterministic stream, \texttt{SeedSequence([42, int(system\_id), 99])}, draws the boundary multiplier. After capping $e_{\rm out}$ at 0.6, we set
+\begin{equation}
+ \frac{a_{\rm out}}{a_{\rm in}} = u\,R_{\rm MA},
+ \qquad u\sim\mathcal{U}(0.6,1.4),
+\end{equation}
+where
+\begin{equation}
+ R_{\rm MA}=2.8\left[\frac{(1+q_{\rm out})(1+e_{\rm out})}
+ {\sqrt{1-e_{\rm out}}}\right]^{2/5}
+ \left(1-\frac{0.3 i_{\rm mut}}{\pi}\right),
+\end{equation}
+and $q_{\rm out}=m_2/(m_0+m_1)$. This population is a hard-stratum test, not a second headline population. In-stratum ranking and main-to-boundary threshold transfer are reported separately.
+
+For endpoint sensitivity, systems with IDs 0--99,999 are independently re-integrated from $t=0$ to $3000\,\Tout$ using deterministic initial conditions identical to their primary-ensemble counterparts. This run is not a continuation from saved $300\,\Tout$ states. It supports three distinct quantities: tail-run incidence at each cutoff, delayed outcome conditional on primary-run survival to $300\,\Tout$, and cross-run label disagreement by $300\,\Tout$.
+
+\subsection{Integration and outcome contract}\label{sec:integration}
+
+We use REBOUND \citep{ReinLiu2012} with the adaptive IAS15 integrator \citep{ReinSpiegel2015} in years, au, and solar masses. Production uses the IAS15 default tolerance, $\epsilon=10^{-9}$. The production workflow installed REBOUND without a version pin and its run log did not capture the resolved package version; we do not infer that version from the later release/CI pin. The release environment and the separately recorded tighter-tolerance run use REBOUND 5.2.0. Primary and boundary trajectories use 20 output checks per initial outer period and a 900-s per-system wall-clock budget. The $3000\,\Tout$ reintegrations use four checks per initial outer period and a 5400-s budget. These cadence differences are part of the event-label protocol.
+
+Event conditions are evaluated only after calls to \texttt{sim.integrate} on the prescribed output grid; the production code uses neither continuous root finding nor interpolated event times. The recorded event time is the first stored simulation time satisfying a condition. At each check, status precedence is relative-energy failure, wall-clock timeout, collision, and then ejection. Thus a simultaneous qualifying check receives the first status in that order. A \texttt{numerical\_error} is recorded when the relative total-energy error exceeds $10^{-8}$; the released labeler defines no additional non-finite-state category, and an unhandled integrator exception would abort the worker rather than be converted into a physical label.
+
+At each stored state, we compute the Jacobi escape energy of each body relative to the other pair. Ejection requires three simultaneous conditions: positive Jacobi escape energy, outward radial motion, and separation beyond the initial outer apoapsis $a_{\rm out}(1+e_{\rm out})$. Bodies are checked in index order, and the first qualifying body supplies the escaper label. A collision occurs when a pair separation first falls below the sum of mass-dependent stellar radii. The released implementation uses $R/R_\odot=m^{0.8}$ below $0.43\,M_\odot$ and $R/R_\odot=m^{0.57}$ otherwise, with $R_\odot=4.65047\times10^{-3}$ au and a $10^{-5}$-au floor. The exact implementation is \path{src/hierarchical_triple_ejection/core.py} at \texttt{v1.0.0}, SHA-256 \texttt{de07bbc2bbdb52f0\allowbreak aa4f84336d4e8f85\allowbreak f9f16885c43c10e8\allowbreak e46426fef7b6b342}.
+
+We define $t_{\rm terminal}$ as the first stored time assigned ejection, collision, \texttt{numerical\_error}, or timeout. Only final statuses ejected and valid unejected-at-cutoff enter the binary endpoint. A valid unejected run has no terminal status by its planned cutoff and is right-censored there. Collision and failure statuses are retained in the outcome ledger but excluded from the binary endpoint at every horizon, whether their terminal time falls before or after that horizon; they are never treated as controls. The same exclusion applies to the fixed cohort and, in the independent tail run, to the delayed binary cohort.
+
+The tighter-tolerance sensitivity calculation uses a preselected 500-system cohort, REBOUND 5.2.0, and IAS15 $\epsilon=10^{-11}$. Its raw NPZ is unavailable in the public release; only the hash-pinned ID list and derived report are citable. We use this comparison to assess numerical sensitivity on the preselected cohort, not to define a population-wide bound or a second production estimate.
+
+\subsection{Observation horizons and risk sets}\label{sec:risksets}
+
+For the primary endpoint $t_{\max}=300\,\Tout$, the observation time is
+\begin{equation}
+  t_h=f\,t_{\max}, \qquad
+  f\in\{0.05,0.15,0.30,0.50,0.75\},
+\end{equation}
+corresponding to $15$, $45$, $90$, $150$, and $225\,\Tout$. Let $\mathcal{V}$ contain only systems with a valid binary status: ejected or valid unejected-at-cutoff. For $i\in\mathcal{V}$, define $t_{{\rm ej},i}$ as the first qualifying ejection time and set $t_{{\rm ej},i}=\infty$ for a valid censored control. The changing in-play risk set is
+\begin{equation}
+  \mathcal{R}(t_h)=\{i\in\mathcal{V}:t_{{\rm ej},i}>t_h\}.
+\end{equation}
+All trajectory features use stored samples satisfying $t\le t_h$. An ejection before $t_h$ removes a system from that risk set. Collision, \texttt{numerical\_error}, and timeout are outside $\mathcal{V}$ rather than censored as controls. Event-truncated shorter windows are never padded, so every scored trajectory has a complete physical-time observation window.
+
+To control for changing membership, let $t_*=0.75t_{\max}$ and define
+\begin{equation}
+  \mathcal{C}_{t_*}=\{i\in\mathcal{V}:t_{{\rm ej},i}>t_*\}.
+\end{equation}
+We evaluate the same members of $\mathcal{C}_{t_*}$ at each earlier horizon. Thus $\mathcal{C}_{t_*}\subseteq\mathcal{R}(t_h)$ for $t_h\le t_*$, but the fixed-cohort and changing-risk-set estimands remain distinct.
+
+\subsection{Information sets and trajectory-history features}\label{sec:features}
+
+The initial-condition arm contains masses, inner and outer orbital scales and eccentricities, mutual-inclination coordinates, hierarchy and pericentre ratios, mass ratios, and the implemented MA01 quantities. The raw trajectory-history schema has 79 columns grouped by physical role: hierarchy level and variation; pair and outer-channel energy exchange; pair angular momentum and its time derivative; relative orientation; entropy and autocorrelation; closest approach; and bound-pair changes. Columns 72 and 73 remain present for schema compatibility but are constant zero in every final-paper matrix, leaving 77 active trajectory predictors. The trajectory-history arm uses those 77 active columns; the combined arm concatenates them with the initial-condition columns. The feature set is physically motivated but is neither exhaustive nor optimized by a feature search.
+
+For example, the instantaneous hierarchy ratio is
+\begin{equation}
+ H(t)=\frac{r_{\rm out}(t)}{r_{\rm in}(t)}.
+\end{equation}
+Pair-energy and angular-momentum channels use total-mass normalization,
+\begin{align}
+ E_{ij}&=\frac{1}{2}\frac{m_i m_j}{M}|\Delta\boldsymbol{v}_{ij}|^2
+       -\frac{Gm_i m_j}{r_{ij}},\\
+ \boldsymbol{L}_{ij}&=\frac{m_i m_j}{M}
+       \Delta\boldsymbol{r}_{ij}\times\Delta\boldsymbol{v}_{ij},
+\end{align}
+with $M=m_0+m_1+m_2$. The released feature schema provides every deployed column and transformation.
+
+The extractor determines the causal window by searching the stored time array for its last sample at or before $t_h$. Window duration is therefore $\mathtt{dur}=t_{n_{\max}-1}-t_0$, and the location of minimum pair separation is normalized by $n_{\max}-1$. Historical stored indices 72 and 73 used full-record length and were future dependent. The final paper models set both columns to zero in training, calibration, testing, and inference through the common sanitizer; no affected model, score, scaler, or threshold is reused.
+
+The five-step temporal-availability contract is: (1) extract a baseline vector at a fixed physical horizon; (2) overwrite every existing post-horizon sample with extreme poison values; (3) append a long random future to every time-dependent channel; (4) require bitwise equality of all corrected horizon features across the baseline and both variants; and (5) reconstruct the historical formulas and verify that only the two known future-length-dependent slots fail. The released tests also check the 79-column schema and the deprecated zero slot. Feature-family and no-time-anchor ablations are supplementary predictive-dependence controls; they are not tests of a physical mechanism.
+
+\subsection{Models and split design}\label{sec:models}
+
+The initial-condition-only, trajectory-history-only, and combined arms use the same XGBoost binary-classification family \citep{ChenGuestrin2016} and the same system-level split. Each model has 300 trees, maximum depth 3, learning rate 0.05, row and column subsampling of 0.8, $L_2$ regularization 2, logistic loss, and histogram tree construction. Fits use the stated fixed number of trees without early stopping or an additional model-selection validation set.
+
+After excluding collision, \texttt{numerical\_error}, and timeout statuses, stratified splitting with seed 26001 assigns 60\%/20\%/20\% of the valid systems to train-eligible, calibration, and untouched test partitions. The primary split contains 299,955/99,985/99,985 systems; the boundary split contains 59,983/19,995/19,995. These are partition sizes, not the number fitted at every horizon. For the stored horizon index $j\in\{0,2,4,6,8\}$ corresponding to the five reported fractions, training first retains only in-play members and then draws at most 200,000 IDs without replacement with \texttt{default\_rng(30000+j)}. The resulting capped subset can differ across horizons because risk-set membership changes, but all learned information arms use the same capped IDs within a horizon. Calibration and test cohorts are never capped.
+
+A system ID remains in the same partition at every horizon. For arm index $k$ within horizon $j$, the classifier uses \texttt{random\_state=31000+10j+k}; this changes the deterministic tree seed by arm while preserving model family, hyperparameters, eligible IDs, and split roles. The permitted feature matrix is the only designed information difference among the three learned arms.
+
+Scalar classification summaries in the broad analysis are means over split seeds 0--2 where explicitly marked. The primary paired horizon rows, calibration-derived thresholds, and bootstrap intervals use the fixed untouched split. Warning coverage and lead use either this named fixed test set or one fixed complete two-fold out-of-fold assignment; their provenance is stated with each row. Fixed-test bootstraps retain fitted scores and do not refit models.
+
+\subsection{Baselines and comparison parity}\label{sec:baselines}
+
+We evaluate the implemented continuous MA01 risk score, the public Vynatheya et al. algebraic formula and semimajor-change multilayer perceptron \citep{Vynatheya2022}, and the public ghost-orbit model associated with \citet{Vynatheya2023}. The MA01 margin is $M_{\rm MA}=(a_{\rm out}/a_{\rm in})/R_{\rm MA}$, and its ranking score is $-M_{\rm MA}$, so larger values indicate greater risk. Its implementation is in the released \texttt{core.py} file and hash given in Section~\ref{sec:integration}. Supplementary scalar controls use $-H_{\min}$ and duration alone on the same eligible IDs and split roles.
+
+No external model is refit. For descriptive overall rows we retain the published algebraic decision boundary or 0.5 MLP cut. For A1 warning tables, each external score receives a horizon-specific cut from that score's A1 calibration negatives using the same target-FAR rule as the in-domain arms; this calibrates an operating threshold but does not retrain the external score. The public models were trained on approximately one million MSTAR systems using labels and integration procedures that differ from ejection by $300\,\Tout$ in REBOUND/IAS15. Their performance here is therefore external transfer, not reproduction of published accuracy.
+
+All in-domain arms use identical horizon-specific labels, eligible IDs, and split roles. Combined versus initial-condition-only is the primary trajectory-history estimand because model family, training population, endpoint, and split design are matched. Combined versus a published static model is an end-to-end comparison with unequal information, capacity, training, and latency budgets, not an algorithmic victory over a matched baseline. We state that asymmetry before interpreting any difference.
+
+\subsection{Estimands, thresholds, and warning operation}\label{sec:estimands}
+
+At each horizon fraction $f$, the primary estimand is
+\begin{equation}
+ \Delta_{\rm AUC}(f)=
+ \operatorname{AUC}(s_{\rm IC+W};\mathcal{R}_f)
+ -\operatorname{AUC}(s_{\rm IC};\mathcal{R}_f).
+\end{equation}
+We estimate the same paired contrast in the constant cohort $\mathcal{C}_{t_*}$. Joint system-ID bootstraps provide paired intervals. A slope across $f$ summarizes the gain trend; bootstrap support for non-decreasing sequences is reported separately and is not treated as proof of strict monotonicity.
+
+For operating analyses, each information arm and horizon receives its own threshold from that arm's eligible calibration controls. For target FAR $\alpha\in\{0.001,0.01,0.05\}$, the cut is
+\begin{equation}
+ q_{\alpha}=Q^{\rm higher}_{1-\alpha}
+ \left(\{s_i:y_i=0,\ i\in\mathcal{R}_{\rm cal}(t_h)\}\right),
+\end{equation}
+where $Q^{\rm higher}$ is NumPy's upper empirical quantile. A score tied with the cut is alerted: $s_i\ge q_\alpha$. We call this a target-FAR operating point because the achieved fraction need not equal $\alpha$. For calibration or test controls in the named eligible cohort,
+\begin{equation}
+ \widehat{\mathrm{FAR}}=
+ \frac{\#\{i:y_i=0,\ s_i\ge q_\alpha\}}
+ {\#\{i:y_i=0\}}.
+\end{equation}
+Each operating table names whether this denominator is the horizon-specific calibration controls, horizon-specific test controls, or the fixed untouched delayed-endpoint controls.
+
+Across horizons, the first qualifying threshold crossing defines a warning. Event coverage is reported both for all test events and for events eligible at the first horizon. Controls are reported by horizon-specific achieved FAR and by the cumulative fraction alerted at least once. Lead is
+\begin{equation}
+  \ell_i=t_{{\rm ej},i}-t_{{\rm warn},i},
+\end{equation}
+expressed on the initial-$\Tout$ clock.
+
+ROC--AUC measures ranking over the complete eligible cohort; precision--recall AUC is interpreted relative to horizon-specific prevalence. Standardized partial AUC at low false-positive rates is supplementary. Matched-budget rows selected retrospectively on delayed-endpoint controls are ranking diagnostics, not prospective operating points.
+
+\subsection{Uncertainty and resampling}\label{sec:uncertainty}
+
+All paired bootstraps resample system IDs with replacement and use the same sampled IDs for the compared scores. Intervals are the 2.5th and 97.5th percentiles of the retained bootstrap distribution. Primary fixed-test AUC-gain intervals use 300 replicates at each horizon, with seeds $40000+j$ for stored horizon index $j\in\{0,2,4,6,8\}$. The joint changing-risk-set growth calculation uses 300 replicates with seed 97001. The fixed-$f=0.75$ cohort uses 1500 replicates with seed 97002 because its preliminary monotonicity fraction triggered the prespecified extension from 300 replicates.
+
+Frozen-threshold delayed-coverage contrasts use 500 paired replicates from the random stream initialized at 98001; retrospective equal-control-budget contrasts use 300 replicates and remain non-prospective. Standardized partial-AUC intervals use 1000 paired replicates with seed 20260925. The main fixed-test warning counts, achieved FARs, coverage, precision, and lead quantiles are direct cohort summaries; no resampling interval is attached unless a paired contrast is explicitly reported. Monte Carlo standard errors accompany bootstrap sequence fractions where used.
+
+\subsection{Boundary transfer, delayed endpoint, and numerical sensitivity}\label{sec:robustness_methods}
+
+The boundary population is first split, trained, calibrated, and tested within stratum. We separately apply main-population models and calibration cuts to boundary systems still in play. This distinguishes ranking transfer from threshold transfer.
+
+For delayed-endpoint scoring, we retain the original $300\,\Tout$ models, thresholds, and initial-period observation clock. The delayed target is ejection during $300$--$3000\,\Tout$ among an untouched matched cohort labeled valid unejected-at-300 in the primary run. The delayed binary cohort contains tail-run delayed ejections and valid tail-run censored controls; tail collision and numerical failure are excluded and counted separately under the same terminal-status convention. Observation times remain $f\times300\,\Tout$ rather than fractions of 3000. No model is refit and no threshold is recalibrated for the delayed endpoint. Cross-run by-300 disagreements are also counted separately from delayed ejection.
+
+Statistical uncertainty, calibration shift, endpoint dependence, and numerical sensitivity answer different questions. We therefore report them separately: paired resampling for ranking contrasts, achieved FAR for threshold transport, the matched tail for censoring, and the tighter IAS15 run for label sensitivity.
+
+\subsection{Reproducibility and release provenance}\label{sec:provenance}
+
+The public release is the \href{https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics/releases/tag/v1.0.0}{GitHub \texttt{v1.0.0} release}. The authoritative machine manifest is \texttt{results/final\_manifest.json}, with SHA-256 \texttt{6d0d97d25f3a6e57\allowbreak 7aae039af1b8845e\allowbreak a7224b314207f71d\allowbreak b84e510d34b15787}. The human numerical ledger is \texttt{docs/RESULTS\_MANIFEST\_FINAL.md}, with SHA-256 \texttt{54440fee9bb862e2\allowbreak 8c900250757ce686\allowbreak f8c7b98fccc3ee26\allowbreak 1d2ddb968b33c686}.
+The final machine manifest is authoritative for numerical Result values; the Introduction and Methods state design quantities but no performance claims. The release pins the generating scripts, derived result files, control documents, public baseline models, and checksum records. Each citable Result retains its cohort, denominator, endpoint, horizon, uncertainty procedure, threshold origin, and fixed-test, seed-mean, or out-of-fold status.
+
+The historical scikit-learn version used in the earliest final-analysis runs was not captured and is not inferred from later environments. The separately rerun literature-baseline workflow records scikit-learn 1.6.1, while the public pickles declare 1.2.2. Public code and machine-readable derived results are frozen at the GitHub tag before submission. Large simulation and score artifacts are staged separately for editor and referee access during review and are planned for Zenodo deposition upon acceptance; Kaggle is not cited.
+
+
+\section{Results}\label{sec:results}
+
+\subsection{Prospective ranking and the fixed-cohort control}\label{sec:ranking}
+
+The untouched primary test risk set contracts from 79,833 systems at $15\,\Tout$ to 66,091 at $225\,\Tout$, while future-ejection prevalence falls from 18.38\% to 1.413\%. Initial conditions rank the early endpoint strongly: their ROC--AUC is 0.9940 at $15\,\Tout$. Their AUC declines to 0.9780 by $225\,\Tout$, whereas the trajectory-history and combined arms remain near 0.99 (Figure~\ref{fig:primary}a). The combined AUC is 0.9946, 0.9918, 0.9903, 0.9900, and 0.9903 at 15, 45, 90, 150, and $225\,\Tout$, respectively. Combined PR--AUC declines from 0.9753 to 0.5612 over the same ladder as the eligible event becomes rarer.
+
+The paired increment from trajectory history is small at the first horizon and larger among later survivors. Combined-minus-IC AUC increases from 0.00054 (fixed-test, per-horizon paired 95\% interval 0.00043--0.00067) at $15\,\Tout$ to 0.01237 (0.01073--0.01385) at $225\,\Tout$ (Figure~\ref{fig:primary}b). These intervals use the 300-replicate per-horizon bootstrap in \texttt{triples\_parity.json}; the exact upper endpoint at $225\,\Tout$ is 0.0138496. Separately, the joint-growth artifact gives a changing-risk-set slope of 0.01692 per unit $f$ (0.01468--0.01915), with all 300 joint bootstrap sequences non-decreasing.
+
+Changing membership does not account for the trend. In the constant 66,091-system cohort surviving to $f=0.75$, the combined-minus-IC slope is 0.01657 (0.01428--0.01889). Under the prespecified extension to 1500 bootstrap replicates, the fraction of non-decreasing sequences is $0.9907\pm0.0025$ Monte Carlo standard error. This control supports a positive temporal trend in predictive increment; it does not identify a physical mechanism or require every finite-sample step to increase.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/fig01_primary_ranking.pdf}
+\caption{Prospective ranking for ejection by $300\,\Tout$ on the fixed untouched test split. (a) ROC--AUC for initial-condition (IC), trajectory-history, and combined arms in the changing in-play risk set; the test denominator decreases from 79,833 to 66,091. (b) Paired combined-minus-IC AUC with fixed-test, per-horizon 95\% system-ID bootstrap intervals (300 replicates per horizon); at $225\,\Tout$ the point and interval are 0.01237 [0.01073, 0.01385]. Panels (a)--(b) use \path{results/final_audit_expanded/triples_parity.json}. (c) Point gains from the separate joint-growth bootstrap: 300 replicates for the changing risk set and the prespecified extension to 1500 for the constant $f=0.75$ cohort. The corresponding slopes are 0.01692 [0.01468, 0.01915] and 0.01657 [0.01428, 0.01889]. Panel (c) uses \path{results/attribution_v2/triples_joint_gain_growth.json}.}
+\label{fig:primary}
+\end{figure*}
+
+\subsection{Target-FAR operation and static transfer baselines}\label{sec:operation}
+
+Target-FAR operation turns ranking into a warning trade-off (Figure~\ref{fig:operation}). The untouched test split contains 34,828 ejections and 65,157 controls; 14,676 ejections remain eligible at the first horizon. At the 1\% target-FAR operating point, the combined arm warns 13,899 events, or 94.71\% of the first-horizon-eligible events. It alerts 1,336 controls at least once, a cumulative control-alert fraction of 2.050\%, and therefore has cumulative warning precision 91.23\%. Median lead is $26.03\,\Tout$, with an interquartile range of 8.77--66.82 $\Tout$; all warned events have positive lead. The cumulative control-alert fraction exceeds the per-horizon target because a control has multiple opportunities to cross a horizon-specific cut.
+
+Lowering the target FAR to 0.1\% reduces eligible coverage to 68.55\% and the cumulative control-alert fraction to 0.321\%, while raising it to 5\% increases coverage to 99.95\% and cumulative controls alerted to 6.870\% (Table~\ref{tab:operation}). Median lead increases across these operating points because less restrictive cuts permit earlier crossings. These are target-FAR operating points; the achieved FAR is measured on the untouched cohort rather than assumed equal to its calibration target.
+
+The public static models transfer strongly but do not erase the late contribution of trajectory history (Table~\ref{tab:baselines}). At $15\,\Tout$, the combined AUC exceeds the Vynatheya et al. 2022 MLP by 0.00262. Of that combined-versus-V22-MLP AUC difference, 0.00207 is associated with fitting an endpoint-adapted in-domain IC model and 0.00054 with adding trajectory history. At $225\,\Tout$, the combined-versus-V22-MLP AUC decomposition is 0.01393 $=0.00156+0.01237$. Here 0.01393 is a cross-model point difference, not an uncertainty bound on the 0.01237 combined-minus-IC estimate. At the 1\% target-FAR row at $225\,\Tout$, combined recall is 65.8\%, compared with 32.0\% for the Vynatheya et al. formula and 33.3\% for its semimajor-change MLP. This is an end-to-end transfer comparison with unequal labels, integrators, training data, inputs, and latency; combined versus the in-domain IC arm remains the matched primary comparison.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/fig02_target_far_operation.pdf}
+\caption{Combined-arm warning operation on the untouched primary test split. Each target-FAR cut is selected separately at each horizon from combined-arm calibration negatives for ejection by $300\,\Tout$; the displayed test denominators are 14,676 first-horizon-eligible events and 65,157 controls. (a) Eligible-event coverage and cumulative fraction of test controls alerted at least once. The latter values (0.321\%, 2.050\%, and 6.870\%) are not achieved per-horizon FARs. (b) Cumulative warning precision from exact event-warning and alerted-control counts. (c) Direct fixed-cohort median lead with interquartile range; no resampling interval is attached. Achieved test FAR is a separate horizon-specific measured quantity. Display values use \path{results/final_audit_expanded/triples_parity.json}; the arm- and horizon-specific cuts are pinned in \path{results/final_audit_expanded/triples_thresholds.json}.}
+\label{fig:operation}
+\end{figure*}
+
+\begin{table*}
+\centering
+\caption{Baseline and information-budget comparison on the primary untouched test split. AUC columns use systems still in play at the stated horizon. The final column is recall at each score's own calibration-derived 1\% target-FAR cut at $225\,\Tout$. External models are applied without refitting.\label{tab:baselines}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllrrr}
+\toprule
+Method & Information available & Training relation & Endpoint relation & AUC$_{15}$ & AUC$_{225}$ & Recall$_{225,1\%}$ \\
+\midrule
+MA01 margin & $t=0$ & Published analytic score & External rule & 0.8575 & 0.7698 & 0.0439 \\
+V22 formula & $t=0$ & Published algebraic score & External transfer & 0.9919 & 0.9721 & 0.3201 \\
+V22 semimajor MLP & $t=0$ & Public pretrained MLP & External transfer & 0.9919 & 0.9764 & 0.3330 \\
+V23 ghost MLP & $t=0$ & Public pretrained MLP & External transfer & 0.9854 & 0.9728 & 0.2998 \\
+In-domain IC-only & $t=0$ & Matched A1 split/model & Endpoint adapted & 0.9940 & 0.9780 & 0.4026 \\
+Trajectory history & $t\le t_h$ & Matched A1 split/model & Horizon specific & 0.9901 & 0.9894 & 0.6542 \\
+Combined & $t=0$ and $t\le t_h$ & Matched A1 split/model & Horizon specific & 0.9946 & 0.9903 & 0.6585 \\
+\bottomrule
+\end{tabular}%
+}
+\tablecomments{The public-baseline comparison is unequal in information available, training population, model capacity, endpoint/label and integrator, and latency/computational cost. Only combined versus in-domain IC-only is the matched model-family information increment. External values use \path{results/literature_baseline/literature_baseline_results.json}; in-domain values use \path{results/final_audit_expanded/triples_parity.json}.}
+\end{table*}
+
+\subsection{Population, endpoint, and numerical robustness}\label{sec:robustness}
+
+The trajectory-history increment is larger in the near-MA01 population (Figure~\ref{fig:robustness}a). At $50\,\Tout$, IC, history, and combined AUCs are 0.9260, 0.9606, and 0.9638; the combined-minus-IC paired system-ID bootstrap interval is 0.0323--0.0448 (300 replicates). At $75\,\Tout$, the corresponding AUCs are 0.9123, 0.9648, and 0.9665, with paired interval 0.0407--0.0683. At the 1\% target-FAR point, the boundary test warns 86.17\% of 7,915 first-horizon-eligible ejections, alerts 100 of 3,772 controls at least once (2.651\%), and has median lead $4.76\,\Tout$. Ranking transfers from the main population, but its thresholds do not: at $f=0.05$, the transferred combined AUC is 0.9849 while a main-calibrated 1\% target becomes 8.99\% achieved FAR on boundary controls.
+
+The independent 100,000-system tail quantifies endpoint dependence (Figure~\ref{fig:robustness}b). Cumulative ejection incidence rises from 31.077\% by $100\,\Tout$ to 34.989\% by 300, 38.104\% by 1000, and 40.079\% by 3000. Among the 65,001 systems labeled valid unejected at $300\,\Tout$ in the primary run, 103 are conditional cross-run-by-300 disagreements: they eject by 300 in the independent rerun and are not delayed events. This 103 is not the full-tail disagreement count, which is separately 205/100,000. A further 4,992 eject from 300 to 3000, corresponding to 7.6799\% of the primary-run censored cohort; 53 encounter a later numerical failure, one collides, and 59,852 remain censored at 3000.
+
+The tighter-tolerance cohort shows why the delayed incidence is not an individual-system guarantee (Figure~\ref{fig:robustness}c). Final status agrees for 486 of 500 systems (97.2\%); 14 labels change, a flip fraction of 2.8\% (Wilson 95\% interval 1.68--4.64\%). Net ejection incidence changes from 39.8\% to 38.6\%, a $-1.2$ percentage-point paired difference that is not detected as nonzero ($p\simeq0.18$). Among the 330 preselected systems labeled valid unejected at 300 in the primary run, delayed incidence changes from 8.79\% to 5.76\%, and 18 delayed/not-delayed labels change (5.45\%). The tighter run therefore supports a several-percent delayed population while showing sensitivity in its precise incidence and membership.
+
+Frozen transfer to the delayed endpoint provides a separate prospective test (Figure~\ref{fig:robustness}d). The untouched matched cohort contains 1,011 delayed ejectors and 11,798 controls. At the original 1\% thresholds, IC-only warns 174 delayed events with five control alerts; combined warns 251 with the same five alerts. Their coverages are 17.21\% and 24.83\%, so the paired combined-minus-IC increment is 7.616 percentage points (500-replicate paired system-ID bootstrap 95\% interval 5.440--9.844). Combined precision is 98.05\% and median lead is $424\,\Tout$ on the original $f\times300\,\Tout$ observation clock. The trajectory-history arm alone warns 27.60\% but produces 10 control alerts. Global delayed-endpoint AUC is largely IC-dominated; the joint contribution appears at the high-risk ranking head rather than as uniform far-future separation.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/fig03_robustness_endpoints.pdf}
+\caption{Robustness and endpoint separation. (a) Direct in-stratum boundary AUCs at 50 and $75\,\Tout$ on untouched cohorts of 4,458 and 4,012 systems; paired gain intervals reported in the text use 300 system-ID bootstrap replicates. Sources: \path{results/final_audit_expanded/boundary_parity.json}; target-FAR cuts and transferred-threshold results use \path{boundary_thresholds.json} and \path{boundary_ood_inplay_corrected.json} in the same release directory. (b) Direct cumulative incidence counts in the independent 100,000-system tail, from \path{docs/RESULTS_MANIFEST_FINAL.md} and \path{results/step1_provenance_addendum.json}. (c) Direct incidence in the 500-ID tolerance cohort and its 330-ID primary-run unejected subset; the flip interval is a Wilson 95\% interval. Sources: \path{results/tolerance/tolerance_report.json}, \path{results/tolerance/preselected_ids.txt}, and \path{results/tolerance/delayed_tolerance_join_summary.json}. (d) Delayed-event coverage in the untouched 12,809-system matched cohort at the original 1\% thresholds; labels give alerts among 11,798 controls. Sources: \path{results/prospective/prospective_tail_scoring.json} and \path{results/attribution_precision/attribution_precision_addon.json}; the combined-minus-IC interval uses 500 paired bootstrap replicates. Panels (b)--(d) use a $3000\,\Tout$ label endpoint while delayed warnings retain the $f\times300\,\Tout$ clock.}
+\label{fig:robustness}
+\end{figure*}
+
+\begin{table*}
+\centering
+\caption{Warning operation and endpoint/numerical sensitivity. Primary and boundary coverage use first-horizon-eligible events. Precision is cumulative event warnings divided by event warnings plus controls alerted at least once. Delayed rows use frozen original thresholds without refitting or recalibration.\label{tab:operation}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllrrrrl}
+\toprule
+Population/endpoint & Operating status & Event/control denominator & Coverage & Controls alerted & Precision & Median lead & Additional result \\
+\midrule
+Primary: ejection by $300\,\Tout$, 0.1\% & Target-FAR & 14,676 / 65,157 & 68.55\% & 209 (0.321\%) & 97.96\% & 15.28 & IQR 5.52--37.79 \\
+Primary: ejection by $300\,\Tout$, 1\% & Target-FAR & 14,676 / 65,157 & 94.71\% & 1,336 (2.050\%) & 91.23\% & 26.03 & IQR 8.77--66.82 \\
+Primary: ejection by $300\,\Tout$, 5\% & Target-FAR & 14,676 / 65,157 & 99.95\% & 4,476 (6.870\%) & 76.62\% & 32.54 & IQR 10.02--91.59 \\
+Boundary: ejection by $100\,\Tout$, 1\% & Target-FAR & 7,915 / 3,772 & 86.17\% & 100 (2.651\%) & 98.55\% & 4.76 & IQR 1.80--10.86 \\
+\midrule
+Delayed ejection during $300$--$3000\,\Tout$, conditional on valid unejected at $300\,\Tout$, IC & Frozen original 1\% transfer & 1,011 / 11,798 & 17.21\% & 5 (0.0424\%) & 97.21\% & 436.92 & No recalibration \\
+Delayed ejection during $300$--$3000\,\Tout$, conditional on valid unejected at $300\,\Tout$, combined & Frozen original 1\% transfer & 1,011 / 11,798 & 24.83\% & 5 (0.0424\%) & 98.05\% & 424.04 & $+7.616$ pp [5.440,9.844] \\
+\midrule
+Tolerance: final status at $3000\,\Tout$, 500 IDs & Sensitivity cohort & 500 IDs & \multicolumn{4}{l}{Agreement 97.2\%; flips 14/500 = 2.8\% [1.68,4.64]\%} & Incidence 39.8\% $\rightarrow$ 38.6\% \\
+Tolerance: delayed status during $300$--$3000\,\Tout$ & Main-unejected-at-300 subset & 330 IDs & \multicolumn{4}{l}{Changed labels 18/330 = 5.45\%} & 8.79\% $\rightarrow$ 5.76\% \\
+\bottomrule
+\end{tabular}%
+}
+\tablecomments{For each learned arm and horizon, a target-FAR cut is selected from that arm's calibration negatives. Primary rows use 14,676 first-horizon-eligible test events and 65,157 test controls. The listed 0.321\%, 2.050\%, and 6.870\% are cumulative fractions of test controls alerted at least once, not achieved per-horizon FARs; achieved test FAR is separately recorded in \path{results/final_audit_expanded/triples_parity.json} and cuts in \path{triples_thresholds.json}. These count summaries have no resampling interval. The boundary row uses \path{results/final_audit_expanded/boundary_parity.json}, \path{boundary_thresholds.json}, and \path{boundary_ood_inplay_corrected.json} in that release directory. Delayed rows use original $300\,\Tout$ calibration thresholds on 1,011 delayed events and 11,798 delayed-endpoint controls, without refit or recalibration; their warning clock remains $f\times300\,\Tout$, not a fraction of 3000. The $+7.616$-pp interval uses 500 paired bootstrap replicates. The tolerance flip interval is Wilson 95\%; other tolerance values are direct cohort summaries. Tolerance sources are \path{results/tolerance/tolerance_report.json}, \path{preselected_ids.txt}, and \path{delayed_tolerance_join_summary.json}; delayed-warning sources are \path{results/prospective/prospective_tail_scoring.json}, \path{results/attribution_precision/attribution_precision_addon.json}, and \path{results/attribution_v2/prospective_model_attribution.json}. The raw tight-tolerance NPZ is unavailable.}
+\end{table*}
+
+All displays were regenerated directly from the tagged release artifacts rather than extracted from the manuscript PDF. The panel-by-panel and table-by-table paths, full SHA-256 values, generated source-data files, and generator hashes are recorded in \path{paper_draft/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json}.
+
+% SUPPLEMENT ONLY — do not add main Results subsections for:
+% complete ladder/strata; multiclass/escaper identity; TTE/Cox; encounters;
+% feature-family/no-time-anchor ablations; blocked splits; invariance;
+% negative controls; complete tolerance transitions; partial AUC;
+% learning-curve details.
+
+
+\section{Discussion}\label{sec:discussion}
+
+\subsection{Static screening and prospective updating}\label{sec:discussion_update}
+% Interpret combined-versus-IC without claiming replacement or equal-input superiority.
+The primary comparison asks whether trajectory history updates an already informative initial-condition ranking. The established Results support \resultplaceholder{bounded qualitative interpretation after Step-1 closure}. Any advantage carries integration latency and a larger information budget, so it complements rather than automatically replaces a fast initial-condition screen.
+
+\subsection{Observation horizon and operating behavior}\label{sec:discussion_horizon}
+% Discuss whether/how gain varies; do not invent a mechanism.
+The variation with observation horizon is \resultplaceholder{result-supported description}. Fixed-FAR operation, cumulative control alerts, precision, and lead characterize different aspects of deployment. Their joint interpretation is \resultplaceholder{bounded operating interpretation}, not a claim of transferable probability calibration.
+
+\subsection{Endpoint dependence and numerical sensitivity}\label{sec:discussion_endpoint}
+% Keep delayed endpoint visibly/rhetorically separate.
+Finite survival depends on the cutoff. The matched extension shows \resultplaceholder{established endpoint interpretation}, while the tolerance comparison shows \resultplaceholder{established numerical-sensitivity interpretation}. These results bound individual-system claims and do not establish permanent stability or exact event times.
+
+\subsection{Scope and limitations}\label{sec:limitations}
+The simulations cover the frozen Newtonian hierarchical-triple population and specified numerical endpoints. A1 does not include stellar evolution, tides, relativistic corrections, observational selection, or inference for individual observed systems. Its feature set is nonexhaustive, the external baselines differ in labels and information budgets, and boundary-population ranking does not guarantee threshold transfer. These restrictions limit generalization but leave the in-domain paired ranking estimand intact.
+
+\section{Conclusion}\label{sec:conclusion}
+% No new numbers, citations, analyses, or A2 sales pitch.
+Pre-horizon trajectory history \resultplaceholder{one narrow conclusion supported by the paired result} for finite-time ejection among hierarchical triples still in play. The fixed-cohort, fixed-FAR, endpoint, and numerical-sensitivity controls show \resultplaceholder{one compact qualification}. The durable takeaway is that prospective trajectory monitoring may complement initial-condition screening within the measured population and finite endpoint; it does not establish permanent stability, exact trajectories, or a universal law.
+
+\section*{Data Availability}
+Public code, machine-readable derived results, figure/table source data, and the final manifests will be identified by a frozen repository tag or citation identifier before submission. Large simulation artifacts are staged separately for editor and referee access during review and are planned for a versioned Zenodo archive upon acceptance, consistent with the frozen release policy. Kaggle is a compute/staging environment and is not cited.
+
+\releaseplaceholder{public repository URL, final tag, and citation identifier}
+
+\releaseplaceholder{editor/referee access route for large staged artifacts}
+
+% Author decides acknowledgment and submission-anonymity text.
+\begin{acknowledgments}
+\resultplaceholder{acknowledgments or approved omission}
+\end{acknowledgments}
+
+\software{REBOUND \citep{ReinLiu2012}, IAS15 \citep{ReinSpiegel2015}, XGBoost \citep{ChenGuestrin2016}, NumPy, SciPy, scikit-learn, Matplotlib}
+
+\bibliography{references}{}
+\bibliographystyle{aasjournalv7.1}
+
+\end{document}

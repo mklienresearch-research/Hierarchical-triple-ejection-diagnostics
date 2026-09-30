@@ -86,10 +86,11 @@ FINAL_CONTROL_SHA256 = {
         "3a11572ac21eb7e80ff4b78cbc760a60a78da016699e98eb2436690f967bc778",
     "controls/A1_RESEARCH_DEFINITION_FREEZE_V3.md":
         "0d5ab404a33c8f7ba8185bb3e77be059eaf4864e2a3a7cbeb534e722989453a6",
+    # revised in the v1.0.1 tolerance-provenance patch; v1.0.0 bytes stay at tag v1.0.0
     "results/tolerance/tolerance_raw_artifact_disposition.json":
-        "63a44d1ca7be3eef870b7dc225a406e5e9ca93c106d8b4ef736c4ac48bbcfa39",
+        "a5c373605f349b9406a8536b4a310c3fd7d34b902bd89d48a1f6666942d96c6f",
     "results/tolerance/SHA256SUMS.txt":
-        "53115635870bb4fd7827c861ac9daa15d055332361230d6623971489fbf28fa4",
+        "7d5a420587e294b2b87b9885158de48cd665666a11a78c07b5ebb2990dcc8e23",
     "docs/RESULTS_MANIFEST_FINAL.md":
         "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686",
 }
@@ -104,15 +105,15 @@ def test_final_control_documents_match_pinned_hashes():
 
 def test_final_manifest_is_final_and_self_consistent():
     manifest = load(ROOT / "results" / "final_manifest.json")
-    assert manifest["manifest_version"] == "1.0.0"
+    assert manifest["manifest_version"] == "1.0.1"
     assert "FINAL" in manifest["status"]
     release = manifest["release"]
-    assert release["tag"] == "v1.0.0"
-    assert release["url"].endswith("/releases/tag/v1.0.0")
+    assert release["tag"] == "v1.0.1"
+    assert release["url"].endswith("/releases/tag/v1.0.1")
     assert not [k for k in release if "commit" in k.lower()], "no commit pin by design"
     frozen = manifest["frozen_hashes"]
     committed = frozen["committed_result_files_sha256"]
-    assert len(committed) == 73
+    assert len(committed) == 74  # 71 unchanged + 2 revised in-place + 1 added by v1.0.1
     for rel, expected in committed.items():
         target = ROOT / rel
         assert target.is_file(), rel
@@ -129,7 +130,7 @@ def test_final_manifest_is_final_and_self_consistent():
         if name == "note":
             continue
         assert registry[name] == expected, name
-    assert 'version: "1.0.0"' in (ROOT / "CITATION.cff").read_text()
+    assert 'version: "1.0.1"' in (ROOT / "CITATION.cff").read_text()
 
 
 def test_final_manifest_checklist_rows():
@@ -187,15 +188,15 @@ def test_final_manifest_checklist_rows():
     assert tight["recorded_sha256"] == "4d26c6dd876dd7b9f6e5317b20305aa0ccea890f4c60a77e25184d60feb0bc0b"
     assert tight["recorded_sha256"] == disposition["raw_artifact"]["recorded_sha256"]
     assert tight["availability"] == "UNAVAILABLE_FOR_RELEASE"
-    assert "pinned derived tolerance report and preselected-ID list are citable" in tight["citation_rule"]
+    assert "preselected-ID list, and delayed-tolerance join summary are citable" in tight["citation_rule"]
     assert "must not be silently substituted" in tight["future_archive_rule"]
     for art in tight["citable_derived_artifacts"].values():
         assert sha256_of(ROOT / art["path"]) == art["sha256"]
     # Row 12: release identity has tag + repository + release URL, no commit pin.
-    assert manifest["release"]["tag"] == "v1.0.0"
+    assert manifest["release"]["tag"] == "v1.0.1"
     assert manifest["release"]["repository"] == \
         "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics"
-    assert manifest["release"]["url"] == manifest["release"]["repository"] + "/releases/tag/v1.0.0"
+    assert manifest["release"]["url"] == manifest["release"]["repository"] + "/releases/tag/v1.0.1"
     # Row 13: release policy exact (manifest-side, mirrors addendum).
     policy = manifest["release_policy"]
     assert policy["code_and_derived_results"] == addendum["release_policy"]["code_and_derived_results"]
