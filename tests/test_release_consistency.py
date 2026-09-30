@@ -105,11 +105,11 @@ def test_final_control_documents_match_pinned_hashes():
 
 def test_final_manifest_is_final_and_self_consistent():
     manifest = load(ROOT / "results" / "final_manifest.json")
-    assert manifest["manifest_version"] == "1.0.1"
+    assert manifest["manifest_version"] == "1.0.2"
     assert "FINAL" in manifest["status"]
     release = manifest["release"]
-    assert release["tag"] == "v1.0.1"
-    assert release["url"].endswith("/releases/tag/v1.0.1")
+    assert release["tag"] == "v1.0.2"
+    assert release["url"].endswith("/releases/tag/v1.0.2")
     assert not [k for k in release if "commit" in k.lower()], "no commit pin by design"
     frozen = manifest["frozen_hashes"]
     committed = frozen["committed_result_files_sha256"]
@@ -130,7 +130,7 @@ def test_final_manifest_is_final_and_self_consistent():
         if name == "note":
             continue
         assert registry[name] == expected, name
-    assert 'version: "1.0.1"' in (ROOT / "CITATION.cff").read_text()
+    assert 'version: "1.0.2"' in (ROOT / "CITATION.cff").read_text()
 
 
 def test_final_manifest_checklist_rows():
@@ -193,10 +193,10 @@ def test_final_manifest_checklist_rows():
     for art in tight["citable_derived_artifacts"].values():
         assert sha256_of(ROOT / art["path"]) == art["sha256"]
     # Row 12: release identity has tag + repository + release URL, no commit pin.
-    assert manifest["release"]["tag"] == "v1.0.1"
+    assert manifest["release"]["tag"] == "v1.0.2"
     assert manifest["release"]["repository"] == \
         "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics"
-    assert manifest["release"]["url"] == manifest["release"]["repository"] + "/releases/tag/v1.0.1"
+    assert manifest["release"]["url"] == manifest["release"]["repository"] + "/releases/tag/v1.0.2"
     # Row 13: release policy exact (manifest-side, mirrors addendum).
     policy = manifest["release_policy"]
     assert policy["code_and_derived_results"] == addendum["release_policy"]["code_and_derived_results"]

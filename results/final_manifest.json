@@ -1,12 +1,12 @@
 {
-  "manifest_version": "1.0.1",
+  "manifest_version": "1.0.2",
   "project": "Hierarchical triple ejection diagnostics (A1 ApJ submission)",
-  "status": "FINAL 2026-09-29: A1 release v1.0.1 (tolerance-provenance patch of v1.0.0). Adds hash-pinned provenance for the already-closed delayed-tolerance join (29/330 production, 19/330 strict-tolerance, 18/330 changed labels), revises the tolerance raw-artifact disposition and its checksums, and pins the manuscript-display generators plus the display source manifest. No scientific value is changed: every v1.0.0 scientific pin below is retained byte-identical, the nine FINAL scripts are unchanged, and no raw NPZ was added or reconstructed. All 74 result/checksum files and the A1 control documents are committed and hash-verified; registries consistent; CI green. Release tag v1.0.1 -- cite the tag (release.url); no commit SHA is pinned in this manifest by design.",
+  "status": "FINAL 2026-09-30: A1 provenance-consistency patch v1.0.2 of the public v1.0.1 release. Corrects two stale final-manifest statements only: resolves the matched-tolerance framework-record availability wording and the display-source count (15 unique release_path sources). No scientific, display, manuscript, result, source-data, generator, tolerance-artifact, or control-file bytes or pins are changed. The v1.0.0 scientific-view digest remains eaa77eaf4660bf5e506dc062938c5b898ed6e87fdf336183ff448af3845c53a4; all 74 result/checksum files and A1 control documents remain hash-verified; no raw NPZ was added or reconstructed. Release tag v1.0.2 -- cite the tag (release.url); no commit SHA is pinned in this manifest by design.",
   "release": {
-    "tag": "v1.0.1",
-    "url": "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics/releases/tag/v1.0.1",
+    "tag": "v1.0.2",
+    "url": "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics/releases/tag/v1.0.2",
     "repository": "https://github.com/mklienresearch-research/Hierarchical-triple-ejection-diagnostics",
-    "note": "Cite the tag. v1.0.1 supersedes v1.0.0 for citation of the tolerance-provenance and display records only; tag v1.0.0 is not amended, moved, or deleted. No commit SHA is pinned inside this manifest by design: the manifest is frozen before the merge/tag exist, so a self-referential pin is impossible."
+    "note": "Cite the v1.0.2 tag. v1.0.2 supersedes v1.0.1 for provenance-consistency metadata only: it corrects two stale final-manifest statements and leaves all v1.0.1 scientific, display, manuscript, result, source-data, generator, tolerance-artifact, and control-file bytes and pins unchanged. Tags v1.0.0 and v1.0.1 are not amended, moved, or deleted. No commit SHA is pinned inside this manifest by design: the manifest is frozen before the merge/tag exist, so a self-referential pin is impossible."
   },
   "v1_0_1_patch": {
     "scope": "Release-only tolerance-provenance patch to v1.0.0. No new join, analysis, simulation, fit, recalibration, or scientific-value change is performed.",
@@ -28,7 +28,21 @@
     ],
     "tolerance_disposition_revision": "The v1.0.0 bytes of results/tolerance/tolerance_raw_artifact_disposition.json and results/tolerance/SHA256SUMS.txt remain retrievable from tag v1.0.0. They were revised in place at the same canonical paths rather than duplicated under new names.",
     "tag_policy": "Do not amend or move tag v1.0.0. v1.0.1 is cut only after patch validation and the author's approval.",
-    "author_followup": "docs/reviews/framework/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md (recorded SHA-256 5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6) is not present in the release tree; see delayed_tolerance_join_summary.source_record_availability."
+    "author_followup": "The matched-tolerance framework record is present at docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md and pinned under frozen_hashes.provenance_documents_sha256 at SHA-256 5e48fa5034226448e7fbbf25298abe488ea507dd7cfe33f6d0724f0fa1ecf0e6; it resolves by the recorded hash without rewriting the frozen delayed_tolerance_join_summary bytes."
+  },
+  "v1_0_2_patch": {
+    "scope": "Provenance-consistency patch to the v1.0.1 final manifest only.",
+    "corrected_items": [
+      "Resolved the matched-tolerance framework-record availability statement to the installed canonical path and recorded hash.",
+      "Corrected the final-manifest display-source statement to 15 unique release_path sources."
+    ],
+    "release_identity": "manifest_version, final status, release tag, and release URL now identify v1.0.2.",
+    "scientific_values_changed": false,
+    "display_bytes_changed": false,
+    "manuscript_bytes_changed": false,
+    "pins_changed": false,
+    "unchanged": "All v1.0.1 file hashes and all scientific, display, manuscript, result, source-data, generator, tolerance-artifact, and control-file bytes and pins are unchanged.",
+    "tag_policy": "Do not amend or move tags v1.0.0 or v1.0.1; cut annotated tag v1.0.2 only after author approval."
   },
   "release_policy": {
     "source": "results/step1_provenance_addendum.json -> release_policy (mirrored verbatim; addendum pinned in frozen_hashes.committed_result_files_sha256)",
@@ -293,7 +307,7 @@
   "resolved_2026_09_29_v1_0_1_patch": [
     "Author v1.0.1 tolerance-provenance package received 2026-09-29; all 8 files hash-verified byte-for-byte against the package manifest before commit (no byte was altered in transit).",
     "Delayed-tolerance join summary installed at results/tolerance/delayed_tolerance_join_summary.json; disposition and SHA256SUMS revised in place; citable tolerance set = report + ID list + join summary.",
-    "Display generators and display source manifest installed at scripts/production/ and paper/display_sources/; all 14 unique release_path sources verify against this tree.",
+    "Display generators and display source manifest installed at scripts/production/ and paper/display_sources/; all 15 unique release_path sources verify against this tree.",
     "Display generators verified to load the delayed-join summary with no hard-coded 29/19/18; v1.0.1 patch consistency tests added to the release suite.",
     "v1.0.0 scientific pins compared key-by-key against tag v1.0.0 and unchanged; no raw NPZ added or reconstructed; tag v1.0.0 not amended."
   ],
