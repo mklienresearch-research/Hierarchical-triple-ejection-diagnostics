@@ -56,11 +56,29 @@ PACKAGE_FILES = {
         "e5a55e7a7c82e5813750d0241685c70e580ca1861f2d6a0baaf6f50958011f8a",
     "scripts/production/make_a1_main_table_data.py":
         "1df4725c9e9afffd30cbdafdf4046b4b4e103caf8e06373d6c8a672f51612909",
-    "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json":
-        "143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e",
     "paper/drafts/main.tex":
         "c4be2de4edf61eaa2ff1e079f133d09cb5fce0126b0e5781615626d8987fa5a4",
 }
+
+# The display manifest arrived byte-frozen at this hash and is the one package file the
+# pre-tag amendment edits: it gains a single Table 2 source entry, nothing else.
+DISPLAY_MANIFEST = "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json"
+DISPLAY_MANIFEST_RECEIVED_SHA256 = \
+    "143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e"
+DISPLAY_MANIFEST_AMENDED_SHA256 = \
+    "e224c6c1d14d330ff4aa2370a69c6c23572b5ba98fde122f161fc654e127b191"
+
+# The exact text block the amendment inserts; removing it must reproduce the
+# author-package bytes bit for bit.
+TABLE2_ADDED_ENTRY = (
+    '      {\n'
+    '        "release_path": "results/attribution_v2/prospective_model_attribution.json",\n'
+    '        "local_path": "results/attribution_growth_v2/prospective_model_attribution.json",\n'
+    '        "sha256": "fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701"\n'
+    '      },\n'
+)
+TABLE2_CANONICAL_INPUT = "results/attribution_v2/prospective_model_attribution.json"
+TABLE2_STAGING_ALIAS = "results/attribution_growth_v2/prospective_model_attribution.json"
 
 BINARY_SUFFIXES = {".npz", ".npy", ".pkl", ".pickle", ".h5", ".hdf5", ".parquet"}
 RAW_NPZ_NAME = "tight_tail_500.npz"
@@ -318,6 +336,9 @@ def test_package_files_match_release_manifest_pins():
     for rel, want in PACKAGE_FILES.items():
         assert sha256_of(ROOT / rel) == want, rel
         assert any(pins.get(rel) == want for pins in pin_sets), f"{rel} not pinned in manifest"
+    # the one amended package file is pinned at its post-amendment hash
+    assert sha256_of(ROOT / DISPLAY_MANIFEST) == DISPLAY_MANIFEST_AMENDED_SHA256
+    assert pin_sets[1][DISPLAY_MANIFEST] == DISPLAY_MANIFEST_AMENDED_SHA256
     assert set(manifest()["frozen_hashes"]["manuscript_display_sha256"]) == {
         "scripts/production/make_a1_main_results_figures.py",
         "scripts/production/make_a1_main_table_data.py",
@@ -334,7 +355,7 @@ def test_display_manifest_release_sources_resolve_in_tree():
             assert set(entry) == {"release_path", "local_path", "sha256"}, entry
             assert len(entry["sha256"]) == 64
             entries[entry["release_path"]] = entry["sha256"]
-    assert len(entries) == 14, f"expected 14 unique release sources, got {len(entries)}"
+    assert len(entries) == 15, f"expected 15 unique release sources, got {len(entries)}"
     for release_path, want in entries.items():
         target = ROOT / release_path
         assert target.is_file(), release_path
@@ -409,12 +430,12 @@ def test_every_generator_input_resolves_or_is_recorded():
             release = local_to_release.get(rel)
             assert release and (ROOT / release).is_file(), (
                 f"generator input {rel} does not resolve and is not recorded")
-    # the one input outside the frozen display manifest is documented, not hidden
-    unlisted = "results/attribution_growth_v2/prospective_model_attribution.json"
-    assert unlisted in seen
+    # the input that was previously unlisted is now carried by the display manifest
+    assert TABLE2_STAGING_ALIAS in seen
+    assert TABLE2_STAGING_ALIAS in local_to_release
+    assert local_to_release[TABLE2_STAGING_ALIAS] == TABLE2_CANONICAL_INPUT
     note = manifest()["display_provenance"]["generator_inputs_not_in_display_manifest"]
-    assert unlisted in note
-    assert "No display-manifest byte was edited" in note
+    assert note.startswith("None.")
 
 
 def test_manuscript_draft_is_not_the_submission_manuscript():
@@ -428,3 +449,69 @@ def test_manuscript_draft_is_not_the_submission_manuscript():
     assert "Anonymous" in submission
     note = manifest()["display_provenance"]["manuscript_draft"]
     assert "NOT the submission manuscript" in note
+
+
+def test_table2_source_map_carries_canonical_attribution_v2_input():
+    """The Table 2 source map lists the canonical v1.0.0-pinned attribution_v2 input."""
+    table2 = display_manifest()["panel_and_table_sources"]["table2"]
+    match = [e for e in table2 if e["release_path"] == TABLE2_CANONICAL_INPUT]
+    assert len(match) == 1, "canonical Table 2 input must be listed exactly once"
+    entry = match[0]
+    assert entry["local_path"] == TABLE2_STAGING_ALIAS
+    assert entry["sha256"] == \
+        "fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701"
+    # agrees with the v1.0.0 committed-result pin, and the bytes are present
+    committed = manifest()["frozen_hashes"]["committed_result_files_sha256"]
+    assert entry["sha256"] == committed[TABLE2_CANONICAL_INPUT]
+    assert sha256_of(ROOT / entry["release_path"]) == entry["sha256"]
+    # the generator reads the staging alias, which maps onto the canonical path
+    aliases = manifest()["display_provenance"]["staging_alias_map"]
+    assert aliases["results/attribution_growth_v2/"] == "results/attribution_v2/"
+    src = (ROOT / "scripts" / "production" / "make_a1_main_table_data.py").read_text()
+    assert "attribution_growth_v2" in src
+    assert "prospective_model_attribution.json" in src
+
+
+def test_display_provenance_notes_match_reality():
+    """Prose counts in display_provenance must track the display manifest itself."""
+    dp = manifest()["display_provenance"]
+    dm = display_manifest()
+    entries = {e["release_path"]
+               for sources in dm["panel_and_table_sources"].values()
+               for e in sources}
+    assert len(entries) == 15
+    assert f"All {len(entries)} unique release_path entries" in dp["verified_2026_09_29"]
+    assert dp["generator_inputs_not_in_display_manifest"].startswith("None.")
+    # every release_path in the display manifest is pinned somewhere in the manifest,
+    # at exactly the hash the display manifest records for it
+    by_path = {}
+    for sources in dm["panel_and_table_sources"].values():
+        for e in sources:
+            by_path[e["release_path"]] = e["sha256"]
+    frozen = manifest()["frozen_hashes"]
+    pins = {}
+    pins.update(frozen["committed_result_files_sha256"])
+    pins.update(frozen["control_documents_sha256"])
+    pins.update(frozen["manuscript_display_sha256"])
+    for release_path, sha in by_path.items():
+        assert release_path in pins, f"{release_path} not pinned in final_manifest.json"
+        assert pins[release_path] == sha, f"{release_path} pin disagrees with display manifest"
+
+
+def test_display_manifest_amendment_is_purely_additive():
+    """Adding the Table 2 entry must be the only change to the delivered bytes."""
+    path = ROOT / DISPLAY_MANIFEST
+    amended = path.read_text()
+    assert amended.count(TABLE2_ADDED_ENTRY) == 1
+    reversed_bytes = amended.replace(TABLE2_ADDED_ENTRY, "", 1).encode()
+    assert hashlib.sha256(reversed_bytes).hexdigest() == DISPLAY_MANIFEST_RECEIVED_SHA256
+    assert sha256_of(path) == DISPLAY_MANIFEST_AMENDED_SHA256
+    rev = manifest()["display_provenance"]["display_manifest_revision"]
+    assert DISPLAY_MANIFEST_RECEIVED_SHA256 in rev
+    assert DISPLAY_MANIFEST_AMENDED_SHA256 in rev
+    # no displayed value moved: every other panel/table source still resolves
+    for panel, sources in display_manifest()["panel_and_table_sources"].items():
+        for entry in sources:
+            if panel == "table2" and entry["release_path"] == TABLE2_CANONICAL_INPUT:
+                continue
+            assert sha256_of(ROOT / entry["release_path"]) == entry["sha256"], entry

@@ -139,7 +139,7 @@
     "manuscript_display_sha256": {
       "scripts/production/make_a1_main_results_figures.py": "e5a55e7a7c82e5813750d0241685c70e580ca1861f2d6a0baaf6f50958011f8a",
       "scripts/production/make_a1_main_table_data.py": "1df4725c9e9afffd30cbdafdf4046b4b4e103caf8e06373d6c8a672f51612909",
-      "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json": "143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e",
+      "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json": "e224c6c1d14d330ff4aa2370a69c6c23572b5ba98fde122f161fc654e127b191",
       "paper/drafts/main.tex": "c4be2de4edf61eaa2ff1e079f133d09cb5fce0126b0e5781615626d8987fa5a4"
     },
     "patch_control_documents_sha256": {
@@ -189,7 +189,7 @@
   "display_provenance": {
     "source": "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json (pinned in frozen_hashes.manuscript_display_sha256; schema a1-main-display-source-manifest-1.0)",
     "path_convention": "Each panel/table entry carries release_path (canonical repository path) plus local_path (the author's staging/Kaggle working copy). Only release_path is a release path; tests verify every release_path resolves in this tree with the recorded SHA-256.",
-    "verified_2026_09_29": "All 14 unique release_path entries resolve in this tree with matching SHA-256: 13 were already pinned at v1.0.0 and the 14th is the delayed-join summary added by this patch.",
+    "verified_2026_09_29": "All 15 unique release_path entries resolve in this tree with matching SHA-256: 13 were already pinned at v1.0.0, the 14th is the delayed-join summary added by this patch, and the 15th is the canonical attribution_v2 Table 2 input added by the pre-tag amendment.",
     "generator_output_paths": "The generators write to ROOT/paper_draft/{figures,figure_data,table_data}. Those are author staging paths, not committed release paths; the committed record of the generated bundle (filenames, bytes, SHA-256) is generated_display_bundle in the display manifest itself.",
     "manuscript_draft": "paper/drafts/main.tex is the author's hash-pinned manuscript draft, installed verbatim for display provenance. It is NOT the submission manuscript: paper/main.tex stays the anonymous dual-anonymous-review skeleton, and CI enforces that the submission manuscript carries no identifying strings. Promoting the draft to paper/main.tex is an author decision outside this provenance patch.",
     "display_manifest_release_field": "The display manifest records release v1.0.0 because its sources are the tagged v1.0.0 artifacts; its release_candidate_note anticipates exactly this patch release.",
@@ -200,7 +200,8 @@
       "results/prospective_tail_scoring/": "results/prospective/",
       "results/attribution_precision_addon/": "results/attribution_precision/"
     },
-    "generator_inputs_not_in_display_manifest": "scripts/production/make_a1_main_table_data.py also reads results/attribution_growth_v2/prospective_model_attribution.json, which the frozen display manifest does not list. Its canonical release path results/attribution_v2/prospective_model_attribution.json is present in this tree and hash-pinned in frozen_hashes.committed_result_files_sha256, so the input is resolvable and recorded, but only through staging_alias_map here. No display-manifest byte was edited to close this gap; it is recorded instead."
+    "generator_inputs_not_in_display_manifest": "None. The gap recorded at b2610fa is closed by the pre-tag amendment: the display manifest now lists the canonical Table 2 input results/attribution_v2/prospective_model_attribution.json (sha256 fed578d6d63fc52ebe602eccba4da413a36e7e2057550d95a78111d9892f8701, already a v1.0.0 pin), whose author-staging alias is results/attribution_growth_v2/prospective_model_attribution.json. Every input read by either generator now resolves through the frozen display manifest as well as through staging_alias_map.",
+    "display_manifest_revision": "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json was byte-frozen at the author-package hash 143fd26d51781846315f08c4f8a11577dd3b81d313ddf1bf380e0a42efc0789e on receipt (b2610fa). The pre-tag amendment inserts exactly one Table 2 source entry, so the release pin is now e224c6c1d14d330ff4aa2370a69c6c23572b5ba98fde122f161fc654e127b191. Only the panel_and_table_sources.table2 array changed: reversing the insertion reproduces the author-package bytes exactly (asserted byte-level by tests/test_v1_0_1_patch_consistency.py). No displayed value, sha256, or path of any pre-existing entry was altered."
   },
   "tight_tail_500_disposition": {
     "source": "results/tolerance/tolerance_raw_artifact_disposition.json (mirrored verbatim; v1.0.1 revision pinned in frozen_hashes.committed_result_files_sha256)",
