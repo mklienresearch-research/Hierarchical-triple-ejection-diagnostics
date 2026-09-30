@@ -239,11 +239,11 @@ def test_only_the_patched_tolerance_records_moved():
         assert sha256_of(ROOT / rel) == want
 
 
-def test_release_identity_and_manifest_version_are_v1_0_1():
+def test_v1_0_1_patch_metadata_is_preserved_under_v1_0_2():
     m = manifest()
-    assert m["manifest_version"] == "1.0.1"
-    assert m["release"]["tag"] == "v1.0.1"
-    assert m["release"]["url"] == m["release"]["repository"] + "/releases/tag/v1.0.1"
+    assert m["manifest_version"] == "1.0.2"
+    assert m["release"]["tag"] == "v1.0.2"
+    assert m["release"]["url"] == m["release"]["repository"] + "/releases/tag/v1.0.2"
     assert "not amended" in m["release"]["note"]
     patch = m["v1_0_1_patch"]
     assert patch["scientific_values_changed"] is False

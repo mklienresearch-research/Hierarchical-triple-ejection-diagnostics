@@ -4,18 +4,17 @@ Causal, finite-time forecasting of ejection in hierarchical triple systems and o
 
 > **Release status:** A1 release FINAL. Hashes are frozen in
 > [`results/final_manifest.json`](results/final_manifest.json) (`manifest_version`
-> `1.0.1`, release tag `v1.0.1`); the nine FINAL scripts, all 74 result/checksum
+> `1.0.2`, release tag `v1.0.2`); the nine FINAL scripts, all 74 result/checksum
 > files, and the A1 control documents are committed and hash-verified
 > (see [`docs/FINAL_MANIFEST.md`](docs/FINAL_MANIFEST.md)).
 >
-> `v1.0.1` is a **tolerance-provenance patch of `v1.0.0`**: it adds
-> [`results/tolerance/delayed_tolerance_join_summary.json`](results/tolerance/delayed_tolerance_join_summary.json)
-> for the already-closed 330-ID delayed-tolerance join (29/330 production, 19/330
-> strict tolerance, 18/330 changed labels), revises the tolerance raw-artifact
-> disposition and its checksums, and pins the manuscript-display generators. No
-> scientific value changed: every `v1.0.0` scientific pin is retained byte-identical,
-> the raw `tight_tail_500.npz` stays `UNAVAILABLE_FOR_RELEASE`, and tag `v1.0.0` is
-> not amended. See [`docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md`](docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md).
+> `v1.0.2` is a **provenance-consistency patch of `v1.0.1`**: it corrects the
+> final manifest's matched-tolerance framework-record availability wording and
+> its display-source count to 15 unique `release_path` sources. All scientific,
+> display, manuscript, result, source-data, generator, tolerance-artifact, and
+> control-file bytes and pins remain unchanged. Tags `v1.0.0` and `v1.0.1` are
+> not amended. The v1.0.1 tolerance-provenance package remains documented in
+> [`docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md`](docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md).
 
 ## Scientific scope
 

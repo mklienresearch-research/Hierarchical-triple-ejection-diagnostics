@@ -5,7 +5,7 @@ Full artifact inventory: [`results/artifact_registry.json`](../results/artifact_
 and [`docs/ARTIFACT_REGISTRY.md`](ARTIFACT_REGISTRY.md).
 Dataset verification evidence: [`docs/KAGGLE_DATASETS_VERIFICATION.md`](KAGGLE_DATASETS_VERIFICATION.md).
 
-## Status: FINAL (A1 release v1.0.1, tolerance-provenance patch of v1.0.0)
+## Status: FINAL (A1 release v1.0.2, provenance-consistency patch of v1.0.1)
 
 - the nine FINAL scripts are received, hash-verified, and committed
   (see [`workflows/final/SCRIPT_REGISTRY.json`](../workflows/final/SCRIPT_REGISTRY.json));
@@ -18,10 +18,15 @@ Dataset verification evidence: [`docs/KAGGLE_DATASETS_VERIFICATION.md`](KAGGLE_D
   disposition + checksums, and pins the display generators. **No scientific value
   changed:** `tests/test_v1_0_1_patch_consistency.py` re-derives a digest over the
   frozen v1.0.0 scientific view and requires it to be unchanged, and the raw
-  `tight_tail_500.npz` remains unavailable.
+  `tight_tail_500.npz` remains unavailable;
+- `v1.0.2` is a manifest-consistency patch only: it resolves the framework-record
+  availability wording to the installed, hash-pinned canonical record and corrects
+  the stale display-source statement to 15 unique `release_path` sources. All
+  scientific, display, manuscript, result, source-data, generator, tolerance-artifact,
+  and control-file bytes and pins remain unchanged.
 
-Cite the release tag (`results/final_manifest.json` → `release.url`); no commit SHA
-is pinned in-manifest by design.
+Cite the v1.0.2 release tag (`results/final_manifest.json` → `release.url`); no
+commit SHA is pinned in-manifest by design.
 
 ## Frozen script hashes (received and hash-verified)
 
@@ -87,8 +92,10 @@ The Δ103/Δ98 values are cross-run transitions, not ledger discrepancies
 - `results/tolerance/SHA256SUMS.txt` — `7d5a4205…` (v1.0.1 revision)
 - `scripts/production/make_a1_main_results_figures.py` — `e5a55e7a…`
 - `scripts/production/make_a1_main_table_data.py` — `1df4725c…`
-- `paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json` — `143fd26d…`
-- `paper/drafts/main.tex` — `c4be2de4…` (author draft; not the submission manuscript)
+- `paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json` — `09d8ffdf…` (amended v1.0.1 bytes)
+- `paper/drafts/main.tex` — `fdcbfdb3…` (author draft; not the submission manuscript)
+- `docs/A1_V1.0.1_PRETAG_AMENDMENT.md` — `27f2d9e5…`
+- `docs/provenance/FRAMEWORK_AGENT_MATCHED_TOLERANCE_JOIN.md` — `5e48fa50…` (canonical installed record)
 
 The v1.0.0 bytes of the two revised tolerance records remain retrievable from
 tag `v1.0.0`; they were revised in place rather than duplicated.
