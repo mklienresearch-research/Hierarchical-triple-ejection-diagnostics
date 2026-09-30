@@ -53,7 +53,7 @@ PACKAGE_FILES = {
     "results/tolerance/SHA256SUMS.txt":
         "7d5a420587e294b2b87b9885158de48cd665666a11a78c07b5ebb2990dcc8e23",
     "scripts/production/make_a1_main_results_figures.py":
-        "e5a55e7a7c82e5813750d0241685c70e580ca1861f2d6a0baaf6f50958011f8a",
+        "70057a0d8f87ae26ec7beb20c2e3467070b7d616c8e51b916162fac02914b9f9",
     "scripts/production/make_a1_main_table_data.py":
         "1df4725c9e9afffd30cbdafdf4046b4b4e103caf8e06373d6c8a672f51612909",
 }
@@ -135,7 +135,7 @@ TABLE2_CANONICAL_SHA256 = \
 # Table 2 attribution input in the delayed-warning provenance note. Built without a
 # literal backslash so the LaTeX path macro survives any quoting context.
 BS = chr(92)
-_PATH = lambda ref: f"{BS}path{{{ref}}}"  # noqa: E731
+_PATH = lambda ref: f"{BS}path{{{ref}}}"
 DRAFT_TAIL_SCORING = "results/prospective/prospective_tail_scoring.json"
 DRAFT_PRECISION = "results/attribution_precision/attribution_precision_addon.json"
 DRAFT_SENTENCE_RECEIVED = (
@@ -239,12 +239,12 @@ def test_only_the_patched_tolerance_records_moved():
         assert sha256_of(ROOT / rel) == want
 
 
-def test_v1_0_1_patch_metadata_is_preserved_under_v1_0_2():
+def test_v1_0_1_patch_metadata_is_preserved_under_v1_0_3():
     m = manifest()
-    assert m["manifest_version"] == "1.0.2"
-    assert m["release"]["tag"] == "v1.0.2"
-    assert m["release"]["url"] == m["release"]["repository"] + "/releases/tag/v1.0.2"
-    assert "not amended" in m["release"]["note"]
+    assert m["manifest_version"] == "1.0.3"
+    assert m["release"]["tag"] == "v1.0.3"
+    assert m["release"]["url"] == m["release"]["repository"] + "/releases/tag/v1.0.3"
+    assert "Do not amend, move, or delete tags" in m["release"]["note"]
     patch = m["v1_0_1_patch"]
     assert patch["scientific_values_changed"] is False
     assert patch["manuscript_results_changed"] is False
@@ -396,7 +396,8 @@ def test_no_raw_npz_present_or_reconstructed():
     offenders = [
         p.relative_to(ROOT).as_posix()
         for p in ROOT.rglob("*")
-        if p.is_file() and p.suffix.lower() in BINARY_SUFFIXES and ".git/" not in str(p)
+        if p.is_file() and p.suffix.lower() in BINARY_SUFFIXES
+        and not any(part in {".git", ".venv", "venv"} for part in p.parts)
     ]
     assert offenders == [], offenders
 
@@ -406,41 +407,54 @@ def test_no_raw_npz_present_or_reconstructed():
 
 def test_package_files_match_release_manifest_pins():
     m = manifest()
+    frozen = m["frozen_hashes"]
     pin_sets = [
-        m["frozen_hashes"]["committed_result_files_sha256"],
-        m["frozen_hashes"]["manuscript_display_sha256"],
-        m["frozen_hashes"]["patch_control_documents_sha256"],
-        m["frozen_hashes"]["provenance_documents_sha256"],
+        frozen["committed_result_files_sha256"],
+        frozen["manuscript_display_sha256"],
+        frozen["patch_control_documents_sha256"],
+        frozen["provenance_documents_sha256"],
     ]
     for rel, want in PACKAGE_FILES.items():
         assert sha256_of(ROOT / rel) == want, rel
         assert any(pins.get(rel) == want for pins in pin_sets), f"{rel} not pinned in manifest"
-    # the amended files are pinned at their delivered hashes: display manifest and
-    # manuscript draft under manuscript_display_sha256, control/provenance docs under
-    # patch_control_documents_sha256 / provenance_documents_sha256
+
+    # The v1.0.1 amendment docs remain historical pins. Its superseded display
+    # manifest and draft are now replaced by the byte-exact v1.0.3 author package.
     for rel, want in AMENDMENT_FILES.items():
+        if rel in {DISPLAY_MANIFEST, MANUSCRIPT_DRAFT}:
+            continue
         assert sha256_of(ROOT / rel) == want, rel
         assert any(pins.get(rel) == want for pins in pin_sets), f"{rel} not pinned"
-    assert pin_sets[1][DISPLAY_MANIFEST] == DISPLAY_MANIFEST_AMENDED_SHA256
-    assert pin_sets[1][MANUSCRIPT_DRAFT] == MANUSCRIPT_AMENDED_SHA256
-    assert pin_sets[2]["docs/A1_V1.0.1_PRETAG_AMENDMENT.md"] == \
-        AMENDMENT_FILES["docs/A1_V1.0.1_PRETAG_AMENDMENT.md"]
-    assert manifest()["frozen_hashes"]["provenance_documents_sha256"][FRAMEWORK_RECORD] \
-        == FRAMEWORK_SHA256
-    assert set(manifest()["frozen_hashes"]["manuscript_display_sha256"]) == {
+
+    approved = m["v1_0_3_patch"]["approved_release_files"]
+    for rel, record in approved.items():
+        data = (ROOT / rel).read_bytes()
+        assert len(data) == record["bytes"], rel
+        assert sha256_of(ROOT / rel) == record["sha256"], rel
+        assert frozen["manuscript_display_sha256"][rel] == record["sha256"], rel
+    approval = m["v1_0_3_patch"]["framework_approval_record"]
+    assert sha256_of(ROOT / approval["path"]) == approval["sha256"]
+    assert frozen["patch_control_documents_sha256"][approval["path"]] == approval["sha256"]
+    assert set(frozen["manuscript_display_sha256"]) == {
         "scripts/production/make_a1_main_results_figures.py",
         "scripts/production/make_a1_main_table_data.py",
         "paper/display_sources/MAIN_DISPLAY_SOURCE_MANIFEST.json",
         "paper/drafts/main.tex",
+        "paper/figure_data/fig03_robustness_endpoints.json",
     }
-
 
 def test_display_manifest_release_sources_resolve_in_tree():
     dm = display_manifest()
     entries = {}
-    for sources in dm["panel_and_table_sources"].values():
+    for panel, sources in dm["panel_and_table_sources"].items():
         for entry in sources:
-            assert set(entry) == {"release_path", "local_path", "sha256"}, entry
+            required = {"release_path", "local_path", "sha256"}
+            assert required <= set(entry), entry
+            assert set(entry) <= required | {"access_mode"}, entry
+            if panel == "fig03_b_tail":
+                assert entry["access_mode"] == "hash-pinned transcription; source is not parsed by generator"
+            else:
+                assert "access_mode" not in entry
             assert len(entry["sha256"]) == 64
             entries[entry["release_path"]] = entry["sha256"]
     assert len(entries) == 15, f"expected 15 unique release sources, got {len(entries)}"
@@ -448,7 +462,6 @@ def test_display_manifest_release_sources_resolve_in_tree():
         target = ROOT / release_path
         assert target.is_file(), release_path
         assert sha256_of(target) == want, release_path
-
 
 def test_display_manifest_generated_bundle_matches_generators():
     bundle = display_manifest()["generated_display_bundle"]
@@ -527,23 +540,18 @@ def test_every_generator_input_resolves_or_is_recorded():
 
 
 def test_manuscript_draft_is_not_the_submission_manuscript():
-    """The identifying author draft must never become the anonymous submission file."""
+    """The author draft is pinned in v1.0.3 but never promoted to submission."""
     draft = ROOT / "paper" / "drafts" / "main.tex"
     assert draft.is_file()
-    assert sha256_of(draft) == MANUSCRIPT_AMENDED_SHA256
-    # the amendment only names the canonical Table 2 input in the provenance note
-    amended_text = draft.read_text()
-    assert amended_text.count(DRAFT_SENTENCE_AMENDED) == 1
-    reversed_bytes = amended_text.replace(
-        DRAFT_SENTENCE_AMENDED, DRAFT_SENTENCE_RECEIVED, 1).encode()
-    assert hashlib.sha256(reversed_bytes).hexdigest() == MANUSCRIPT_RECEIVED_SHA256
-    assert "mklienresearch-research" in draft.read_text()
+    assert sha256_of(draft) == "f43b05a3e096b313859660f8b49ef8d0c611abdc5997cddd4e5614bcabeaa610"
+    text = draft.read_text()
+    assert text.count(DRAFT_SENTENCE_AMENDED) == 1
+    assert "mklienresearch-research" in text
     submission = (ROOT / "paper" / "main.tex").read_text()
     assert "mklienresearch" not in submission.lower()
     assert "Anonymous" in submission
     note = manifest()["display_provenance"]["manuscript_draft"]
     assert "NOT the submission manuscript" in note
-
 
 def test_table2_source_map_carries_canonical_attribution_v2_input():
     """The Table 2 source map lists the canonical v1.0.0-pinned attribution_v2 input."""
@@ -618,7 +626,6 @@ def test_every_generator_input_appears_in_display_source_manifest():
     dm = display_manifest()
     listed = {e["local_path"] for sources in dm["panel_and_table_sources"].values()
               for e in sources}
-    aliases = manifest()["display_provenance"]["staging_alias_map"]
     generators = [
         ROOT / "scripts" / "production" / "make_a1_main_results_figures.py",
         ROOT / "scripts" / "production" / "make_a1_main_table_data.py",
@@ -658,24 +665,18 @@ def test_submission_manuscript_is_untouched_by_the_patch():
     assert "Anonymous" in text
 
 
-def test_display_manifest_amendment_is_purely_additive():
-    """The author's two edits are the only change to the delivered display bytes."""
+def test_display_manifest_revision_history_and_v1_0_3_semantics_are_recorded():
+    """Historical v1.0.1 amendment pins remain recorded; v1.0.3 bytes are exact."""
     path = ROOT / DISPLAY_MANIFEST
-    amended = path.read_text()
-    assert sha256_of(path) == DISPLAY_MANIFEST_AMENDED_SHA256
-    assert amended.count(TABLE2_AMENDED_TAIL) == 1
-    assert amended.count(NOTE_AMENDED) == 1
-    reversed_bytes = (amended
-                      .replace(TABLE2_AMENDED_TAIL, TABLE2_RECEIVED_TAIL, 1)
-                      .replace(NOTE_AMENDED, NOTE_RECEIVED, 1)
-                      .encode())
-    assert hashlib.sha256(reversed_bytes).hexdigest() == DISPLAY_MANIFEST_RECEIVED_SHA256
-    rev = manifest()["display_provenance"]["display_manifest_revision"]
-    assert DISPLAY_MANIFEST_RECEIVED_SHA256 in rev
-    assert DISPLAY_MANIFEST_AMENDED_SHA256 in rev
-    # no displayed value moved: every other panel/table source still resolves
-    for panel, sources in display_manifest()["panel_and_table_sources"].items():
-        for entry in sources:
-            if panel == "table2" and entry["release_path"] == TABLE2_CANONICAL_INPUT:
-                continue
-            assert sha256_of(ROOT / entry["release_path"]) == entry["sha256"], entry
+    current = path.read_text()
+    current_sha = "34bc46e7f3b3eef16a1cbd22dc08bb3cd8032b5f9298e4f1d379c15b0145424a"
+    assert sha256_of(path) == current_sha
+    revision = manifest()["display_provenance"]["display_manifest_revision"]
+    assert DISPLAY_MANIFEST_RECEIVED_SHA256 in revision
+    assert DISPLAY_MANIFEST_AMENDED_SHA256 in revision
+    assert current_sha in revision
+    assert "hash-pinned transcription from human ledger" in current
+    assert "source is not parsed by generator" in current
+    assert "no displayed value changes" in current
+    table2 = display_manifest()["panel_and_table_sources"]["table2"]
+    assert sum(e["release_path"] == TABLE2_CANONICAL_INPUT for e in table2) == 1

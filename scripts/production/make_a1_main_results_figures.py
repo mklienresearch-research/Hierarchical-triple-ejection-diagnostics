@@ -186,7 +186,11 @@ boundary = load(RESULTS / "final_expanded_audit_json" / "boundary_parity.json")
 tol = load(RESULTS / "tolerance_validation" / "tolerance_report.json")
 tol_join = load(RESULTS / "tolerance_validation" / "delayed_tolerance_join_summary.json")
 attr = load(RESULTS / "attribution_precision_addon" / "attribution_precision_addon.json")
-# Exact release-ledger incidence ladder.
+# Figure 3b is an explicit display transcription from the hash-pinned human
+# numerical ledger. The generator does not parse prose from the Markdown file
+# and does not claim that these arrays are machine-read from the source. The
+# exact values, source paths, hashes, and transcription status are written to
+# the figure-source JSON and display-source manifest.
 tail_t = np.array([100, 300, 1000, 3000])
 tail_inc = np.array([31.077, 34.989, 38.104, 40.079])
 # Boundary f=0.50 and 0.75.
@@ -261,6 +265,11 @@ fig3_data = {
     "boundary_auc": {k:v.tolist() for k,v in bauc.items()},
     "tail_cutoff_Tout": tail_t.tolist(),
     "tail_cumulative_ejection_percent": tail_inc.tolist(),
+    "tail_incidence_input_mode": "hash-pinned transcription from human numerical ledger; not parsed or machine-read by this generator",
+    "tail_incidence_sources": [
+        {"path": "docs/RESULTS_MANIFEST_FINAL.md", "sha256": "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686"},
+        {"path": "results/step1_provenance_addendum.json", "sha256": "3a11572ac21eb7e80ff4b78cbc760a60a78da016699e98eb2436690f967bc778"},
+    ],
     "tolerance_percent": {"production": production.tolist(), "tight": tight.tolist()},
     "delayed_tolerance_join": tol_join,
     "delayed_models": models,

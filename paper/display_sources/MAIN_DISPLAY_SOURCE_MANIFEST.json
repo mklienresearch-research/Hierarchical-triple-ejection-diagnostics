@@ -1,7 +1,7 @@
 {
   "schema": "a1-main-display-source-manifest-1.0",
   "release": "v1.0.0",
-  "statement": "Displays were regenerated directly from the tagged release artifacts listed per panel/table. The PDF is not the source bundle.",
+  "statement": "Displays are generated from the tagged release sources listed per panel/table. Figure 3b is an explicit hash-pinned transcription from the human numerical ledger and provenance addendum; its generator does not parse those files. The PDF is not the source bundle.",
   "panel_and_table_sources": {
     "fig01_a_b": [
       {
@@ -50,12 +50,14 @@
       {
         "release_path": "docs/RESULTS_MANIFEST_FINAL.md",
         "local_path": "docs/RESULTS_MANIFEST_FINAL.md",
-        "sha256": "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686"
+        "sha256": "54440fee9bb862e28c900250757ce686f8c7b98fccc3ee261d2ddb968b33c686",
+        "access_mode": "hash-pinned transcription; source is not parsed by generator"
       },
       {
         "release_path": "results/step1_provenance_addendum.json",
         "local_path": "results/step1_provenance_addendum.json",
-        "sha256": "3a11572ac21eb7e80ff4b78cbc760a60a78da016699e98eb2436690f967bc778"
+        "sha256": "3a11572ac21eb7e80ff4b78cbc760a60a78da016699e98eb2436690f967bc778",
+        "access_mode": "hash-pinned transcription; source is not parsed by generator"
       }
     ],
     "fig03_c_tolerance": [
@@ -150,15 +152,15 @@
   "generated_display_bundle": {
     "paper_draft/figures/fig01_primary_ranking.pdf": {
       "bytes": 25878,
-      "sha256": "7b0d32fdcb8c0cdc687b063593ab71a08f4d229bcb2f2d16cdfb09c070dfac20"
+      "sha256": "37d52857b857777be69547bb22e2187f8b00c9d5c6c9b2fb8c8cfcbffffe8c59"
     },
     "paper_draft/figures/fig02_target_far_operation.pdf": {
       "bytes": 23926,
-      "sha256": "be17dc3f0c2dad4e7379f6851ee639eac046c224a00609da708d7759d2aaa733"
+      "sha256": "97c8b53b09e0ce09dafbdedc7c5cd2a8f5a6cb7246e01f7a94b00020e8d808a0"
     },
     "paper_draft/figures/fig03_robustness_endpoints.pdf": {
       "bytes": 29057,
-      "sha256": "ee27e3184ec8b4fdd38604b3624877381d03e3a47bf28eb5ab8b7e6b552c8b4c"
+      "sha256": "52d177fde4a8e55cfc333b0ebdd2c009da56d327f5a165a96b06ead3ad9fcd0b"
     },
     "paper_draft/figure_data/fig01_primary_ranking.json": {
       "bytes": 4028,
@@ -169,8 +171,8 @@
       "sha256": "3c2f506963e995d50c84d55954ea1cb45316c14d98b1e7b416ae26fc94bae20e"
     },
     "paper_draft/figure_data/fig03_robustness_endpoints.json": {
-      "bytes": 2734,
-      "sha256": "43a527648a53a804648f03948856e2da53589d762d5e247e82960128111a1bc5"
+      "bytes": 3198,
+      "sha256": "2ca4bbaa01c2fef3e5db19b3dfd71f0b1e08cdfc89fb88425e0a4c679d8de3d7"
     },
     "paper_draft/table_data/table1_baselines.csv": {
       "bytes": 930,
@@ -185,8 +187,8 @@
       "sha256": "4e06c208f540cff2b183a262538d1a61c56a2f5740dc110ddc977aa1a64ee0c7"
     },
     "scripts/production/make_a1_main_results_figures.py": {
-      "bytes": 10777,
-      "sha256": "e5a55e7a7c82e5813750d0241685c70e580ca1861f2d6a0baaf6f50958011f8a"
+      "bytes": 11542,
+      "sha256": "70057a0d8f87ae26ec7beb20c2e3467070b7d616c8e51b916162fac02914b9f9"
     },
     "scripts/production/make_a1_main_table_data.py": {
       "bytes": 5387,
@@ -205,5 +207,16 @@
       "sha256": "7d5a420587e294b2b87b9885158de48cd665666a11a78c07b5ebb2990dcc8e23"
     }
   },
-  "release_candidate_note": "The delayed-tolerance summary, revised disposition, and complete display-input map require the v1.0.1 provenance patch before these rows are citable from the public tag."
+  "release_candidate_note": "Figure 3b provenance wording is corrected for a v1.0.3 display-provenance patch; no displayed value changes.",
+  "panel_generation_modes": {
+    "fig01_a_b": "machine-read from tagged JSON",
+    "fig01_c": "machine-read from tagged JSON",
+    "fig02": "machine-read from tagged JSON",
+    "fig03_a_boundary": "machine-read from tagged JSON",
+    "fig03_b_tail": "hash-pinned transcription from human ledger; literal display arrays with values and source hashes recorded in fig03 source JSON",
+    "fig03_c_tolerance": "machine-read from tagged JSON",
+    "fig03_d_delayed": "machine-read from tagged JSON",
+    "table1": "machine-read from tagged JSON",
+    "table2": "machine-read from tagged JSON"
+  }
 }

@@ -2,19 +2,22 @@
 
 Causal, finite-time forecasting of ejection in hierarchical triple systems and of outcomes in binary–single encounters — with calibrated warning lead times and censoring-aware validation.
 
-> **Release status:** A1 release FINAL. Hashes are frozen in
-> [`results/final_manifest.json`](results/final_manifest.json) (`manifest_version`
-> `1.0.2`, release tag `v1.0.2`); the nine FINAL scripts, all 74 result/checksum
-> files, and the A1 control documents are committed and hash-verified
+> **Release status:** A1 science is FINAL; `v1.0.2` remains the latest public tag.
+> This branch stages a proposed v1.0.3 pre-tag patch. The proposed final manifest
+> is [`results/final_manifest.json`](results/final_manifest.json)
+> (`manifest_version` `1.0.3`, candidate tag `v1.0.3`); the nine FINAL scripts,
+> all 74 result/checksum files, and the A1 control documents remain hash-verified
 > (see [`docs/FINAL_MANIFEST.md`](docs/FINAL_MANIFEST.md)).
 >
-> `v1.0.2` is a **provenance-consistency patch of `v1.0.1`**: it corrects the
-> final manifest's matched-tolerance framework-record availability wording and
-> its display-source count to 15 unique `release_path` sources. All scientific,
-> display, manuscript, result, source-data, generator, tolerance-artifact, and
-> control-file bytes and pins remain unchanged. Tags `v1.0.0` and `v1.0.1` are
-> not amended. The v1.0.1 tolerance-provenance package remains documented in
-> [`docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md`](docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md).
+> The proposed `v1.0.3` patch corrects Figure 3b provenance: its four cutoff and
+> incidence pairs are a hash-pinned transcription from the human ledger and
+> provenance addendum, not a machine-read ledger input. The values remain
+> `100/300/1000/3000` and `31.077/34.989/38.104/40.079` percent; all other panels
+> and tables remain machine-read, and no scientific/displayed values, cohorts,
+> endpoints, uncertainties, table values, or other release pins change. Tags
+> `v1.0.0` through `v1.0.2` are not amended. Merge, tag, and release the candidate
+> only after author approval. The v1.0.1 tolerance-provenance package remains
+> documented in [`docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md`](docs/A1_V1.0.1_TOLERANCE_PROVENANCE_HANDOFF.md).
 
 ## Scientific scope
 
